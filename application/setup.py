@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from manager_setup import manager, db, User
+from application.manager_setup import manager, db, User
 from itsdangerous import URLSafeTimedSerializer
 from flask_mail import Mail
 

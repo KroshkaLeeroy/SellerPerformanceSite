@@ -1,10 +1,10 @@
-from setup import app, db, User
-from login.login_views import login_blueprint
-from main.main_views import main_blueprint
-from profile.profile_views import profile_blueprint
-from login.reset_password_views import reset_blueprint
-from feedback.feedback_views import feedback_blueprint
-from admin_panel.admin_views import admin_blueprint
+from application.setup import app, db, User
+from application.login.login_views import login_blueprint
+from application.main.main_views import main_blueprint
+from application.profile.profile_views import profile_blueprint
+from application.login.reset_password_views import reset_blueprint
+from application.feedback.feedback_views import feedback_blueprint
+from application.admin_panel.admin_views import admin_blueprint
 
 
 
