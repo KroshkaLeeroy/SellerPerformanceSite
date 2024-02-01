@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Редактирование профиля{% endblock %}
+
+
+{% block content %}
+
+<main class="main-content">
+    <form class="search-form" , action="{{ url_for('admin_blueprint.admin_page') }}" method="post">
+        <input type="text" id="search" class="info-input" placeholder="Поиск" name="search">
+        <button type="submit" class="btn-submit">Поиск</button>
+    </form>
+
+    <table class="info-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Почта</th>
+            <th>Тип аккаунта</th>
+            <th>Количество запросов</th>
+            <th>Статус аккаунта</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user_1 in users %}
+        <tr>
+
+            <td>{{ user_1.id }}</td>
+            <td>
+                <a href="{{ url_for('admin_blueprint.admin_page_user', user_id=user_1.id) }}">{{ user_1.email }}</a>
+            </td>
+            <td>{{ user_1.account_type }}</td>
+            <td>{{ user_1.request_count }}</td>
+            <td>{{ user_1.account_status }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</main>
+
+{% endblock %}

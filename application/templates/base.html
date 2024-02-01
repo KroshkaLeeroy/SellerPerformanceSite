@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Default Title{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <!-- Дополнительные ресурсы -->
+</head>
+<body>
+{% if user.is_authenticated %}
+<header>
+    <nav class="navbar">
+        <div class="nav-logo"><a href="{{ url_for('main_blueprint.main_page') }}">Главная</a></div>
+        <div class="nav-links">
+            <a href="{{ url_for('profile_blueprint.query_page') }}" class="nav-link">Запрос</a>
+            <a href="{{ url_for('profile_blueprint.history_page') }}" class="nav-link">История</a>
+            {% if user.account_type == 'admin' %}
+            <a href="{{ url_for('admin_blueprint.admin_page') }}" class="nav-link">Админ Панель</a>
+            {% endif %}
+            <a href="{{ url_for('profile_blueprint.profile_page') }}" class="nav-link">Профиль</a>
+            <a href="{{ url_for('login_blueprint.logout') }}" class="nav-link">Выйти</a>
+        </div>
+    </nav>
+</header>
+{% else %}
+<header>
+    <nav class="navbar">
+        <div class="nav-logo"><a href="{{ url_for('main_blueprint.main_page') }}">Главная</a></div>
+        <div class="nav-links">
+            <a href="{{ url_for('login_blueprint.login_page') }}" class="nav-link">Вход</a>
+            <a href="{{ url_for('login_blueprint.register') }}" class="nav-link">Регистрация</a>
+        </div>
+    </nav>
+</header>
+{% endif %}
+
+{% block content %}
+<!-- Содержимое по умолчанию, если не переопределено -->
+{% endblock %}
+
+<footer>
+    <!-- Общий подвал для всех страниц -->
+</footer>
+
+</body>
+</html>

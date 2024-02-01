@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Главная{% endblock %}
+
+
+{% block content %}
+
+<main>
+    <section class="main-content">
+        <h1>Главная</h1>
+    </section>
+</main>
+
+<footer>
+    <p><a href="{{ url_for('feedback_blueprint.feedback_page') }}" class="contact-link">Свяжитесь со мной</a></p>
+</footer>
+{% endblock %}

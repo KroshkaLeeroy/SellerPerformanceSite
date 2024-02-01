@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Войти{% endblock %}
+
+
+{% block content %}
+<main>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class="flashes">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
+    <section class="form-container">
+        <form class="login-form" method="post" action="{{ url_for('login_blueprint.login_page') }}">
+            <h1>Вход</h1>
+            <div class="form-group">
+                <label for="login-username">Почта</label>
+                <input type="text" id="login-username" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="login-password">Пароль</label>
+                <input type="password" id="login-password" name="password" required>
+            </div>
+            <p>Забыли пароль?
+                <a href="{{ url_for('reset_blueprint.reset_password_page') }}">сбросить</a></p>
+            <button type="submit" class="btn-submit">Войти</button>
+        </form>
+    </section>
+</main>
+{% endblock %}
