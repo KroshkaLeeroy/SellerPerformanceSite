@@ -1,6 +1,6 @@
-from init import app, db, User
+from application.init import app, db, User
 from werkzeug.security import generate_password_hash
-from config import ADMIN_PASSWORD
+from application.config import ADMIN_PASSWORD
 
 
 with app.app_context():
