@@ -4,7 +4,7 @@ from itsdangerous import URLSafeTimedSerializer
 from flask_mail import Mail
 
 app = Flask(__name__)
-app.config.from_object('config')
+app.config.from_object('application.config')
 
 manager.init_app(app)
 db.init_app(app)
