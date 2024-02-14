@@ -50,6 +50,7 @@ def query_page():
             flash('Даты должны быть указаны!')
         else:
             response = requests.post(f'{URL_TO_API}/add-request', json=data)
+            flash('Запрос успешно отправлен на сервер')
     try:
         existing_reports = requests.get(f'{URL_TO_API}/check-pull/{current_user.email}')
         if existing_reports.status_code == 200:

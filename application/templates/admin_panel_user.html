@@ -35,9 +35,11 @@
         <form action="{{ url_for('admin_blueprint.admin_page_user_edit', user_id=user_1.id) }}">
             <button class="edit-button" name="edit">Редактировать</button>
             {% if user_1.account_status != 'deleted' %}
-            <a href="{{ url_for('admin_blueprint.admin_page_user_delete', user_id=user_1.id, action='delete') }}" class="edit-button" style="background-color: #d9534f; text-decoration: none;">Удалить</a>
+            <a href="{{ url_for('admin_blueprint.admin_page_user_delete', user_id=user_1.id, action='delete') }}"
+               class="edit-button" style="background-color: #d9534f; text-decoration: none;">Удалить</a>
             {% else %}
-            <a href="{{ url_for('admin_blueprint.admin_page_user_delete', user_id=user_1.id, action='restore') }}" class="edit-button" style="text-decoration: none;">Восстановить</a>
+            <a href="{{ url_for('admin_blueprint.admin_page_user_delete', user_id=user_1.id, action='restore') }}"
+               class="edit-button" style="text-decoration: none;">Восстановить</a>
             {% endif %}
         </form>
 
@@ -62,19 +64,31 @@
             </thead>
             <tbody>
             <!-- Сюда будет вставляться контент через Jinja2 -->
-            {% for record in history_records %}
+            {% for report in history_records %}
             <tr>
-                <td>{{ record.date }}</td>
-                <td>{{ record.date_from }}</td>
-                <td>{{ record.date_to }}</td>
-                <td>{{ record.status }}</td>
+                <td>{{ report.date }}</td>
+                <td>{{ report.date_create }}</td>
+                <td>{{ report.date_from }}</td>
+                <td>{{ report.date_to }}</td>
                 <td>
-                <form action="{{ URL }}/download-report/{{ record.email }}/{{ record.id }}">
-                    <input type="submit" value="Скачать">
-                </form>
+                    {% if report.status == 'need_to_process' %}
+                    В очереди на обработку
+                    {% elif report.status == 'ready_to_download' %}
+                    Готов к скачиванию
+                    {% elif report.status == 'some_error' %}
+                    Возникла ошибка в подготовке, попробуйте позднее повторить
+                    {% endif %}
+                </td>
+                <td>
+                    {% if report.status == 'ready_to_download' %}
+                    <form action="{{ URL }}/download-report/{{ report.email }}/{{ report.id }}">
+                        <input type="submit" value="Скачать">
+                    </form>
+                    {% endif %}
                 </td>
             </tr>
             {% endfor %}
+
             </tbody>
         </table>
     </section>

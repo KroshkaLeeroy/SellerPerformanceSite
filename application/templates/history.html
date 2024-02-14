@@ -22,14 +22,25 @@
             <td>{{ report.date_create }}</td>
             <td>{{ report.date_from }}</td>
             <td>{{ report.date_to }}</td>
-            <td>{{ report.status }}</td>
             <td>
+                {% if report.status == 'need_to_process' %}
+                В очереди на обработку
+                {% elif report.status == 'ready_to_download' %}
+                Готов к скачиванию
+                {% elif report.status == 'some_error' %}
+                Возникла ошибка в подготовке, попробуйте позднее повторить
+                {% endif %}
+            </td>
+            <td>
+                {% if report.status == 'ready_to_download' %}
                 <form action="{{ URL }}/download-report/{{ report.email }}/{{ report.id }}">
                     <input type="submit" value="Скачать">
                 </form>
+                {% endif %}
             </td>
         </tr>
         {% endfor %}
+
         </tbody>
     </table>
 </main>
