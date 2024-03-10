@@ -1,28 +1,109 @@
 <!DOCTYPE html>
+
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
+
+    <link rel="apple-touch-icon" sizes="180x180"
+          href="{{ url_for('static', filename='images/icons/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32"
+          href="{{ url_for('static', filename='images/icons/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16"
+          href="{{ url_for('static', filename='images/icons/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='images/icons/site.webmanifest') }}">
+    <link rel="mask-icon" href="{{ url_for('static', filename='images/icons/safari-pinned-tab.svg') }}" color="#5bbad5">
+
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Default Title{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <!-- Дополнительные ресурсы -->
+
+    <title>{% block title %}GetStats{% endblock %}</title>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
 <body>
+
 {% if user.is_authenticated %}
-<header>
-    <nav class="navbar">
-        <div class="nav-logo"><a href="{{ url_for('main_blueprint.main_page') }}">Главная</a></div>
-        <div class="nav-links">
-            <a href="{{ url_for('profile_blueprint.query_page') }}" class="nav-link">Запрос</a>
-            <a href="{{ url_for('profile_blueprint.history_page') }}" class="nav-link">История</a>
-            {% if user.account_type == 'admin' %}
-            <a href="{{ url_for('admin_blueprint.admin_page') }}" class="nav-link">Админ Панель</a>
-            {% endif %}
-            <a href="{{ url_for('profile_blueprint.profile_page') }}" class="nav-link">Профиль</a>
-            <a href="{{ url_for('login_blueprint.logout') }}" class="nav-link">Выйти</a>
+<!--<header>-->
+<!--    <nav class="navbar">-->
+<!--        <div class="nav-logo"><a href="{{ url_for('main_blueprint.main_page') }}">Главная</a></div>-->
+<!--        <div class="nav-links">-->
+<!--            <a href="{{ url_for('profile_blueprint.query_page') }}" class="nav-link">Запрос</a>-->
+<!--            <a href="{{ url_for('profile_blueprint.history_page') }}" class="nav-link">История</a>-->
+<!--            {% if user.account_type == 'admin' %}-->
+<!--            <a href="{{ url_for('admin_blueprint.admin_page') }}" class="nav-link">Админ Панель</a>-->
+<!--            {% endif %}-->
+<!--            <a href="{{ url_for('profile_blueprint.profile_page') }}" class="nav-link">Профиль</a>-->
+<!--            <a href="{{ url_for('login_blueprint.logout') }}" class="nav-link">Выйти</a>-->
+<!--        </div>-->
+<!--    </nav>-->
+<!--</header>-->
+
+<div class="block" id="left-navbar">
+    <div class="top-menu">
+        <div class="menu">
+            <a class="profile" href="{{ url_for('profile_blueprint.profile_page') }}"><img
+                    src="{{ url_for('static', filename='images/profileExample.png') }}">
+                <div class="user-info">
+                    <div class="name"><b>Name Surname</b></div>
+                    <div class="email">{{ user.email }}</div>
+                </div>
+            </a>
+
+            <div class="sidebar-menu" id="upper-menu">
+                <div class="list-item">
+                    <a href="/">
+                        <img src="{{ url_for('static', filename='images/analytics.png') }}">Отчёты
+                    </a>
+                </div>
+                <div class="list-item">
+                    <a href="{{ url_for('profile_blueprint.query_page') }}">
+                        <img src="{{ url_for('static', filename='images/plus.png') }}">Создать
+                    </a>
+                </div>
+                <div class="list-item">
+                    <a href="{{ url_for('profile_blueprint.history_page') }}">
+                        <img src="{{ url_for('static', filename='images/history.png') }}">История
+                    </a>
+                </div>
+            </div>
+            <div class="sidebar-menu" id="middle-menu">
+                <div class="list-item">
+                    <a href="{{ url_for('profile_blueprint.edit_profile') }}"><img
+                            src="{{ url_for('static', filename='images/profile.png') }}">Настройка профиля</a>
+                </div>
+                <div class="list-item">
+                    <a href="{{ url_for('feedback_blueprint.feedback_page') }}"><img src="{{ url_for('static', filename='images/help.png') }}">Помощь</a>
+                </div>
+                <div class="list-item">
+                    <a href="/404"><img src="{{ url_for('static', filename='images/library.png') }}">База знаний</a>
+                </div>
+                <div class="list-item">
+                    <a href="/404"><img src="{{ url_for('static', filename='images/gift.png') }}">Подарки от
+                        партнёров</a>
+                </div>
+            </div>
         </div>
-    </nav>
-</header>
+        <div class="sidebar-menu" id="bottom-menu">
+
+            <div class="list-item">
+                <a href="/404"><img src="{{ url_for('static', filename='images/payment.png') }}">Тарифы и
+                    оплата</a>
+            </div>
+            <div class="list-item">
+                <a href="/404"><img src="{{ url_for('static', filename='images/folder.png') }}">Договоры</a>
+            </div>
+            <div class="list-item">
+                <a href="{{ url_for('login_blueprint.logout') }}"><img
+                        src="{{ url_for('static', filename='images/logout.png') }}">Выйти из аккаунта</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
 {% else %}
 <header>
     <nav class="navbar">
@@ -33,15 +114,12 @@
         </div>
     </nav>
 </header>
+
 {% endif %}
 
 {% block content %}
 <!-- Содержимое по умолчанию, если не переопределено -->
 {% endblock %}
-
-<footer>
-    <!-- Общий подвал для всех страниц -->
-</footer>
 
 </body>
 </html>

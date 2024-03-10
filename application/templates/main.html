@@ -5,13 +5,468 @@
 
 {% block content %}
 
-<main>
-    <section class="main-content">
-        <h1>Главная</h1>
-    </section>
-</main>
+<div class="content">
+    <div class=block id="shops">
+        <div class="shops-title">
+            <div class="shops-label">Мои магазины</div>
+            <a class="to-shops" href="/shops/">Все магазины</a>
+        </div>
+        <div class="shops-belt" id="scroll-hook">
+            <div class="shop">
+                <div class="shop-logo">
+                    <img src="{{ url_for('static', filename='images/shop.png') }}">
+                </div>
+                <div class="api-info">
+                    <div class=toleft>API</div>
+                    <div class="enabled-toright"><img src="{{ url_for('static', filename='images/flash.png') }}">Активен
+                    </div>
+                </div>
+                <a class="shop-link" href="https://www.mi.com/ru/">
+                    <div class="toleft"><b>Xiaomi</b></div>
+                    <div class="toright"><img src="{{ url_for('static', filename='images/export.png') }}"></div>
+                </a>
+            </div>
+            <div class="shop">
+                <div class="shop-logo">
+                    <img src="{{ url_for('static', filename='images/shop.png') }}">
+                </div>
+                <div class="api-info">
+                    <div class=toleft>API</div>
+                    <div class=disabled-toright><img src="{{ url_for('static', filename='images/disabled.png') }}">Отключен
+                    </div>
+                </div>
+                <a class="shop-link" href="https://www.mi.com/ru/">
+                    <div class="toleft"><b>Xiaomi</b></div>
+                    <div class="toright"><img src="{{ url_for('static', filename='images/export.png') }}"></div>
+                </a>
+            </div>
+            <div class="shop">
+                <div class="shop-logo">
+                    <img src="{{ url_for('static', filename='images/shop.png') }}">
+                </div>
+                <div class="api-info">
+                    <div class=toleft>API</div>
+                    <div class="enabled-toright"><img src="{{ url_for('static', filename='images/flash.png') }}">Активен
+                    </div>
+                </div>
+                <a class="shop-link" href="https://www.mi.com/ru/">
+                    <div class="toleft"><b>Xiaomi</b></div>
+                    <div class="toright"><img src="{{ url_for('static', filename='images/export.png') }}"></div>
+                </a>
+            </div>
+            <div class="shop">
+                <div class="shop-logo">
+                    <img src="{{ url_for('static', filename='images/shop.png') }}">
+                </div>
+                <div class="api-info">
+                    <div class=toleft>API</div>
+                    <div class="disabled-toright"><img
+                            src="{{ url_for('static', filename='images/disabled.png') }}">Отключен
+                    </div>
+                </div>
+                <a class="shop-link" href="https://www.mi.com/ru/">
+                    <div class="toleft"><b>Xiaomi</b></div>
+                    <div class="toright"><img src="{{ url_for('static', filename='images/export.png') }}"></div>
+                </a>
+            </div>
 
-<footer>
-    <p><a href="{{ url_for('feedback_blueprint.feedback_page') }}" class="contact-link">Свяжитесь со мной</a></p>
-</footer>
+            <div class="shop">
+                <div class="shop-logo">
+                    <img src="{{ url_for('static', filename='images/shop.png') }}">
+                </div>
+                <div class="api-info">
+                    <div class=toleft>API</div>
+                    <div class="enabled-toright"><img src="{{ url_for('static', filename='images/flash.png') }}">Активен
+                    </div>
+                </div>
+                <a class="shop-link" href="https://www.mi.com/ru/">
+                    <div class="toleft"><b>Xiaomi</b></div>
+                    <div class="toright"><img src="{{ url_for('static', filename='images/export.png') }}"></div>
+                </a>
+            </div>
+            <div class="shop">
+                <div class="shop-logo">
+                    <img src="{{ url_for('static', filename='images/shop.png') }}">
+                </div>
+                <div class="api-info">
+                    <div class=toleft>API</div>
+                    <div class="disabled-toright"><img
+                            src="{{ url_for('static', filename='images/disabled.png') }}">Отключен
+                    </div>
+                </div>
+                <a class="shop-link" href="https://www.mi.com/ru/">
+                    <div class="toleft"><b>Xiaomi</b></div>
+                    <div class="toright"><img src="{{ url_for('static', filename='images/export.png') }}"></div>
+                </a>
+            </div>
+
+            <div class="shop">
+                <div class="shop-logo">
+                    <img src="{{ url_for('static', filename='images/shop.png') }}">
+                </div>
+                <div class="api-info">
+                    <div class=toleft>API</div>
+                    <div class="enabled-toright"><img src="{{ url_for('static', filename='images/flash.png') }}">Активен
+                    </div>
+                </div>
+                <a class="shop-link" href="https://www.mi.com/ru/">
+                    <div class="toleft"><b>Xiaomi</b></div>
+                    <div class="toright"><img src="{{ url_for('static', filename='images/export.png') }}"></div>
+                </a>
+            </div>
+            <div class="shop">
+                <div class="shop-logo">
+                    <img src="{{ url_for('static', filename='images/shop.png') }}">
+                </div>
+                <div class="api-info">
+                    <div class=toleft>API</div>
+                    <div class="disabled-toright"><img
+                            src="{{ url_for('static', filename='images/disabled.png') }}">Отключен
+                    </div>
+                </div>
+                <a class="shop-link" href="https://www.mi.com/ru/">
+                    <div class="toleft"><b>Xiaomi</b></div>
+                    <div class="toright"><img src="{{ url_for('static', filename='images/export.png') }}"></div>
+                </a>
+            </div>
+
+            <div class="shop">
+                <div class="shop-logo">
+                    <img src="{{ url_for('static', filename='images/shop.png') }}">
+                </div>
+                <div class="api-info">
+                    <div class=toleft>API</div>
+                    <div class="enabled-toright"><img src="{{ url_for('static', filename='images/flash.png') }}">Активен
+                    </div>
+                </div>
+                <a class="shop-link" href="https://www.mi.com/ru/">
+                    <div class="toleft"><b>Xiaomi</b></div>
+                    <div class="toright"><img src="{{ url_for('static', filename='images/export.png') }}"></div>
+                </a>
+            </div>
+            <div class="shop">
+                <div class="shop-logo">
+                    <img src="{{ url_for('static', filename='images/shop.png') }}">
+                </div>
+                <div class="api-info">
+                    <div class=toleft>API</div>
+                    <div class="disabled-toright"><img
+                            src="{{ url_for('static', filename='images/disabled.png') }}">Отключен
+                    </div>
+                </div>
+                <a class="shop-link" href="https://www.mi.com/ru/">
+                    <div class="toleft"><b>Xiaomi</b></div>
+                    <div class="toright"><img src="{{ url_for('static', filename='images/export.png') }}"></div>
+                </a>
+            </div>
+
+            <div class="shop">
+                <div class="shop-logo">
+                    <img src="{{ url_for('static', filename='images/shop.png') }}">
+                </div>
+                <div class="api-info">
+                    <div class=toleft>API</div>
+                    <div class="enabled-toright"><img src="{{ url_for('static', filename='images/flash.png') }}">Активен
+                    </div>
+                </div>
+                <a class="shop-link" href="https://www.mi.com/ru/">
+                    <div class="toleft"><b>Xiaomi</b></div>
+                    <div class="toright"><img src="{{ url_for('static', filename='images/export.png') }}"></div>
+                </a>
+            </div>
+            <div class="shop">
+                <div class="shop-logo">
+                    <img src="{{ url_for('static', filename='images/shop.png') }}">
+                </div>
+                <div class="api-info">
+                    <div class=toleft>API</div>
+                    <div class="disabled-toright"><img
+                            src="{{ url_for('static', filename='images/disabled.png') }}">Отключен
+                    </div>
+                </div>
+                <a class="shop-link" href="https://www.mi.com/ru/">
+                    <div class="toleft"><b>Xiaomi</b></div>
+                    <div class="toright"><img src="{{ url_for('static', filename='images/export.png') }}"></div>
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+    <script src="{{ url_for('static', filename='scripts/scroll.js') }}"></script>
+
+    <div class=block id="reports">
+        <div class="shops-title">
+            <div class="shops-label">Последние отчёты</div>
+            <a href="/reports/">
+                <div class="to-reports">Все отчёты</div>
+            </a>
+        </div>
+        <div class="inline-block">
+            <div class="table-title">
+                <div class="field"><b>Дата запроса</b></div>
+                <div class="field"><b>Дата с</b></div>
+                <div class="field"><b>Дата по</b></div>
+                <div class="field"><b>Статус</b></div>
+                <div class="field"></div>
+            </div>
+            <div class="table">
+
+
+                <div class="table-row">
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">
+                        <div class="in-progress">В процессе</div>
+                    </div>
+                    <div class="download-field">
+                        <a href="/downloads?id=1" class="download-button">
+                            <img src="{{ url_for('static', filename='images/download.png') }}"> Скачать
+                        </a>
+                    </div>
+                </div>
+                <div class="table-row">
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">
+                        <div class="successful">Успешно</div>
+                    </div>
+                    <div class="download-field">
+                        <a href="/downloads?id=1" class="download-button">
+                            <img src="{{ url_for('static', filename='images/download.png') }}"> Скачать
+                        </a>
+                    </div>
+                </div>
+                <div class="table-row">
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">
+                        <div class="outdated">Просрочен</div>
+                    </div>
+                    <div class="download-field">
+                        <a href="/downloads?id=1" class="download-button">
+                            <img src="{{ url_for('static', filename='images/download.png') }}"> Скачать
+                        </a>
+                    </div>
+                </div>
+                <div class="table-row">
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">
+                        <div class="in-progress">В процессе</div>
+                    </div>
+                    <div class="download-field">
+                        <a href="/downloads?id=1" class="download-button">
+                            <img src="{{ url_for('static', filename='images/download.png') }}"> Скачать
+                        </a>
+                    </div>
+                </div>
+                <div class="table-row">
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">
+                        <div class="successful">Успешно</div>
+                    </div>
+                    <div class="download-field">
+                        <a href="/downloads?id=1" class="download-button">
+                            <img src="{{ url_for('static', filename='images/download.png') }}"> Скачать
+                        </a>
+                    </div>
+                </div>
+                <div class="table-row">
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">
+                        <div class="outdated">Просрочен</div>
+                    </div>
+                    <div class="download-field">
+                        <a href="/downloads?id=1" class="download-button">
+                            <img src="{{ url_for('static', filename='images/download.png') }}"> Скачать
+                        </a>
+                    </div>
+                </div>
+                <div class="table-row">
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">
+                        <div class="in-progress">В процессе</div>
+                    </div>
+                    <div class="download-field">
+                        <a href="/downloads?id=1" class="download-button">
+                            <img src="{{ url_for('static', filename='images/download.png') }}"> Скачать
+                        </a>
+                    </div>
+                </div>
+                <div class="table-row">
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">
+                        <div class="successful">Успешно</div>
+                    </div>
+                    <div class="download-field">
+                        <a href="/downloads?id=1" class="download-button">
+                            <img src="{{ url_for('static', filename='images/download.png') }}"> Скачать
+                        </a>
+                    </div>
+                </div>
+                <div class="table-row">
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">
+                        <div class="outdated">Просрочен</div>
+                    </div>
+                    <div class="download-field">
+                        <a href="/downloads?id=1" class="download-button">
+                            <img src="{{ url_for('static', filename='images/download.png') }}"> Скачать
+                        </a>
+                    </div>
+                </div>
+                <div class="table-row">
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">
+                        <div class="in-progress">В процессе</div>
+                    </div>
+                    <div class="download-field">
+                        <a href="/downloads?id=1" class="download-button">
+                            <img src="{{ url_for('static', filename='images/download.png') }}"> Скачать
+                        </a>
+                    </div>
+                </div>
+                <div class="table-row">
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">
+                        <div class="successful">Успешно</div>
+                    </div>
+                    <div class="download-field">
+                        <a href="/downloads?id=1" class="download-button">
+                            <img src="{{ url_for('static', filename='images/download.png') }}"> Скачать
+                        </a>
+                    </div>
+                </div>
+                <div class="table-row">
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">
+                        <div class="outdated">Просрочен</div>
+                    </div>
+                    <div class="download-field">
+                        <a href="/downloads?id=1" class="download-button">
+                            <img src="{{ url_for('static', filename='images/download.png') }}"> Скачать
+                        </a>
+                    </div>
+                </div>
+                <div class="table-row">
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">
+                        <div class="in-progress">В процессе</div>
+                    </div>
+                    <div class="download-field">
+                        <a href="/downloads?id=1" class="download-button">
+                            <img src="{{ url_for('static', filename='images/download.png') }}"> Скачать
+                        </a>
+                    </div>
+                </div>
+                <div class="table-row">
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">
+                        <div class="successful">Успешно</div>
+                    </div>
+                    <div class="download-field">
+                        <a href="/downloads?id=1" class="download-button">
+                            <img src="{{ url_for('static', filename='images/download.png') }}"> Скачать
+                        </a>
+                    </div>
+                </div>
+                <div class="table-row">
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">
+                        <div class="outdated">Просрочен</div>
+                    </div>
+                    <div class="download-field">
+                        <a href="/downloads?id=1" class="download-button">
+                            <img src="{{ url_for('static', filename='images/download.png') }}"> Скачать
+                        </a>
+                    </div>
+                </div>
+                <div class="table-row">
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">
+                        <div class="in-progress">В процессе</div>
+                    </div>
+                    <div class="download-field">
+                        <a href="/downloads?id=1" class="download-button">
+                            <img src="{{ url_for('static', filename='images/download.png') }}"> Скачать
+                        </a>
+                    </div>
+                </div>
+                <div class="table-row">
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">
+                        <div class="successful">Успешно</div>
+                    </div>
+                    <div class="download-field">
+                        <a href="/downloads?id=1" class="download-button">
+                            <img src="{{ url_for('static', filename='images/download.png') }}"> Скачать
+                        </a>
+                    </div>
+                </div>
+                <div class="table-row">
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">dd.mm.yy</div>
+                    <div class="field">
+                        <div class="outdated">Просрочен</div>
+                    </div>
+                    <div class="download-field">
+                        <a href="/downloads?id=1" class="download-button">
+                            <img src="{{ url_for('static', filename='images/download.png') }}"> Скачать
+                        </a>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="block" id="banner">
+    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="card">
+        <img src="{{ url_for('static', filename='images/Banner-Card.png') }}">
+    </a>
+    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="card">
+        <img src="{{ url_for('static', filename='images/Banner-Card.png') }}">
+    </a>
+    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="card">
+        <img src="{{ url_for('static', filename='images/Banner-Card.png') }}">
+    </a>
+</div>
+
+<!--<footer>-->
+<!--    <p><a href="{{ url_for('feedback_blueprint.feedback_page') }}" class="contact-link">Свяжитесь со мной</a></p>-->
+<!--</footer>-->
 {% endblock %}

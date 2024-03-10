@@ -1,0 +1,40 @@
+html,
+body {
+    background-color: #F6F7F9;
+    justify-content: center;
+    height: 98vh;
+    width: 100vw;
+    display: flex;
+    font-family: Rubik;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: left;
+    gap: 8px;
+}
+
+.contact-section{
+    background-color: #FFFFFF;
+    border-radius: 32px;
+}
+.contact-label{
+    display:flex;
+    justify-content:center;
+    font-size: 36px;
+    line-height: 48px;
+    margin: 8% 0;
+}
+
+.logo{
+    display:flex;
+    margin-top: 10%;
+    height: 15%;
+    justify-content: center;
+    color: #072A92;
+}
+
+.form{
+    display:flex;
+    flex-direction: column;
+    height: 100%;
+}
