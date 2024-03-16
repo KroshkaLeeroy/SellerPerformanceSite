@@ -1,34 +1,45 @@
-{% extends "base.html" %}
+{% extends "unregistered_base.html" %}
 
 {% block title %}Войти{% endblock %}
 
 
 {% block content %}
-<main>
+
+
+<section class="form-block">
+    <form class="contact-form" method="post" action="{{ url_for('login_blueprint.login_page') }}">
+        <div class="form-label">Авторизация</div>
+        <div class="form-group">
+            <label for="email">Ваша почта</label>
+            <input type="text" id="login-username" name="email" placeholder="Введите e-mail" required>
+        </div>
+        <div class="form-group">
+            <label for="login-password">Пароль</label>
+            <input type="password" id="login-password" name="password" placeholder="Введите пароль" required>
+        </div>
+        <div class="login-utils">
+            <div class="remember-me">
+                <input type="checkbox" id="remember-check" name="remember-check" value="no">
+                <label for="remember-check">Запомнить меня</label>
+            </div>
+            <a class="forgot-pwd" href="{{ url_for('reset_blueprint.reset_password_page') }}">Забыли пароль?</a>
+        </div>
+        <button type="submit" class="btn-submit">Войти</button>
+    </form>
     {% with messages = get_flashed_messages() %}
     {% if messages %}
-        <ul class="flashes">
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
+    <div class="flashes">
+        {% for message in messages %}
+        <div class="error">{{ message }}</div>
+        {% endfor %}
+    </div>
     {% endif %}
     {% endwith %}
-    <section class="form-container">
-        <form class="login-form" method="post" action="{{ url_for('login_blueprint.login_page') }}">
-            <h1>Вход</h1>
-            <div class="form-group">
-                <label for="login-username">Почта</label>
-                <input type="text" id="login-username" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="login-password">Пароль</label>
-                <input type="password" id="login-password" name="password" required>
-            </div>
-            <p>Забыли пароль?
-                <a href="{{ url_for('reset_blueprint.reset_password_page') }}">сбросить</a></p>
-            <button type="submit" class="btn-submit">Войти</button>
-        </form>
-    </section>
-</main>
+</section>
+<div class="to-register-footer">
+    У вас ещё нет аккаунта?
+    <a class="to-register" href="{{ url_for('login_blueprint.register') }}">Зарегестрироваться</a>
+</div>
+
+
 {% endblock %}

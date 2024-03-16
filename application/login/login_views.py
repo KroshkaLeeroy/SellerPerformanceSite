@@ -58,7 +58,7 @@ def register():
             flash('Пароли не совпадают')
         elif email and User.query.filter_by(email=email).first():
             exists = True
-            return render_template('register.html', user=current_user, exists=exists)
+            return render_template('unregistered_base.html', user=current_user, exists=exists)
         else:
             hash_pwd = generate_password_hash(password)
             user = User(password=hash_pwd, account_type='user', email=email)

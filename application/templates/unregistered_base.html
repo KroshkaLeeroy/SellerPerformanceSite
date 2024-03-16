@@ -26,9 +26,7 @@
 
 
 <div class="form">
-    <div class="logo">
-        <b><img src="{{ url_for('static', filename='images/logo.png') }}" alt="Место под логотип"></b>
-    </div>
+        <img src="{{ url_for('static', filename='images/logo.png') }}" class=logo alt="Место под логотип">
     {% block content %}
     <!-- Содержимое по умолчанию, если не переопределено -->
     {% endblock %}

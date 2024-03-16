@@ -74,7 +74,8 @@
                             src="{{ url_for('static', filename='images/profile.png') }}">Настройка профиля</a>
                 </div>
                 <div class="list-item">
-                    <a href="{{ url_for('feedback_blueprint.feedback_page') }}"><img src="{{ url_for('static', filename='images/help.png') }}">Помощь</a>
+                    <a href="{{ url_for('feedback_blueprint.feedback_page') }}"><img
+                            src="{{ url_for('static', filename='images/help.png') }}">Помощь</a>
                 </div>
                 <div class="list-item">
                     <a href="/404"><img src="{{ url_for('static', filename='images/library.png') }}">База знаний</a>
@@ -104,7 +105,9 @@
 </div>
 
 
+
 {% else %}
+
 <header>
     <nav class="navbar">
         <div class="nav-logo"><a href="{{ url_for('main_blueprint.main_page') }}">Главная</a></div>
