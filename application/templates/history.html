@@ -4,45 +4,45 @@
 
 
 {% block content %}
-
-<main class="main-content">
-    <table class="reports-table">
-        <thead>
-        <tr>
-            <th>Дата запроса</th>
-            <th>Дата с</th>
-            <th>Дата по</th>
-            <th>Статус</th>
-            <th>Скачать</th>
-        </tr>
-        </thead>
-        <tbody>
+<div class=block id="reports">
+    <div class="shops-title">
+        <div class="shops-label">История</div>
+        <a href="{{ url_for('profile_blueprint.history_page') }}">
+        </a>
+    </div>
+    <div class="table-title">
+        <div class="field"><b>Дата запроса</b></div>
+        <div class="field"><b>Дата с</b></div>
+        <div class="field"><b>Дата по</b></div>
+        <div class="field"><b>Статус</b></div>
+        <div class="field"></div>
+    </div>
+    <div class="table">
         {% for report in reports %}
-        <tr>
-            <td>{{ report.date_create }}</td>
-            <td>{{ report.date_from }}</td>
-            <td>{{ report.date_to }}</td>
-            <td>
+        <div class="table-row">
+            <div class="field">{{ report.date_create }}</div>
+            <div class="field">{{ report.date_from }}</div>
+            <div class="field">{{ report.date_to }}</div>
+            <div class="field">
                 {% if report.status == 'need_to_process' %}
-                В очереди на обработку
+                <div class="in-progress">В процессе</div>
                 {% elif report.status == 'ready_to_download' %}
-                Готов к скачиванию
+                <div class="successful">Успешно</div>
                 {% elif report.status == 'some_error' %}
-                Возникла ошибка в подготовке, попробуйте позднее повторить
+                <div class="outdated">Ошибка</div>
                 {% endif %}
-            </td>
-            <td>
+            </div>
+            <div class="download-field">
                 {% if report.status == 'ready_to_download' %}
-                <form action="{{ URL }}/download-report/{{ report.email }}/{{ report.id }}">
-                    <input type="submit" value="Скачать">
-                </form>
+                <a href="{{ URL }}/download-report/{{ report.email }}/{{ report.id }}" class="download-button">
+                    <img src="{{ url_for('static', filename='images/download.png') }}"> Скачать
+                </a>
                 {% endif %}
-            </td>
-        </tr>
+            </div>
+        </div>
         {% endfor %}
+    </div>
+</div>
 
-        </tbody>
-    </table>
-</main>
 
 {% endblock %}

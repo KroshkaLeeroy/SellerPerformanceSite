@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
 
-::-webkit-scrollbar{
+::-webkit-scrollbar {
     width: 4px;
     height: 0;
     padding-right: 10px;
@@ -8,7 +8,7 @@
     border-radius: 24px;
 }
 
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
     background: #80899C;
     border-radius: 24px;
 }
@@ -21,7 +21,6 @@
 html,
 body {
     background-color: #F6F7F9;
-    justify-content: space-between;
     height: 98vh;
     width: 100vw;
     display: flex;
@@ -100,8 +99,7 @@ a {
     display: flex;
     flex-direction: column;
     border-radius: 16px;
-    height: 90%;
-    box-sizing: border-box;
+    flex: 1;
 }
 
 .content {
@@ -110,8 +108,7 @@ a {
     flex-direction: column;
     margin: 4px 0;
     width: 70%;
-    max-height: 100%;
-    box-sizing: border-box;
+    flex: 1;
     gap: 8px;
 }
 
@@ -141,14 +138,16 @@ a {
 }
 
 .table {
+    background-color: #F6F7F9;
+    border-radius: 16px;
     overflow-y: auto;
-    padding: 8px 12px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    padding:4px;
     gap: 4px;
-    height: 100%;
-    box-sizing: border-box;
+    flex: 0 1 auto;
+    min-height: 0;
+    max-width: 100%;
 }
 
 .table-title {
@@ -156,7 +155,6 @@ a {
     margin: auto 0;
     height: 40px;
     padding-left: 10px;
-
 }
 
 .table-row {
@@ -181,7 +179,7 @@ a {
     justify-content: space-between;
     background-color: #F6F7F9;
     border-radius: 16px;
-    flex: 0 0 20%;
+    flex: 1 0 20%;
     height: 100%;
     padding: 4px;
     gap: 4px;
@@ -341,6 +339,82 @@ a {
     border-radius: 10px;
 }
 
+.form-label {
+    font-size: 20px;
+    line-height: 28px;
+    justify-content: left;
+}
+
+.profile-section {
+    display: flex;
+    background-color: #FFFFFF;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 24px;
+    height: 25%;
+    width: 100%;
+}
+
+.profile-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap:12px;
+}
+
+.profile-info {
+    display: flex;
+    width:100%;
+    gap:12px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-grow: 1;
+}
+
+.info-label{
+    color: #2D3139;
+}
+
+.info-input{
+    background-color: #F6F7F9;
+    border-radius: 16px;
+    padding: 14px 18px;
+    border: none;
+}
+
+
+.info-value{
+    background-color: #F6F7F9;
+    border-radius: 16px;
+    padding: 12px 16px;
+}
+
+.transp-info-value{
+    background-color: #F6F7F9;
+    border-radius: 16px;
+    padding: 12px 16px 12px 16px;
+    gap:8px;
+    color: #80899C;
+}
+
+.btn-submit {
+    border: none;
+    background-color: #3B6AF6;
+    color: #FFFFFF;
+    border-radius: 16px;
+    padding: 12px 16px 12px 16px;
+    width: 15%;
+}
+
+.btn-submit:hover {
+    border: 2px #3B6AF6;
+    background-color: #0937C3;
+}
+
 .successful {
     background-color: #EBFBE5;
     color: #30B900;
@@ -370,16 +444,18 @@ a {
 }
 
 #reports {
+    display: flex;
+    overflow-y:hidden;
+    flex-direction: column;
     padding: 8px 12px;
-    height: 60%;
     box-sizing: border-box;
+    flex: 1 1 auto;
 }
 
 #shops {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 40%;
     padding: 12px;
     gap: 12px;
 }

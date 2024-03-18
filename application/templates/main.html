@@ -33,7 +33,8 @@
                 </div>
                 <div class="api-info">
                     <div class=toleft>API</div>
-                    <div class=disabled-toright><img src="{{ url_for('static', filename='images/disabled.png') }}">Отключен
+                    <div class=disabled-toright><img
+                            src="{{ url_for('static', filename='images/disabled.png') }}">Отключен
                     </div>
                 </div>
                 <a class="shop-link" href="https://www.mi.com/ru/">
@@ -42,8 +43,6 @@
                 </a>
             </div>
             {% endfor %}
-
-
         </div>
 
     </div>
@@ -52,66 +51,41 @@
     <div class=block id="reports">
         <div class="shops-title">
             <div class="shops-label">Последние отчёты</div>
-            <a href="/reports/">
+            <a href="{{ url_for('profile_blueprint.history_page') }}">
                 <div class="to-reports">Все отчёты</div>
             </a>
         </div>
-        <div class="inline-block">
-            <div class="table-title">
-                <div class="field"><b>Дата запроса</b></div>
-                <div class="field"><b>Дата с</b></div>
-                <div class="field"><b>Дата по</b></div>
-                <div class="field"><b>Статус</b></div>
-                <div class="field"></div>
+        <div class="table-title">
+            <div class="field"><b>Дата запроса</b></div>
+            <div class="field"><b>Дата с</b></div>
+            <div class="field"><b>Дата по</b></div>
+            <div class="field"><b>Статус</b></div>
+            <div class="field"></div>
+        </div>
+        <div class="table">
+            {% for report in reports %}
+            <div class="table-row">
+                <div class="field">{{ report.date_create }}</div>
+                <div class="field">{{ report.date_from }}</div>
+                <div class="field">{{ report.date_to }}</div>
+                <div class="field">
+                    {% if report.status == 'need_to_process' %}
+                    <div class="in-progress">В процессе</div>
+                    {% elif report.status == 'ready_to_download' %}
+                    <div class="successful">Успешно</div>
+                    {% elif report.status == 'some_error' %}
+                    <div class="outdated">Ошибка</div>
+                    {% endif %}
+                </div>
+                <div class="download-field">
+                    {% if report.status == 'ready_to_download' %}
+                    <a href="{{ URL }}/download-report/{{ report.email }}/{{ report.id }}" class="download-button">
+                        <img src="{{ url_for('static', filename='images/download.png') }}"> Скачать
+                    </a>
+                    {% endif %}
+                </div>
             </div>
-            <div class="table">
-
-                {% for i in range(100) %}
-                {% if i%3 == 0 %}
-                <div class="table-row">
-                    <div class="field">dd.mm.yy</div>
-                    <div class="field">dd.mm.yy</div>
-                    <div class="field">dd.mm.yy</div>
-                    <div class="field">
-                        <div class="in-progress">В процессе</div>
-                    </div>
-                    <div class="download-field">
-                        <a href="/downloads?id={{i}}" class="download-button">
-                            <img src="{{ url_for('static', filename='images/download.png') }}"> Скачать
-                        </a>
-                    </div>
-                </div>
-                {% elif i%3 == 1 %}
-                <div class="table-row">
-                    <div class="field">dd.mm.yy</div>
-                    <div class="field">dd.mm.yy</div>
-                    <div class="field">dd.mm.yy</div>
-                    <div class="field">
-                        <div class="successful">Успешно</div>
-                    </div>
-                    <div class="download-field">
-                        <a href="/downloads?id={{i}}" class="download-button">
-                            <img src="{{ url_for('static', filename='images/download.png') }}"> Скачать
-                        </a>
-                    </div>
-                </div>
-                {% else %}
-                <div class="table-row">
-                    <div class="field">dd.mm.yy</div>
-                    <div class="field">dd.mm.yy</div>
-                    <div class="field">dd.mm.yy</div>
-                    <div class="field">
-                        <div class="outdated">Просрочен</div>
-                    </div>
-                    <div class="download-field">
-                        <a href="/downloads?id={{i}}" class="download-button">
-                            <img src="{{ url_for('static', filename='images/download.png') }}"> Скачать
-                        </a>
-                    </div>
-                </div>
-                {% endif %}
-                {% endfor %}
-            </div>
+            {% endfor %}
         </div>
     </div>
 </div>

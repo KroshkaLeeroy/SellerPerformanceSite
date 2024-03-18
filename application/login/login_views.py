@@ -13,7 +13,7 @@ def login_page():
     password = request.form.get('password')
 
     if current_user.is_authenticated:
-        return redirect(url_for('profile_blueprint.profile_page'))
+        return redirect(url_for('main_blueprint.main_page'))
 
     if email and password:
         user = User.query.filter_by(email=email).first()
@@ -26,7 +26,7 @@ def login_page():
                 return redirect(url_for('login_blueprint.login_page'))
             else:
                 login_user(user)
-                return redirect(next_page if next_page else url_for('profile_blueprint.profile_page'))
+                return redirect(next_page if next_page else url_for('main_blueprint.main_page'))
         else:
             flash('Логин или пароль неверны')
     else:

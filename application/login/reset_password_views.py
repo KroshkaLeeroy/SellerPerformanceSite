@@ -23,8 +23,9 @@ def reset_password_page():
                 mail.send(msg)
                 flash('На почту выслана ссылка для сброса пароля')
                 return redirect(url_for('login_blueprint.login_page'))
-            except:
+            except Exception as e:
                 # TODO: Добавить логирование ошибки и отправку ссылки на почту
+                print(e)
                 flash('Что то пошло не так, оставьте свою почту в форме обратной связи')
                 return redirect(url_for("feedback_blueprint.feedback_page"))
     return render_template('reset_password.html', user=current_user)

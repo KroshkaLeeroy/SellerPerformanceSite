@@ -90,7 +90,7 @@ input::placeholder {
     width: 30%;
 }
 
-.passwords{
+.passwords {
     display: flex;
     justify-content: space-between;
     gap: 20px
@@ -109,23 +109,26 @@ input::placeholder {
     border-radius: 6px;
 }
 
-.flashes{
+.flashes {
     display: flex;
     flex-direction: column;
 }
-.error{
+
+.error {
     color: red;
-    margin: auto;    
+    margin: auto;
 }
 
-.to-register-footer{
+.to-register-footer {
     padding-top: 12px;
     margin: auto;
 }
-.to-register{
+
+.to-register {
     color: #0937C3;
     padding-left: 12px;
 }
+
 .remember-me {
     justify-content: flex-start;
 }
@@ -141,9 +144,10 @@ input::placeholder {
     gap: 24px;
 }
 
-.policy-link{
+.policy-link {
     color: #0937C3;
 }
+
 .form-label {
     font-size: 36px;
     line-height: 48px;

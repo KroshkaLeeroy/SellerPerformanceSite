@@ -5,35 +5,55 @@
 
 {% block content %}
 
-<main>
-    <section class="profile-section">
-        <h1>Профиль</h1>
+<section class="profile-section">
+    <div class="profile-form">
+
+        <div class="form-label">Профиль</div>
         <div class="profile-info">
-            <div class="info-label">Ваш email:</div>
-            <div class="info-value">{{ user.email }}</div>
+            <div class="form-group">
+                <div class="info-label">E-mail:</div>
+                <div class="info-value">{{ user.email }}</div>
+            </div>
+            <div class="form-group">
+                <div class="info-label">Тип аккаунта:</div>
+                {% if user.account_type == "admin"%}
+                <div class="info-value">Администратор</div>
+                {% else %}
+                <div class="info-value">Пользователь</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="profile-info">
+            <div class="form-group">
+                <div class="info-label">Seller API:</div>
+                {% if user.api_key_seller %}
+                <div class="info-value">{{ user.api_key_seller }}</div>
+                {% else %}
+                <div class="transp-info-value">Введите Seller API</div>
+                {% endif %}
+            </div>
+            <!-- <div class="info-label">Seller ID:</div>
+            <div class="info-value">{{ user.client_id_seller }}</div> -->
+            <div class="form-group">
+                <div class="info-label">Performance API:</div>
+                {% if user.api_key_performance %}
+                <div class="info-value">{{ user.api_key_performance }}</div>
+                {% else %}
+                <div class="transp-info-value">Введите Performance API</div>
+                {% endif %}
+            </div>
+            <!-- <div class="info-label">Performance ID:</div>
+            <div class="info-value">{{ user.client_id_performance }}</div> -->
 
-            <div class="info-label">Seller API:</div>
-            <div class="info-value">{{ user.api_key_seller }}</div>
-
-            <div class="info-label">Seller ID:</div>
-            <div class="info-value">{{ user.client_id_seller }}</div>
-
-            <div class="info-label">Performance API:</div>
-            <div class="info-value">{{ user.api_key_performance }}</div>
-
-            <div class="info-label">Performance ID:</div>
-            <div class="info-value">{{ user.client_id_performance }}</div>
-
-            <div class="info-label">Тип аккаунта:</div>
-            <div class="info-value">{{ user.account_type }}</div>
-
-            <div class="info-label">Количество запросов:</div>
-            <div class="info-value">{{ user.request_count }}</div>
+            <div class="form-group">
+                <div class="info-label">Количество запросов:</div>
+                <div class="info-value">{{ user.request_count }}</div>
+            </div>
         </div>
         <form action="{{ url_for('profile_blueprint.edit_profile') }}">
-            <button class="edit-button">Редактировать</button>
+            <button class="btn-submit">Редактировать</button>
         </form>
-    </section>
-</main>
+    </div>
+</section>
 
 {% endblock %}

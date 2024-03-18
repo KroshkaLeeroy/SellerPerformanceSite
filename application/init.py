@@ -6,8 +6,6 @@ from application.login.reset_password_views import reset_blueprint
 from application.feedback.feedback_views import feedback_blueprint
 from application.admin_panel.admin_views import admin_blueprint
 
-
-
 app.register_blueprint(main_blueprint)
 app.register_blueprint(login_blueprint)
 app.register_blueprint(profile_blueprint)
