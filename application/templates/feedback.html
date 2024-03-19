@@ -19,9 +19,10 @@
         <div class="form-group">
             <label for="question">По какому вопросу вы желаете связаться?</label>
             <textarea id="question" name="question" placeholder="Введите ваш запрос" rows="4" required></textarea>
-            <div class="counter">0/400</div>
+            <div class="counter" id="counter">0/400</div>
         </div>
         <button type="submit" class="btn-submit">Отправить</button>
     </form>
 </section>
+<script src="{{ url_for('static', filename='scripts/counter.js') }}"></script>
 {% endblock %}

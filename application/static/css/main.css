@@ -107,7 +107,7 @@ a {
     justify-content: space-between;
     flex-direction: column;
     margin: 4px 0;
-    width: 70%;
+    width: 65%;
     flex: 1;
     gap: 8px;
 }
@@ -143,7 +143,7 @@ a {
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    padding:4px;
+    padding: 4px;
     gap: 4px;
     flex: 0 1 auto;
     min-height: 0;
@@ -347,25 +347,26 @@ a {
 
 .profile-section {
     display: flex;
+    flex-direction: column;
     background-color: #FFFFFF;
-    gap: 12px;
-    padding: 12px;
+    padding: 16px 12px;
     border-radius: 24px;
-    height: 25%;
-    width: 100%;
+    flex-grow: 1;
+    height: 33%;
 }
 
 .profile-form {
     display: flex;
     flex-direction: column;
+    flex-shrink: 0;
     width: 100%;
-    gap:12px;
+    gap: 12px;
 }
 
 .profile-info {
     display: flex;
-    width:100%;
-    gap:12px;
+    width: 100%;
+    gap: 12px;
 }
 
 .form-group {
@@ -375,11 +376,11 @@ a {
     flex-grow: 1;
 }
 
-.info-label{
+.info-label {
     color: #2D3139;
 }
 
-.info-input{
+.info-input {
     background-color: #F6F7F9;
     border-radius: 16px;
     padding: 14px 18px;
@@ -387,17 +388,17 @@ a {
 }
 
 
-.info-value{
+.info-value {
     background-color: #F6F7F9;
     border-radius: 16px;
     padding: 12px 16px;
 }
 
-.transp-info-value{
+.transp-info-value {
     background-color: #F6F7F9;
     border-radius: 16px;
     padding: 12px 16px 12px 16px;
-    gap:8px;
+    gap: 8px;
     color: #80899C;
 }
 
@@ -445,7 +446,7 @@ a {
 
 #reports {
     display: flex;
-    overflow-y:hidden;
+    overflow-y: hidden;
     flex-direction: column;
     padding: 8px 12px;
     box-sizing: border-box;
@@ -461,7 +462,7 @@ a {
 }
 
 #left-navbar {
-    width: 18%;
+    width: 20%;
     height: 100%;
     margin: 4px 0;
 }
