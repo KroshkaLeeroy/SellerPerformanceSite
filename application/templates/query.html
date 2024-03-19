@@ -17,16 +17,17 @@
                     <label for="date-to">Дата по</label>
                     <input type="date" id="date-to" class="info-input" name="date-to">
                 </div>
+                {% with messages = get_flashed_messages() %}
+                {% if "Заполните ключи API!" not in messages %}
+                <button type="submit" class="btn-submit">Запросить отчет</button>
+                {% endif %}
             </div>
-            {% with messages = get_flashed_messages() %}
             {% if messages %}
             <div class="flashes">
                 {% for message in messages %}
                 <div class="error">{{ message }}</div>
                 {% endfor %}
             </div>
-            {% else %}
-            <button type="submit" disabled class="btn-submit">Запросить отчет</button>
             {% endif %}
             {% endwith %}
         </form>
