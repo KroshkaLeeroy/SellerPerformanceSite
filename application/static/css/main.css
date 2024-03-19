@@ -100,6 +100,7 @@ a {
     flex-direction: column;
     border-radius: 16px;
     flex: 1;
+    gap: 12px;
 }
 
 .content {
@@ -143,7 +144,7 @@ a {
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    padding: 4px;
+    padding: 8px;
     gap: 4px;
     flex: 0 1 auto;
     min-height: 0;
@@ -152,6 +153,7 @@ a {
 
 .table-title {
     display: flex;
+    justify-content: space-between;
     margin: auto 0;
     height: 40px;
     padding-left: 10px;
@@ -159,6 +161,7 @@ a {
 
 .table-row {
     display: flex;
+    justify-content: space-between;
     background-color: #FFFFFF;
     height: 15%;
     padding: 10px 0;
@@ -166,7 +169,7 @@ a {
 }
 
 .field {
-    margin: auto;
+    margin: auto 0;
     display: flex;
     justify-content: space-between;
     width: 20%;
@@ -423,6 +426,17 @@ a {
     border-radius: 10px;
 }
 
+.flashes {
+    display: flex;
+    flex-direction: column;
+}
+
+.error {
+    color: red;
+    margin: auto;
+    padding-bottom: 8px;
+}
+
 .outdated {
     background-color: #FFEDE9;
     color: #FE4A23;
@@ -477,6 +491,19 @@ a {
     height: 100%;
     max-width: 13%;
     box-sizing: border-box;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 8px;
+}
+
+.dates {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px
 }
 
 .card {

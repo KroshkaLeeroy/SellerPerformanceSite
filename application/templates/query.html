@@ -5,61 +5,59 @@
 
 {% block content %}
 
-<main class="main-content">
-    <div class="columns-container">
-        <div class="left-column">
-            <form action="{{ url_for('profile_blueprint.query_page') }}"  method="post">
-            <div class="form-group">
-                <label for="date-from">Дата с</label>
-                <input type="date" id="date-from" class="info-input" name="date-from">
-            </div>
-            <div class="form-group">
-                <label for="date-to">Дата по</label>
-                <input type="date" id="date-to" class="info-input" name="date-to">
+<div class="inline-block">
+    <div class="block">
+        <form class="contact-form" action="{{ url_for('profile_blueprint.query_page') }}" method="post">
+            <div class="dates">
+                <div class="form-group">
+                    <label for="date-from">Дата с</label>
+                    <input type="date" id="date-from" class="info-input" name="date-from">
+                </div>
+                <div class="form-group">
+                    <label for="date-to">Дата по</label>
+                    <input type="date" id="date-to" class="info-input" name="date-to">
+                </div>
             </div>
             {% with messages = get_flashed_messages() %}
             {% if messages %}
-            <ul class="flashes">
+            <div class="flashes">
                 {% for message in messages %}
-                <li>{{ message }}</li>
+                <div class="error">{{ message }}</div>
                 {% endfor %}
-            </ul>
+            </div>
             {% else %}
-            <button type="submit" class="btn-submit">Запросить отчет</button>
-            </form>
+            <button type="submit" disabled class="btn-submit">Запросить отчет</button>
             {% endif %}
             {% endwith %}
+        </form>
+    </div>
 
+    <div class=block id="reports">
+        <div class="shops-title">
+            <div class="shops-label">История</div>
         </div>
-
-        <div class="right-column">
-            <table class="info-table">
-                <thead>
-                <tr>
-                    <th>Дата с</th>
-                    <th>Дата по</th>
-                    <th>Статус</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for request in requests %}
-                <tr>
-                    <td>{{ request.date_from }}</td>
-                    <td>{{ request.date_to }}</td>
-                    <td>
+        <div class="table-title">
+            <div class="field"><b>Дата с</b></div>
+            <div class="field"><b>Дата по</b></div>
+            <div class="field"><b>Статус</b></div>
+        </div>
+        <div class="table">
+            {% for request in requests %}
+            <div class="table-row">
+                <div class="field">{{ request.date_from }}</div>
+                <div class="field">{{ request.date_to }}</div>
+                <div class="field">
                     {% if request.status == 'need_to_process' %}
-                    В очереди на обработку
+                    <div class="in-progress">В процессе</div>
                     {% elif request.status == 'ready_to_download' %}
-                    Готов к скачиванию
+                    <div class="successful">Успешно</div>
                     {% elif request.status == 'some_error' %}
-                    Возникла ошибка в подготовке, попробуйте позднее повторить
+                    <div class="outdated">Ошибка</div>
                     {% endif %}
-                    </td>
-                </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+                </div>
+            </div>
+            {% endfor %}
         </div>
     </div>
-</main>
+</div>
 {% endblock %}

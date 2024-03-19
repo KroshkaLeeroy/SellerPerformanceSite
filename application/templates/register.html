@@ -5,15 +5,7 @@
 
 {% block content %}
 
-{% with messages = get_flashed_messages() %}
-{% if messages %}
-<ul class="flashes">
-    {% for message in messages %}
-    <li>{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
-{% endwith %}
+
 <section class="form-block">
     <form class="contact-form" method="post" action="{{ url_for('login_blueprint.register') }}">
         <div class="form-label">Регистрация</div>
@@ -43,6 +35,15 @@
         {% endif %}
         <button type="submit" class="btn-submit">Зарегистрироваться</button>
     </form>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="flashes">
+        {% for message in messages %}
+        <div class="error">{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
 </section>
 <div class="to-register-footer">
     У вас уже есть аккаунт?
