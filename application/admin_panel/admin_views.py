@@ -15,7 +15,7 @@ def admin_page():
 
     if request.method == 'POST':
         name = request.form.get('search')
-        users = User.query.filter(User.login.like(f"%{name}%")).all()
+        users = User.query.filter(User.email.like(f"%{name}%")).all()
 
     else:
         users = User.query.all()

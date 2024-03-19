@@ -3,95 +3,123 @@
 {% block title %}Профиль {{ user_1.login }}{% endblock %}
 
 {% block content %}
-
-<main class="content-container">
-    <section class="profile-section left-column">
-        <h1>Профиль</h1>
+<div class="content">
+    <section class="profile-section">
+        <div class="form-label"><b>Профиль</b></div>
         <div class="profile-info">
-            <div class="info-label">Ваш email:</div>
-            <div class="info-value">{{ user_1.email }}</div>
-
-            <div class="info-label">Seller API:</div>
-            <div class="info-value">{{ user_1.api_key_seller }}</div>
-
-            <div class="info-label">Seller ID:</div>
-            <div class="info-value">{{ user_1.client_id_seller }}</div>
-
-            <div class="info-label">Performance API:</div>
-            <div class="info-value">{{ user_1.api_key_performance }}</div>
-
-            <div class="info-label">Performance ID:</div>
-            <div class="info-value">{{ user_1.client_id_performance }}</div>
-
-            <div class="info-label">Тип аккаунта:</div>
-            <div class="info-value">{{ user_1.account_type }}</div>
-
-            <div class="info-label">Количество запросов:</div>
-            <div class="info-value">{{ user_1.request_count }}</div>
-
-            <div class="info-label">Статус аккаунта:</div>
-            <div class="info-value">{{ user_1.account_status }}</div>
+            <div class="form-group">
+                <div class="info-label">Email:</div>
+                <div class="info-value">{{ user_1.email }}</div>
+            </div>
+            <div class="form-group">
+                <div class="info-label">Seller Secret:</div>
+                {% if user_1.api_key_seller %}
+                <div class="info-value">{{ user_1.api_key_seller }}</div>
+                {% else %}
+                <div class="transp-info-value">Нет Seller Secret</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <div class="info-label">Seller ID:</div>
+                {% if user_1.client_id_seller %}
+                <div class="info-value">{{ user_1.client_id_seller }}</div>
+                {% else %}
+                <div class="transp-info-value">Нет Seller ID</div>
+                {% endif %}
+            </div>
         </div>
+        <div class="profile-info">
+            <div class="form-group">
+                <div class="info-label">Performance API:</div>
+                {% if user_1.api_key_performance %}
+                <div class="info-value">{{ user_1.api_key_performance }}</div>
+                {% else %}
+                <div class="transp-info-value">Нет Performance API</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <div class="info-label">Performance ID:</div>
+                {% if user_1.client_id_performance %}
+                <div class="info-value">{{ user_1.client_id_performance }}</div>
+                {% else %}
+                <div class="transp-info-value">Нет Performance ID</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <div class="info-label">Тип аккаунта:</div>
+                {% if user_1.account_type == "admin" %}
+                <div class="info-value">Администратор</div>
+                {% else %}
+                <div class="info-value">Пользователь</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="profile-info">
+            <div class="form-group">
+                <div class="info-label">Количество запросов:</div>
+                <div class="info-value">{{ user_1.request_count }}</div>
+            </div>
+            <div class="form-group">
+                <div class="info-label">Статус аккаунта:</div>
+                <div class="info-value">{{ user_1.account_status }}</div>
+            </div>
+        </div>
+
         <form action="{{ url_for('admin_blueprint.admin_page_user_edit', user_id=user_1.id) }}">
-            <button class="edit-button" name="edit">Редактировать</button>
+            <button class="btn-submit" name="edit">Редактировать</button>
             {% if user_1.account_status != 'deleted' %}
             <a href="{{ url_for('admin_blueprint.admin_page_user_delete', user_id=user_1.id, action='delete') }}"
-               class="edit-button" style="background-color: #d9534f; text-decoration: none;">Удалить</a>
+                class="delete-button">Удалить</a>
             {% else %}
             <a href="{{ url_for('admin_blueprint.admin_page_user_delete', user_id=user_1.id, action='restore') }}"
-               class="edit-button" style="text-decoration: none;">Восстановить</a>
+                class="btn-submit" style="text-decoration: none;">Восстановить</a>
             {% endif %}
         </form>
 
 
     </section>
 
-    <section class="history-section right-column">
-        <h2>История запросов</h2>
+    <section class="profile-section" id="user_reports">
+        <div class="form-label"><b>История запросов</b></div>
         <form class="history-search" action="{{ url_for('admin_blueprint.admin_page_user', user_id=user_1.id) }}">
             <input type="date" id="date-query" class="info-input">
-            <button type="submit" class="search-button">Поиск</button>
+            <button type="submit" class="btn-submit">Поиск</button>
         </form>
-        <table class="history-table">
-            <thead>
-            <tr>
-                <th>Дата</th>
-                <th>С</th>
-                <th>По</th>
-                <th>Статус</th>
-                <th>Скачать</th>
-            </tr>
-            </thead>
-            <tbody>
-            <!-- Сюда будет вставляться контент через Jinja2 -->
-            {% for report in history_records %}
-            <tr>
-                <td>{{ report.date }}</td>
-                <td>{{ report.date_create }}</td>
-                <td>{{ report.date_from }}</td>
-                <td>{{ report.date_to }}</td>
-                <td>
-                    {% if report.status == 'need_to_process' %}
-                    В очереди на обработку
-                    {% elif report.status == 'ready_to_download' %}
-                    Готов к скачиванию
-                    {% elif report.status == 'some_error' %}
-                    Возникла ошибка в подготовке, попробуйте позднее повторить
-                    {% endif %}
-                </td>
-                <td>
-                    {% if report.status == 'ready_to_download' %}
-                    <form action="{{ URL }}/download-report/{{ report.email }}/{{ report.id }}">
-                        <input type="submit" value="Скачать">
-                    </form>
-                    {% endif %}
-                </td>
-            </tr>
-            {% endfor %}
+        <div class="table-title">
 
-            </tbody>
-        </table>
+            <div class="field"><b>Дата</b></div>
+            <div class="field"><b>С</b></div>
+            <div class="field"><b>По</b></div>
+            <div class="field"><b>Статус</b></div>
+            <div class="field"><b>Скачать</b></div>
+        </div>
+        <!-- Сюда будет вставляться контент через Jinja2 -->
+        <div class="table">
+            {% for report in history_records %}
+            <div class="table-row">
+                <div class="field">{{ report.date_create }}</div>
+                <div class="field">{{ report.date_from }}</div>
+                <div class="field">{{ report.date_to }}</div>
+                <div class="field">
+                    {% if report.status == 'need_to_process' %}
+                    <div class="in-progress">В процессе</div>
+                    {% elif report.status == 'ready_to_download' %}
+                    <div class="successful">Успешно</div>
+                    {% elif report.status == 'some_error' %}
+                    <div class="outdated">Ошибка</div>
+                    {% endif %}
+                </div>
+                <div class="download-field">
+                    {% if report.status == 'ready_to_download' %}
+                    <a class="download-button" href="{{ URL }}/download-report/{{ report.email }}/{{ report.id }}">
+                        <img src="{{ url_for('static', filename='images/download.png') }}"> Скачать
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </section>
-</main>
+</div>
 
 {% endblock %}

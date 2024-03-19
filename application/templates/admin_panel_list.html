@@ -5,37 +5,37 @@
 
 {% block content %}
 
-<main class="main-content">
-    <form class="search-form" , action="{{ url_for('admin_blueprint.admin_page') }}" method="post">
+<form class="inline-block" , action="{{ url_for('admin_blueprint.admin_page') }}" method="post">
+    <div class="search">
         <input type="text" id="search" class="info-input" placeholder="Поиск" name="search">
         <button type="submit" class="btn-submit">Поиск</button>
-    </form>
+    </div>
 
-    <table class="info-table">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Почта</th>
-            <th>Тип аккаунта</th>
-            <th>Количество запросов</th>
-            <th>Статус аккаунта</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for user_1 in users %}
-        <tr>
+    <div class="block" id="panel">
+        <div class="shops-title">
+            <div class="shops-label"><b>Админ панель</b></div>
+        </div>
+        <div class="table-title">
+            <div class="field"><b>ID</b></div>
+            <div class="field"><b>Почта</b></div>
+            <div class="field"><b>Тип аккаунта</b></div>
+            <div class="field"><b>Количество запросов</b></div>
+            <div class="field"><b>Статус аккаунта</b></div>
+        </div>
+        <div class="table" id="panel-table">
+            {% for user_1 in users %}
+            <div class="table-row-panel">
 
-            <td>{{ user_1.id }}</td>
-            <td>
-                <a href="{{ url_for('admin_blueprint.admin_page_user', user_id=user_1.id) }}">{{ user_1.email }}</a>
-            </td>
-            <td>{{ user_1.account_type }}</td>
-            <td>{{ user_1.request_count }}</td>
-            <td>{{ user_1.account_status }}</td>
-        </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-</main>
+                <div class="field">{{ user_1.id }}</div>
+                <a class="field" href="{{ url_for('admin_blueprint.admin_page_user', user_id=user_1.id) }}">{{
+                    user_1.email}}</a>
 
-{% endblock %}
+                <div class="field">{{ user_1.account_type }}</div>
+                <div class="field">{{ user_1.request_count }}</div>
+                <div class="field">{{ user_1.account_status }}</div>
+            </div>
+            {% endfor %}
+            {% endblock %}
+        </div>
+    </div>
+</form>

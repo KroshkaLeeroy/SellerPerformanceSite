@@ -50,6 +50,8 @@ textarea {
     background-color: #F6F7F9;
     border-radius: 16px;
     border: none;
+    outline: 0;
+    box-shadow: 0 0 0 0.1rem rgba(158, 158, 158, 0.25);
     padding: 12px 16px 12px 16px;
 }
 

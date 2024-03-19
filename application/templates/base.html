@@ -25,21 +25,7 @@
 
 <body>
 
-    <!--<header>-->
-    <!--    <nav class="navbar">-->
-    <!--        <div class="nav-logo"><a href="{{ url_for('main_blueprint.main_page') }}">Главная</a></div>-->
-    <!--        <div class="nav-links">-->
-    <!--            <a href="{{ url_for('profile_blueprint.query_page') }}" class="nav-link">Запрос</a>-->
-    <!--            <a href="{{ url_for('profile_blueprint.history_page') }}" class="nav-link">История</a>-->
-    <!--            {% if user.account_type == 'admin' %}-->
-    <!--            <a href="{{ url_for('admin_blueprint.admin_page') }}" class="nav-link">Админ Панель</a>-->
-    <!--            {% endif %}-->
-    <!--            <a href="{{ url_for('profile_blueprint.profile_page') }}" class="nav-link">Профиль</a>-->
-    <!--            <a href="{{ url_for('login_blueprint.logout') }}" class="nav-link">Выйти</a>-->
-    <!--        </div>-->
-    <!--    </nav>-->
-    <!--</header>-->
-
+   
     {% if user.is_authenticated %}
     <div class="block" id="left-navbar">
         <div class="top-menu">
@@ -105,7 +91,6 @@
         </div>
     </div>
     {% block content %}
-    <!-- Содержимое по умолчанию, если не переопределено -->
     {% endblock %}
 
 
@@ -127,3 +112,18 @@
 </body>
 
 </html>
+
+<!--<header>-->
+   <!--    <nav class="navbar">-->
+   <!--        <div class="nav-logo"><a href="{{ url_for('main_blueprint.main_page') }}">Главная</a></div>-->
+   <!--        <div class="nav-links">-->
+   <!--            <a href="{{ url_for('profile_blueprint.query_page') }}" class="nav-link">Запрос</a>-->
+   <!--            <a href="{{ url_for('profile_blueprint.history_page') }}" class="nav-link">История</a>-->
+   <!--            {% if user.account_type == 'admin' %}-->
+   <!--            <a href="{{ url_for('admin_blueprint.admin_page') }}" class="nav-link">Админ Панель</a>-->
+   <!--            {% endif %}-->
+   <!--            <a href="{{ url_for('profile_blueprint.profile_page') }}" class="nav-link">Профиль</a>-->
+   <!--            <a href="{{ url_for('login_blueprint.logout') }}" class="nav-link">Выйти</a>-->
+   <!--        </div>-->
+   <!--    </nav>-->
+   <!--</header>-->

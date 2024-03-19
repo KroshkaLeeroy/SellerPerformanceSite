@@ -6,51 +6,62 @@
 {% block content %}
 
 <script>
-    $('body').on('click', '.password-checkbox', function(){
-	if ($(this).is(':checked')){
-		$('#password-input').attr('type', 'text');
-	} else {
-		$('#password-input').attr('type', 'password');
-	}
-});
+    $('body').on('click', '.password-checkbox', function () {
+        if ($(this).is(':checked')) {
+            $('#password-input').attr('type', 'text');
+        } else {
+            $('#password-input').attr('type', 'password');
+        }
+    });
 </script>
 
-<main>
-    <section class="profile-section">
-        <h1>Профиль</h1>
-        <form action="{{ url_for('admin_blueprint.admin_page_user', user_id=user_1.id) }}" method="post" class="profile-form">
-            <div class="profile-info">
+<section class="profile-section">
+    <div class="form-label"><b>Профиль</b></div>
+    <form action="{{ url_for('admin_blueprint.admin_page_user', user_id=user_1.id) }}" method="post"
+        class="profile-form">
+        <div class="profile-info">
+            <div class="form-group">
                 <div class="info-label">Ваш email:</div>
                 <input type="email" name="email" value="{{ user_1.email }}" class="info-input">
-
-                <div class="info-label">Seller API:</div>
-                <input type="text" name="api_seller" value="{{ user_1.api_key_seller }}" class="info-input">
-
+            </div>
+            <div class="form-group">
+                <div class="info-label">Seller Secret:</div>
+                <input type="text" name="api_seller" placeholder="Введите Seller Secret" value="{{ user_1.api_key_seller }}" class="info-input">
+            </div>
+            <div class="form-group">
                 <div class="info-label">Seller ID:</div>
-                <input type="text" name="client_id_seller" value="{{ user_1.client_id_seller }}" class="info-input">
-
+                <input type="text" name="client_id_seller" placeholder="Введите Seller ID" value="{{ user_1.client_id_seller }}" class="info-input">
+            </div>
+        </div>
+        <div class="profile-info">
+            <div class="form-group">
                 <div class="info-label">Performance API:</div>
-                <input type="text" name="api_performance" value="{{ user_1.api_key_performance }}" class="info-input">
-
+                <input type="text" name="api_performance" placeholder="Введите Performance API" value="{{ user_1.api_key_performance }}" class="info-input">
+            </div>
+            <div class="form-group">
                 <div class="info-label">Performance ID:</div>
-                <input type="text" name="client_id_performance" value="{{ user_1.client_id_performance }}" class="info-input">
-
+                <input type="text" name="client_id_performance" placeholder="Введите Performance ID" value="{{ user_1.client_id_performance }}"
+                    class="info-input">
+            </div>
+        </div>
+        <div class="profile-info">
+                <div class="form-group">
                 <div class="info-label">Тип аккаунта:</div>
                 <select name="account_type" class="info-input">
-                  <option value="user" {% if user_1.account_type == 'user' %}selected{% endif %}>Пользователь</option>
-                  <option value="admin" {% if user_1.account_type == 'admin' %}selected{% endif %}>Администратор</option>
-                  <!-- Добавьте дополнительные опции по мере необходимости -->
+                    <option value="user" {% if user_1.account_type=='user' %}selected{% endif %}>Пользователь</option>
+                    <option value="admin" {% if user_1.account_type=='admin' %}selected{% endif %}>Администратор
+                    </option>
+                    <!-- Добавьте дополнительные опции по мере необходимости -->
                 </select>
-
-
+            </div>
+            <div class="form-group">
                 <div class="info-label">Количество запросов:</div>
                 <input type="number" name="request_count" value="{{ user_1.request_count }}" class="info-input">
-
             </div>
-            <button type="submit" class="edit-button">Сохранить изменения</button>
-        </form>
-    </section>
-
-</main>
+        </div>
+        </div>
+        <button type="submit" class="btn-submit">Сохранить изменения</button>
+    </form>
+</section>
 
 {% endblock %}
