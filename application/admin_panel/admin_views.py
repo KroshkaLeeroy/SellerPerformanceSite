@@ -39,6 +39,7 @@ def admin_page_user(user_id):
         api_performance = request.form.get('api_performance')
         account_type = request.form.get('account_type')
         request_count = request.form.get('request_count')
+        client_id_performance = request.form.get('client_id_performance')
 
         if date:
             # TODO: Запрос к API приложения с историей запросов по дате
@@ -54,6 +55,10 @@ def admin_page_user(user_id):
             user.account_type = account_type
         if request_count:
             user.request_count = request_count
+        if client_id_seller:
+            user.client_id_seller = client_id_seller
+        if client_id_performance:
+            user.client_id_performance = client_id_performance
 
         db.session.commit()
 
@@ -61,6 +66,7 @@ def admin_page_user(user_id):
         existing_reports = requests.get(f'{URL_TO_API}/check-pull/{user.email}')
         if existing_reports.status_code == 200:
             reports = existing_reports.json()
+            reports = reports[::-1]
         else:
             reports = []
     except requests.exceptions.ConnectionError as e:

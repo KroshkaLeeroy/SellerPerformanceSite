@@ -55,6 +55,8 @@ def query_page():
         existing_reports = requests.get(f'{URL_TO_API}/check-pull/{current_user.email}')
         if existing_reports.status_code == 200:
             reports = existing_reports.json()
+            reports = reports[::-1]
+            reports = reports[0:13]
         else:
             reports = []
     except requests.exceptions.ConnectionError as e:
@@ -78,6 +80,7 @@ def history_page():
         existing_reports = requests.get(f'{URL_TO_API}/check-pull/{current_user.email}')
         if existing_reports.status_code == 200:
             reports = existing_reports.json()
+            reports = reports[::-1]
         else:
             reports = []
     except requests.exceptions.ConnectionError as e:
