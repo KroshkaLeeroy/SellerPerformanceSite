@@ -51,14 +51,19 @@ def register():
         email = request.form.get('email')
         password = request.form.get('password')
         password2 = request.form.get('password2')
+        policy = request.form.get('accept-policy')
+
+        # TODO добавить страницы с условиями и Политикой конфиденциальности
 
         if not (email or password or password2):
             flash('Пожалуйста, заполните все поля')
+        elif not policy:
+            flash('Необходимо согласиться с Условиями и Политикой Конфиденциальности')
         elif password != password2:
             flash('Пароли не совпадают')
         elif email and User.query.filter_by(email=email).first():
-            exists = True
-            return render_template('unregistered_base.html', user=current_user, exists=exists)
+            flash('Пользователь с таким email уже зарегистрирован')
+            return redirect(url_for('login_blueprint.login_page'))
         else:
             hash_pwd = generate_password_hash(password)
             user = User(password=hash_pwd, account_type='user', email=email)
