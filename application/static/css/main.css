@@ -185,7 +185,7 @@ input::placeholder {
     display: flex;
     justify-content: space-between;
     background-color: #FFFFFF;
-    height: 7%;
+    height: 50px;
     padding: 10px 0;
     border-radius: 12px;
 }
@@ -194,7 +194,7 @@ input::placeholder {
     display: flex;
     justify-content: space-between;
     background-color: #FFFFFF;
-    height: 5%;
+    height: 50px;
     padding: 10px 0;
     border-radius: 12px;
 }
@@ -341,7 +341,7 @@ input::placeholder {
     justify-content: space-between;
     margin: auto 0;
     border-radius: 12px;
-    padding: 4% 10%;
+    padding: 2% 10%;
     background-color: #F5F7FF;
     color: #0937C3;
     box-sizing: border-box;
