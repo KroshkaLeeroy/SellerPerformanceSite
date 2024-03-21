@@ -381,23 +381,18 @@ input::placeholder {
 
 .profile-section {
     display: flex;
-    justify-content: space-between;
     flex-direction: column;
     background-color: #FFFFFF;
     padding: 16px 12px;
     border-radius: 24px;
-    flex: 1 1 auto;
     gap: 4px;
-    height: 38%;
     box-sizing: border-box;
 }
 
 .profile-form {
     display: flex;
-    justify-content: space-between;
     flex: 1 1 auto;
     flex-direction: column;
-    flex-shrink: 0;
     width: 100%;
     gap: 12px;
 }
@@ -578,6 +573,12 @@ input::placeholder {
 #date-query{
     width: 20%;
     margin-left: 4px;
+}
+
+.filler{
+    display: flex;
+    flex: 1 1 auto;
+
 }
 
 .contact-form {
