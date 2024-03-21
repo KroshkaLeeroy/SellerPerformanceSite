@@ -96,6 +96,7 @@ input::placeholder {
 }
 
 .list-item {
+    overflow: hidden;
     line-height: 36px;
     padding: 8px, 12px;
     border-radius: 12px;
@@ -150,6 +151,12 @@ input::placeholder {
     padding: 12px;
     height: 40px;
     width: 40px;
+}
+
+.user-info {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .user-info:hover {
@@ -381,23 +388,18 @@ input::placeholder {
 
 .profile-section {
     display: flex;
-    justify-content: space-between;
     flex-direction: column;
     background-color: #FFFFFF;
     padding: 16px 12px;
     border-radius: 24px;
-    flex: 1 1 auto;
     gap: 4px;
-    height: 38%;
     box-sizing: border-box;
 }
 
 .profile-form {
     display: flex;
-    justify-content: space-between;
     flex: 1 1 auto;
     flex-direction: column;
-    flex-shrink: 0;
     width: 100%;
     gap: 12px;
 }
@@ -469,14 +471,15 @@ input::placeholder {
     padding: 12px 16px 12px 16px;
     width: 15%;
 }
-.delete-button:hover{
+
+.delete-button:hover {
     border: 2px black;
     background-color: red;
 }
 
-.history-search{
+.history-search {
     display: flex;
-    gap:12px;
+    gap: 12px;
 }
 
 .successful {
@@ -571,13 +574,19 @@ input::placeholder {
     flex: 1 1 auto;
 }
 
-#user_reports{
+#user_reports {
     height: 65%;
 }
 
-#date-query{
+#date-query {
     width: 20%;
     margin-left: 4px;
+}
+
+.filler {
+    display: flex;
+    flex: 1 1 auto;
+
 }
 
 .contact-form {
