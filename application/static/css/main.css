@@ -96,6 +96,7 @@ input::placeholder {
 }
 
 .list-item {
+    overflow: hidden;
     line-height: 36px;
     padding: 8px, 12px;
     border-radius: 12px;
@@ -150,6 +151,12 @@ input::placeholder {
     padding: 12px;
     height: 40px;
     width: 40px;
+}
+
+.user-info {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .user-info:hover {
@@ -464,14 +471,15 @@ input::placeholder {
     padding: 12px 16px 12px 16px;
     width: 15%;
 }
-.delete-button:hover{
+
+.delete-button:hover {
     border: 2px black;
     background-color: red;
 }
 
-.history-search{
+.history-search {
     display: flex;
-    gap:12px;
+    gap: 12px;
 }
 
 .successful {
@@ -566,16 +574,16 @@ input::placeholder {
     flex: 1 1 auto;
 }
 
-#user_reports{
+#user_reports {
     height: 65%;
 }
 
-#date-query{
+#date-query {
     width: 20%;
     margin-left: 4px;
 }
 
-.filler{
+.filler {
     display: flex;
     flex: 1 1 auto;
 
