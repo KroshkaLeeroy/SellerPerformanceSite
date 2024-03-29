@@ -35,7 +35,7 @@
             <div class="download-field">
                 {% if report.status == 'ready_to_download' %}
                 <a href="{{ URL }}/download-report/{{ report.email }}/{{ report.id }}" class="download-button">
-                    <img src="{{ url_for('static', filename='images/download.png') }}"> Скачать
+                    <img src="{{ url_for('static', filename='images/download.svg') }}"> Скачать
                 </a>
                 {% endif %}
             </div>

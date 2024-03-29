@@ -10,19 +10,26 @@
     <form class="contact-form" method="post" action="{{ url_for('login_blueprint.login_page') }}">
         <div class="form-label">Авторизация</div>
         <div class="form-group">
-            <label for="email">Ваша почта</label>
-            <input type="text" id="login-username" name="email" placeholder="Введите e-mail" required>
+            <div class="input-wrapper">
+                <label for="email">Ваша почта</label>
+                <input type="text" id="login-username" name="email" placeholder="Введите e-mail" required>
+            </div>
         </div>
         <div class="form-group">
-            <label for="login-password">Пароль</label>
-            <input type="password" id="login-password" name="password" placeholder="Введите пароль" required>
-        </div>
-        <div class="login-utils">
-            <div class="remember-me">
-                <input type="checkbox" id="remember-check" name="remember-check" value="no">
-                <label for="remember-check">Запомнить меня</label>
+            <div class="input-wrapper">
+                <label for="login-password">Пароль</label>
+                <div class="password-box">
+                    <input type="password" id="login-password" name="password" placeholder="Введите пароль" required>
+                    <img src="{{ url_for('static', filename='images/eye.svg') }}">
+                </div>
             </div>
-            <a class="forgot-pwd" href="{{ url_for('reset_blueprint.reset_password_page') }}">Забыли пароль?</a>
+            <div class="login-utils">
+                <div class="remember-me">
+                    <input type="checkbox" id="remember-check" name="remember-check" value="no">
+                    <label for="remember-check">Запомнить меня</label>
+                </div>
+                <a class="forgot-pwd" href="{{ url_for('reset_blueprint.reset_password_page') }}">Забыли пароль?</a>
+            </div>
         </div>
         <button type="submit" class="btn-submit">Войти</button>
     </form>

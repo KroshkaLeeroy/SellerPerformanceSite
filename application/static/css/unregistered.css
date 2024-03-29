@@ -14,6 +14,12 @@ body {
     scrollbar-width: 10px;
 }
 
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 50px #F6F7F9 inset;
+    /* можно изменить на любой вариант цвета */
+    -webkit-text-fill-color: #80899C;
+}
+
 ::-webkit-scrollbar {
     width: 4px;
     padding-right: 10px;
@@ -46,26 +52,11 @@ a {
 
 input,
 textarea {
+    border: none;
     resize: none;
     background-color: #F6F7F9;
     border-radius: 16px;
-    border: none;
-    outline: 0;
-    box-shadow: 0 0 0 0.1rem rgba(158, 158, 158, 0.25);
     padding: 12px 16px 12px 16px;
-}
-
-textarea {
-    padding: 12px 16px 12px 16px;
-}
-
-textarea:focus,
-input:focus {
-    color: #212529;
-    background-color: #fff;
-    border-color: #bdbdbd;
-    outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
 }
 
 textarea::placeholder,
@@ -133,7 +124,10 @@ input::placeholder {
 }
 
 .remember-me {
-    justify-content: flex-start;
+    display: flex;
+    gap: 4px;
+    margin: auto 0;
+    flex-grow: 1;
 }
 
 .forgot-pwd {
@@ -174,10 +168,39 @@ input::placeholder {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    gap: 8px;
+    gap: 24px;
 }
 
 .counter {
     text-align: right;
     color: #596173;
+}
+
+.password-box {
+    width: 95%;
+    background-color: #F6F7F9;
+    display: flex;
+    align-items: center;
+    padding: 0 10px 0 15px;
+    margin: auto 0;
+    border-radius: 16px;
+}
+
+.password-box input {
+    border-radius: 16px;
+    width: 100%;
+    padding: 12px 0;
+    border: none;
+    outline: none;
+}
+
+.password-box img {
+    size: 20px 20px;
+    cursor: pointer;
+}
+
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }

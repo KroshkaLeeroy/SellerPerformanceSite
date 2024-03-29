@@ -25,66 +25,88 @@
 
 <body>
 
-   
+
     {% if user.is_authenticated %}
     <div class="block" id="left-navbar">
         <div class="top-menu">
             <div class="menu">
                 <a class="profile" href="{{ url_for('profile_blueprint.profile_page') }}"><img
-                        src="{{ url_for('static', filename='images/profileExample.png') }}">
+                        src="{{ url_for('static', filename='images/logo.png') }}">
                     <div class="user-info">
-                        <div class="name"><b>Name Surname</b></div>
+                        <div class="name"><b>GetStats</b></div>
                         <div class="email">{{ user.email }}</div>
                     </div>
                 </a>
 
                 <div class="sidebar-menu" id="upper-menu">
                     <div class="list-item">
+                        <div class="list-icon"><img src="{{ url_for('static', filename='images/analytics.svg') }}">
+                        </div>
                         <a href="/">
-                            <img src="{{ url_for('static', filename='images/analytics.png') }}">Отчёты
+                            Отчёты
                         </a>
                     </div>
                     <div class="list-item">
+                        <div class="list-icon"><img src="{{ url_for('static', filename='images/plus.svg') }}"></div>
                         <a href="{{ url_for('profile_blueprint.query_page') }}">
-                            <img src="{{ url_for('static', filename='images/plus.png') }}">Создать
+                            Создать
                         </a>
                     </div>
                     <div class="list-item">
+                        <div class="list-icon"><img src="{{ url_for('static', filename='images/history.svg') }}"></div>
                         <a href="{{ url_for('profile_blueprint.history_page') }}">
-                            <img src="{{ url_for('static', filename='images/history.png') }}">История
+                            История
                         </a>
                     </div>
                 </div>
                 <div class="sidebar-menu" id="middle-menu">
                     <div class="list-item">
-                        <a href="{{ url_for('profile_blueprint.edit_profile') }}"><img
-                                src="{{ url_for('static', filename='images/profile.png') }}">Настройка профиля</a>
+                        <div class="list-icon"><img src="{{ url_for('static', filename='images/profile.svg') }}"></div>
+                        <a href="{{ url_for('profile_blueprint.edit_profile') }}">
+                            Настройка профиля
+                        </a>
                     </div>
                     <div class="list-item">
-                        <a href="{{ url_for('feedback_blueprint.feedback_page') }}"><img
-                                src="{{ url_for('static', filename='images/help.png') }}">Помощь</a>
+                        <div class="list-icon"><img src="{{ url_for('static', filename='images/help.svg') }}"></div>
+                        <a href="{{ url_for('feedback_blueprint.feedback_page') }}">
+                            Помощь
+                        </a>
                     </div>
                     <div class="list-item">
-                        <a href="/404"><img src="{{ url_for('static', filename='images/library.png') }}">База знаний</a>
+                        <div class="list-icon"><img src="{{ url_for('static', filename='images/library.svg') }}">
+                        </div>
+                        <a href="/404">
+                            База знаний
+                        </a>
                     </div>
                     <div class="list-item">
-                        <a href="/404"><img src="{{ url_for('static', filename='images/gift.png') }}">Подарки от
-                            партнёров</a>
+                        <div class="list-icon"><img src="{{ url_for('static', filename='images/gift.svg') }}">
+                        </div>
+                        <a href="/404">
+                            Подарки от партнёров
+                        </a>
                     </div>
                 </div>
             </div>
             <div class="sidebar-menu" id="bottom-menu">
 
                 <div class="list-item">
-                    <a href="/404"><img src="{{ url_for('static', filename='images/payment.png') }}">Тарифы и
-                        оплата</a>
+                    <div class="list-icon"><img src="{{ url_for('static', filename='images/payment.svg') }}"></div>
+                    <a href="/404">
+                        Тарифы и оплата
+                    </a>
                 </div>
                 <div class="list-item">
-                    <a href="/404"><img src="{{ url_for('static', filename='images/folder.png') }}">Договоры</a>
+                    <div class="list-icon"><img src="{{ url_for('static', filename='images/folder.svg') }}"></div>
+                    <a href="/404">
+                        Договоры
+                    </a>
                 </div>
                 <div class="list-item">
-                    <a href="{{ url_for('login_blueprint.logout') }}"><img
-                            src="{{ url_for('static', filename='images/logout.png') }}">Выйти из аккаунта</a>
+                    <div class="list-icon"><img src="{{ url_for('static', filename='images/logout.svg') }}"></div>
+                    <a href="{{ url_for('login_blueprint.logout') }}">
+                        Выйти из аккаунта
+                    </a>
                 </div>
             </div>
 
@@ -114,16 +136,16 @@
 </html>
 
 <!--<header>-->
-   <!--    <nav class="navbar">-->
-   <!--        <div class="nav-logo"><a href="{{ url_for('main_blueprint.main_page') }}">Главная</a></div>-->
-   <!--        <div class="nav-links">-->
-   <!--            <a href="{{ url_for('profile_blueprint.query_page') }}" class="nav-link">Запрос</a>-->
-   <!--            <a href="{{ url_for('profile_blueprint.history_page') }}" class="nav-link">История</a>-->
-   <!--            {% if user.account_type == 'admin' %}-->
-   <!--            <a href="{{ url_for('admin_blueprint.admin_page') }}" class="nav-link">Админ Панель</a>-->
-   <!--            {% endif %}-->
-   <!--            <a href="{{ url_for('profile_blueprint.profile_page') }}" class="nav-link">Профиль</a>-->
-   <!--            <a href="{{ url_for('login_blueprint.logout') }}" class="nav-link">Выйти</a>-->
-   <!--        </div>-->
-   <!--    </nav>-->
-   <!--</header>-->
+<!--    <nav class="navbar">-->
+<!--        <div class="nav-logo"><a href="{{ url_for('main_blueprint.main_page') }}">Главная</a></div>-->
+<!--        <div class="nav-links">-->
+<!--            <a href="{{ url_for('profile_blueprint.query_page') }}" class="nav-link">Запрос</a>-->
+<!--            <a href="{{ url_for('profile_blueprint.history_page') }}" class="nav-link">История</a>-->
+<!--            {% if user.account_type == 'admin' %}-->
+<!--            <a href="{{ url_for('admin_blueprint.admin_page') }}" class="nav-link">Админ Панель</a>-->
+<!--            {% endif %}-->
+<!--            <a href="{{ url_for('profile_blueprint.profile_page') }}" class="nav-link">Профиль</a>-->
+<!--            <a href="{{ url_for('login_blueprint.logout') }}" class="nav-link">Выйти</a>-->
+<!--        </div>-->
+<!--    </nav>-->
+<!--</header>-->

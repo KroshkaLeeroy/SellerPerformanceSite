@@ -18,7 +18,7 @@
                     <input type="date" id="date-to" class="info-input" name="date-to">
                 </div>
                 {% with messages = get_flashed_messages() %}
-                {% if "Заполните ключи API!" not in messages %}
+                {% if "Заполните ключи API" not in messages %}
                 <button type="submit" class="btn-submit">Запросить отчет</button>
                 {% endif %}
             </div>

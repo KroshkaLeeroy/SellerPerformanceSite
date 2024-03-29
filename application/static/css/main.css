@@ -28,7 +28,6 @@ body {
     overflow-x: hidden;
     font-family: Rubik;
     font-size: 14px;
-    font-weight: 400;
     line-height: 20px;
     text-align: left;
     gap: 8px;
@@ -40,22 +39,12 @@ a {
 }
 
 input {
+    border: none;
+    resize: none;
     background-color: #F6F7F9;
     border-radius: 16px;
-    border: none;
-    outline: 0;
-    box-shadow: 0 0 0 0.1rem rgba(158, 158, 158, 0.25);
     padding: 12px 16px 12px 16px;
 }
-
-input:focus {
-    color: #212529;
-    background-color: #fff;
-    border-color: #bdbdbd;
-    outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
-}
-
 input::placeholder {
     opacity: 0.4;
     color: #80899C;
@@ -85,21 +74,26 @@ input::placeholder {
     background-color: #F6F7F9;
     justify-content: space-between;
     border-radius: 16px;
-    padding: 8px 12px;
+    padding: 4px;
     gap: 4px;
     box-sizing: border-box;
 }
 
 .sidebar-menu img {
-    padding: 0 10px 0 8px;
+    padding: 0 10px 0 0;
     size: 20px 20px;
 }
 
 .list-item {
+    display: flex;
+    margin: auto 0;
     overflow: hidden;
-    line-height: 36px;
-    padding: 8px, 12px;
+    padding: 8px 12px;
     border-radius: 12px;
+}
+
+.list-icon{
+    margin: auto 0;
 }
 
 .list-item:hover {
@@ -244,7 +238,6 @@ input::placeholder {
 .shops-title {
     height: 30px;
     padding: 0 0 0 12px;
-    margin-bottom: 8px;
     justify-content: space-between;
 }
 
@@ -279,16 +272,16 @@ input::placeholder {
 }
 
 .shop-link {
+    margin: auto 0;
     min-height: 18%;
     display: flex;
     justify-content: space-between;
     background-color: #FFFFFF;
     flex-grow: 1;
     border-radius: 14px;
-    padding: 12px;
+    padding: 4%;
     box-sizing: border-box;
 }
-
 .shop-link b:hover {
     color: #0937C3;
 }
@@ -311,24 +304,26 @@ input::placeholder {
     background-color: #FFFFFF;
     flex-grow: 1;
     border-radius: 14px;
-    padding: 12px;
+    padding: 4%;
     box-sizing: border-box;
 }
 
 .toleft {
-    justify-content: start;
     margin: auto 0;
 }
 
 .toright {
     margin: auto 0;
-    justify-content: end;
+}
+
+.toright-wrapper{
+    display: flex;
+
 }
 
 .enabled-toright {
     color: #30B900;
     margin: auto 0;
-    justify-content: end;
 }
 
 .disabled-toright {
@@ -533,7 +528,6 @@ input::placeholder {
 #shops {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     padding: 12px;
     gap: 12px;
 }
@@ -547,12 +541,13 @@ input::placeholder {
 #banner {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 0 8px 12px;
-    margin: 4px 0;
+    margin: 4px 0 -20px 0;
+    flex: 1 1 auto;
+    justify-content: flex-start;
+    background: #F6F7F9;
     gap: 12px;
     height: 100%;
-    max-width: 13%;
+    max-width: 23%;
     box-sizing: border-box;
 }
 
@@ -604,12 +599,13 @@ input::placeholder {
 
 .card {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    overflow-y: hidden;
-    overflow-x: hidden;
+    align-items: center;
 }
 
-.card img {
-    height: 100%;
+.card img{
+    display: block;
+    object-fit: cover;
+    width: 100%;
+    height: auto;
 }
