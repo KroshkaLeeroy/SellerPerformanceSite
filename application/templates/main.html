@@ -60,14 +60,14 @@
                 <div class="to-reports">Все отчёты</div>
             </a>
         </div>
-        <div class="table-title">
-            <div class="field"><b>Дата запроса</b></div>
-            <div class="field"><b>Дата с</b></div>
-            <div class="field"><b>Дата по</b></div>
-            <div class="field"><b>Статус</b></div>
-            <div class="field"></div>
-        </div>
         <div class="table">
+            <div class="table-title">
+                <div class="field"><b>Дата запроса</b></div>
+                <div class="field"><b>Дата с</b></div>
+                <div class="field"><b>Дата по</b></div>
+                <div class="field"><b>Статус</b></div>
+                <div class="field"></div>
+            </div>
             {% for report in reports %}
             <div class="table-row">
                 <div class="field">{{ report.date_create }}</div>

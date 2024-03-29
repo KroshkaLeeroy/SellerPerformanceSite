@@ -10,14 +10,14 @@
         <a href="{{ url_for('profile_blueprint.history_page') }}">
         </a>
     </div>
-    <div class="table-title">
-        <div class="field"><b>Дата запроса</b></div>
-        <div class="field"><b>Дата с</b></div>
-        <div class="field"><b>Дата по</b></div>
-        <div class="field"><b>Статус</b></div>
-        <div class="field"></div>
-    </div>
     <div class="table">
+        <div class="table-title">
+            <div class="field"><b>Дата запроса</b></div>
+            <div class="field"><b>Дата с</b></div>
+            <div class="field"><b>Дата по</b></div>
+            <div class="field"><b>Статус</b></div>
+            <div class="field"></div>
+        </div>
         {% for report in reports %}
         <div class="table-row">
             <div class="field">{{ report.date_create }}</div>
@@ -35,7 +35,7 @@
             <div class="download-field">
                 {% if report.status == 'ready_to_download' %}
                 <a href="{{ URL }}/download-report/{{ report.email }}/{{ report.id }}" class="download-button">
-                    <img src="{{ url_for('static', filename='images/download.svg') }}"> Скачать
+                    <img src="{{ url_for('static', filename='images/download.png') }}"> Скачать
                 </a>
                 {% endif %}
             </div>

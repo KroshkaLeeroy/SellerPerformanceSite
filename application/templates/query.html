@@ -37,12 +37,12 @@
         <div class="shops-title">
             <div class="shops-label">История</div>
         </div>
-        <div class="table-title">
-            <div class="field"><b>Дата с</b></div>
-            <div class="field"><b>Дата по</b></div>
-            <div class="field"><b>Статус</b></div>
-        </div>
         <div class="table">
+            <div class="table-title">
+                <div class="field"><b>Дата с</b></div>
+                <div class="field"><b>Дата по</b></div>
+                <div class="field"><b>Статус</b></div>
+            </div>
             {% for request in requests %}
             <div class="table-row">
                 <div class="field">{{ request.date_from }}</div>
