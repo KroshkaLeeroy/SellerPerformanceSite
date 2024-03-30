@@ -21,7 +21,7 @@
                     <label for="password">Пароль</label>
                     <div class="password-box">
                         <input type="password" id="password" name="password" placeholder="Введите пароль" required>
-                        <img src="{{ url_for('static', filename='images/eye.svg') }}">
+                        <img id="hide-password1" src="{{ url_for('static', filename='images/eye.svg') }}">
                     </div>
                 </div>
             </div>
@@ -31,7 +31,7 @@
                     <div class="password-box">
                         <input type="password" id="password-repeat" name="password2" placeholder="Введите пароль"
                             required>
-                        <img src="{{ url_for('static', filename='images/eye.svg') }}">
+                        <img id="hide-password2" src="{{ url_for('static', filename='images/eye.svg') }}">
                     </div>
                 </div>
             </div>
@@ -62,4 +62,5 @@
     У вас уже есть аккаунт?
     <a class="to-register" href="{{ url_for('login_blueprint.login_page') }}">Войти</a>
 </div>
+<script src="{{ url_for('static', filename='scripts/register_hide.js') }}"></script>
 {% endblock %}

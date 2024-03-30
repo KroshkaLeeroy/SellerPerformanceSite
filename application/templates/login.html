@@ -20,7 +20,7 @@
                 <label for="login-password">Пароль</label>
                 <div class="password-box">
                     <input type="password" id="login-password" name="password" placeholder="Введите пароль" required>
-                    <img src="{{ url_for('static', filename='images/eye.svg') }}">
+                    <img id="hide-password" src="{{ url_for('static', filename='images/eye.svg') }}">
                 </div>
             </div>
             <div class="login-utils">
@@ -47,6 +47,6 @@
     У вас ещё нет аккаунта?
     <a class="to-register" href="{{ url_for('login_blueprint.register') }}">Зарегистрироваться</a>
 </div>
-
+<script src="{{ url_for('static', filename='scripts/login_hide.js') }}"></script>
 
 {% endblock %}
