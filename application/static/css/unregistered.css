@@ -80,7 +80,7 @@ input::placeholder {
     flex-direction: column;
     gap: 24px;
     padding: 32px 24px 24px 24px;
-    width: 500px;
+    width: 35%;
 }
 
 .passwords {
@@ -95,11 +95,32 @@ input::placeholder {
     width: 100%;
 }
 
-#remember-check {
-    size: 20px 20px;
-    border: 1px #E2E4E9;
-    background-color: #FFFFFF;
+input[type="checkbox"] {
+    display: none;
+}
+
+.remember-me label {
+    padding-left: 20px
+}
+
+.remember-me label::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-left: -10px;
+    margin-right: 10px;
     border-radius: 6px;
+    border: 1px solid #E2E4E9;
+    box-shadow: 0px 2px 4px 0px #00000014;
+}
+
+input[type="checkbox"]:checked + label::before {
+    content: '';
+    background-size: 100%;
+    background-color: #3B6AF6;
+    background-image: url(../images/checked.svg);
 }
 
 .flashes {
