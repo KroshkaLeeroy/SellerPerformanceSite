@@ -68,7 +68,7 @@ def query_page():
 
     user = current_user
     if user.api_key_seller == '' or user.api_key_performance == '':
-        flash('Заполните ключи API!')
+        flash('Заполните ключи API')
 
     return render_template('query.html', requests=reports, user=current_user)
 
