@@ -1,0 +1,126 @@
+{% extends "payments_base.html" %}
+
+
+{% block content %}
+
+<div class="filler">
+    <div class="p-block" id="current-plan">
+        <div class="plan" id="plan-label">
+            <div class="small-text">Ваш тарифный план</div>
+            <div class="big-text">Бизнес</div>
+        </div>
+        <div class="line"></div>
+        <div class="statistics">
+            <div class="first">
+                <div class="item">
+                    <div class="small-text-bold">Запросов за сутки&nbsp;</div>
+                    <div id=count>1000/1500</div>
+                </div>
+                <div class="item">
+                    <div class="small-text-bold">Магазинов подключено&nbsp;</div>
+                    <div class="values">1/2</div>
+                </div>
+            </div>
+            <div class="second">
+                <div class="item">
+                    <div class="small-text-bold">Оплачен до&nbsp;</div>
+                    <div id=count>время дата</div>
+                </div>
+                <div class="item">
+                    <div class="small-text-bold">Автопродление&nbsp;</div>
+                    <div id="values">Включено</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-wrapper">
+        <div class="choise-plan-label">Выбрать тариф</div>
+        <div class="container">
+            <div class="plans">
+                <div class="plan-block">
+                    <div class="plan">
+                        <div class="medium">Старт</div>
+                        <ul>
+                            <li>Возможность создания отчётов за 1 прошлый день</li>
+                            <li>5000 запросов в сутки</li>
+                        </ul>
+                    </div>
+                    <div class="price">
+                        <div class="medium">3990</div>
+                        <div class="small-text">₽/мес</div>
+                    </div>
+                </div>
+                <div class="plan-block">
+                    <div class="plan">
+                        <div class="medium">Бизнес</div>
+                        <ul>
+                            <li>Возможность создания отчётов за последние 60 дней</li>
+                            <li>5000 запросов в сутки</li>
+                        </ul>
+                    </div>
+                    <div class="price">
+                        <div class="medium">4990</div>
+                        <div class="small-text">₽/мес</div>
+                    </div>
+                </div>
+            </div>
+            <div class="p-block" id="more-options">
+                <div class="medium">Дополнительно</div>
+                <div class="small-text-bold">Магазины</div>
+                <div class="item">
+                    <div class="small-text">В настоящий момент вы используете&nbsp;</div>
+                    <div class="small-text-bold">1</div>
+                </div>
+                <div class="item">
+                    <div class="picker" id="shops-count"></div>
+                    <div class="medium">2</div>
+                </div>
+                <div class="small-text-bold">Оплачиваемые месяцы</div>
+                <div class="small-text">Скидка 15% при оплате тарифа на 6 месяцев</div>
+                <div class="small-text">Скидка 25% при оплате тарифа на год</div>
+                <div class="item">
+                    <div class="picker" id="months"></div>
+                    <div class="medium">1</div>
+                </div>
+                <div class="switch">
+                    <input type="checkbox">
+                    <div class="small-text">Автопродление включено</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="p-block" id="pay-for">
+        <div class="item" id="total">
+            <div class="medium">Тариф к оплате</div>
+            <ul class="params">
+                <li>Тариф Бизнес</li>
+                <li>1 доп. магазин</li>
+                <li>1 месяц</li>
+            </ul>
+            <div class="item" id="price-tag">
+                <div class="medium-reduced">К оплате</div>
+                <div class="item">
+                    <div class="choise-plan-label">4990</div>
+                    <div class="normal">₽</div>
+                </div>
+            </div>
+            <form id="payment">
+                <button class="button" id="pay-button">
+                    <div id="pay">Оплатить</div>
+                </button>
+            </form>
+        </div>
+        <div class="p-block" id="white">
+            <div class="medium-reduced">Проблемы с оплатой или возник вопрос?</div>
+            <div class="params">Напишите нам в мессенджер или оставьте заявку</div>
+            <div class="item" id="buttons">
+                <a class="button" href="https://t.me/SellerPerformance">Telegram</a>
+                <a class="button" href="https://instagram.com/">Instagram*</a>
+                <a class="button" href="{{ url_for('feedback_blueprint.feedback_page') }}">Оставить заявку</a>
+            </div>
+            <div class="small-text">Публичная оферта</div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
