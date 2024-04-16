@@ -63,10 +63,10 @@ def admin_page_user(user_id):
         db.session.commit()
 
     try:
-        existing_reports = requests.get(f'{URL_TO_API}/check-pull/{user.email}')
+        existing_reports = requests.get(f'{URL_TO_API}/check-pull/{user.client_id_seller}')
         if existing_reports.status_code == 200:
             reports = existing_reports.json()
-            reports = reports[::-1]
+            reports = reports.get('history')
         else:
             reports = []
     except requests.exceptions.ConnectionError as e:

@@ -43,16 +43,17 @@
                 <div class="field"><b>Дата по</b></div>
                 <div class="field"><b>Статус</b></div>
             </div>
-            {% for request in requests %}
+            {% for report in reports %}
             <div class="table-row">
-                <div class="field">{{ request.date_from }}</div>
-                <div class="field">{{ request.date_to }}</div>
+                <div class="field">{{ report.time_created }}</div>
+                <div class="field">{{ report.time_from }}</div>
+                <div class="field">{{ report.time_to }}</div>
                 <div class="field">
-                    {% if request.status == 'need_to_process' %}
+                    {% if report.status == 'in_line' %}
                     <div class="in-progress">В процессе</div>
-                    {% elif request.status == 'ready_to_download' %}
+                    {% elif report.status == 'ready' %}
                     <div class="successful">Успешно</div>
-                    {% elif request.status == 'some_error' %}
+                    {% elif report.status == 'some_error' %}
                     <div class="outdated">Ошибка</div>
                     {% endif %}
                 </div>

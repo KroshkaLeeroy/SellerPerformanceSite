@@ -70,21 +70,21 @@
             </div>
             {% for report in reports %}
             <div class="table-row">
-                <div class="field">{{ report.date_create }}</div>
-                <div class="field">{{ report.date_from }}</div>
-                <div class="field">{{ report.date_to }}</div>
+                <div class="field">{{ report.time_created }}</div>
+                <div class="field">{{ report.time_from }}</div>
+                <div class="field">{{ report.time_to }}</div>
                 <div class="field">
-                    {% if report.status == 'need_to_process' %}
+                    {% if report.status == 'in_line' %}
                     <div class="in-progress">В процессе</div>
-                    {% elif report.status == 'ready_to_download' %}
+                    {% elif report.status == 'ready' %}
                     <div class="successful">Успешно</div>
                     {% elif report.status == 'some_error' %}
                     <div class="outdated">Ошибка</div>
                     {% endif %}
                 </div>
                 <div class="download-field">
-                    {% if report.status == 'ready_to_download' %}
-                    <a href="{{ URL }}/download-report/{{ report.email }}/{{ report.id }}" class="download-button">
+                    {% if report.status == 'ready' %}
+                    <a href="{{ URL }}/download-report/{{ report.user_id }}/{{ report.time_from }}/{{ report.time_to }}" class="download-button">
                         <img src="{{ url_for('static', filename='images/download.svg') }}"> Скачать
                     </a>
                     {% endif %}

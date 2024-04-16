@@ -38,11 +38,11 @@ def query_page():
         date_from = request.form.get('date-from')
         date_to = request.form.get('date-to')
         data = {
-            'email': current_user.email,
-            'api_key_seller': current_user.api_key_seller,
-            'client_id_seller': current_user.client_id_seller,
-            'api_key_performance': current_user.api_key_performance,
-            'client_id_performance': current_user.client_id_performance,
+            'user_id': current_user.client_id_seller,
+            'seller_secret': current_user.api_key_seller,
+            'seller_id': current_user.client_id_seller,
+            'perf_api': current_user.api_key_performance,
+            'perf_id': current_user.client_id_performance,
             'date_from': date_from,
             'date_to': date_to,
         }
@@ -50,13 +50,15 @@ def query_page():
             flash('Даты должны быть указаны!')
         else:
             response = requests.post(f'{URL_TO_API}/add-request', json=data)
-            flash('Запрос успешно отправлен на сервер')
+            if response.status_code == 200:
+                flash('Запрос успешно отправлен на сервер')
+            else:
+                flash('Сервер не принял запрос')
     try:
-        existing_reports = requests.get(f'{URL_TO_API}/check-pull/{current_user.email}')
+        existing_reports = requests.get(f'{URL_TO_API}/check-pull/{current_user.client_id_seller}')
         if existing_reports.status_code == 200:
             reports = existing_reports.json()
-            reports = reports[::-1]
-            reports = reports[0:13]
+            reports = reports.get('history')
         else:
             reports = []
     except requests.exceptions.ConnectionError as e:
@@ -70,17 +72,17 @@ def query_page():
     if user.api_key_seller == '' or user.api_key_performance == '':
         flash('Заполните ключи API')
 
-    return render_template('query.html', requests=reports, user=current_user)
+    return render_template('query.html', reports=reports, user=current_user)
 
 
 @profile_blueprint.route('/history')
 @login_required
 def history_page():
     try:
-        existing_reports = requests.get(f'{URL_TO_API}/check-pull/{current_user.email}')
+        existing_reports = requests.get(f'{URL_TO_API}/check-pull/{current_user.client_id_seller}')
         if existing_reports.status_code == 200:
             reports = existing_reports.json()
-            reports = reports[::-1]
+            reports = reports.get('history')
         else:
             reports = []
     except requests.exceptions.ConnectionError as e:
