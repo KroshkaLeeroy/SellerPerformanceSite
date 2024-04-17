@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, redirect, request, url_for
 from flask_login import current_user, login_required
 from application.setup import User, db
 from application.config import URL_TO_API
+from application.utils import check_reports_from_API
 import requests
 
 admin_blueprint = Blueprint('admin_blueprint', __name__)
@@ -63,12 +64,7 @@ def admin_page_user(user_id):
         db.session.commit()
 
     try:
-        existing_reports = requests.get(f'{URL_TO_API}/check-pull/{user.client_id_seller}')
-        if existing_reports.status_code == 200:
-            reports = existing_reports.json()
-            reports = reports.get('history')
-        else:
-            reports = []
+        reports = check_reports_from_API(URL_TO_API, user.client_id_seller)
     except requests.exceptions.ConnectionError as e:
         reports = [{
             'date_from': 'Нет возможности соединиться с сервером запросов',
