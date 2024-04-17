@@ -26,3 +26,8 @@ def main_page():
         return render_template('main.html', reports=reports, user=current_user, URL=URL_TO_API)
     else:
         return redirect(url_for('login_blueprint.login_page'))
+
+
+@main_blueprint.route('/yandex_<variable>.html')
+def yandex_page(variable):
+    return render_template(f'yandex_{variable}.html')
