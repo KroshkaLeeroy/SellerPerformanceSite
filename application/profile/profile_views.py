@@ -5,6 +5,7 @@ from flask_login import login_required, current_user
 
 from application.config import URL_TO_API
 from application.setup import db
+from application.utils import check_reports_from_API
 
 profile_blueprint = Blueprint('profile_blueprint', __name__)
 
@@ -55,12 +56,7 @@ def query_page():
             else:
                 flash('Сервер не принял запрос')
     try:
-        existing_reports = requests.get(f'{URL_TO_API}/check-pull/{current_user.client_id_seller}')
-        if existing_reports.status_code == 200:
-            reports = existing_reports.json()
-            reports = reports.get('history')
-        else:
-            reports = []
+        reports = check_reports_from_API(URL_TO_API, current_user.client_id_seller)
     except requests.exceptions.ConnectionError as e:
         reports = [{
             'date_from': 'Нет возможности соединиться с сервером запросов',
@@ -79,12 +75,7 @@ def query_page():
 @login_required
 def history_page():
     try:
-        existing_reports = requests.get(f'{URL_TO_API}/check-pull/{current_user.client_id_seller}')
-        if existing_reports.status_code == 200:
-            reports = existing_reports.json()
-            reports = reports.get('history')
-        else:
-            reports = []
+        reports = check_reports_from_API(URL_TO_API, current_user.client_id_seller)
     except requests.exceptions.ConnectionError as e:
         reports = [{
             'date_from': 'Нет возможности соединиться с сервером запросов',
