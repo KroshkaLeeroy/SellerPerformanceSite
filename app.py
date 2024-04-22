@@ -1,4 +1,4 @@
-from application.init import app, db, User
+from application.init import app, db, User, Keys, Requests, Payments
 from werkzeug.security import generate_password_hash
 from application.config import ADMIN_PASSWORD
 

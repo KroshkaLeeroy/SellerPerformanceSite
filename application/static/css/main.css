@@ -179,7 +179,6 @@ input::placeholder {
 .table-title {
     display: flex;
     justify-content: space-between;
-    margin: auto 0;
     height: 40px;
     padding-left: 10px;
 }

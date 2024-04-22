@@ -71,16 +71,20 @@
                     <div class="small-text">В настоящий момент вы используете&nbsp;</div>
                     <div class="small-text-bold">1</div>
                 </div>
-                <div class="item">
-                    <div class="picker" id="shops-count"></div>
-                    <div class="medium">2</div>
+                <div class="range-item">
+                    <div class="picker-wrapper">
+                        <input id="shops-count" type="range" min="1" max="10" value="2" onchange="shopsChange()">
+                    </div>
+                    <div class="medium" id="shops-count-label">2</div>
                 </div>
                 <div class="small-text-bold">Оплачиваемые месяцы</div>
                 <div class="small-text">Скидка 15% при оплате тарифа на 6 месяцев</div>
                 <div class="small-text">Скидка 25% при оплате тарифа на год</div>
-                <div class="item">
-                    <div class="picker" id="months"></div>
-                    <div class="medium">1</div>
+                <div class="range-item">
+                    <div class="picker-wrapper">
+                        <input id="months" type="range" min="1" max="12" value="1">
+                    </div>
+                    <div class="medium" id="months-label">1</div>
                 </div>
                 <div class="switch">
                     <input type="checkbox">
@@ -122,5 +126,5 @@
         </div>
     </div>
 </div>
-
+<script src="{{ url_for('static', filename='scripts/payments.js') }}"></script>
 {% endblock %}

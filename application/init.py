@@ -1,4 +1,4 @@
-from application.setup import app, db, User
+from application.setup import app, db, User, Keys, Requests, Payments
 from application.login.login_views import login_blueprint
 from application.main.main_views import main_blueprint
 from application.profile.profile_views import profile_blueprint
