@@ -20,6 +20,7 @@
         </div>
         {% for report in reports %}
         <div class="table-row">
+            <div class="field">{{ report.time_created }}</div>
             <div class="field">{{ report.time_from }}</div>
             <div class="field">{{ report.time_to }}</div>
             <div class="field">

@@ -1,12 +1,13 @@
-from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
+from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
+
 
 class User(db.Model, UserMixin):
     __tablename__ = 'user_table'
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     email = db.Column(db.String(128), default='')
     password = db.Column(db.String(255), nullable=False)
     is_account_active = db.Column(db.Boolean, default=True)
@@ -15,6 +16,7 @@ class User(db.Model, UserMixin):
     keys = db.relationship("Keys", back_populates="parent")
     requests = db.relationship("Requests", back_populates="parent")
     payments = db.relationship("Payments", back_populates="parent")
+
 
 class Keys(db.Model):
     __tablename__ = 'keys_table'
@@ -27,6 +29,7 @@ class Keys(db.Model):
     api_key_performance = db.Column(db.String(255), default='')
     client_id_performance = db.Column(db.String(255), default='')
 
+
 class Requests(db.Model):
     __tablename__ = 'requests_table'
 
@@ -34,6 +37,7 @@ class Requests(db.Model):
     parent = db.relationship("User", back_populates="requests")
 
     request_count = db.Column(db.Integer, default=0)
+
 
 class Payments(db.Model):
     __tablename__ = 'payments_table'

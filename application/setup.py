@@ -6,6 +6,8 @@ from flask_mail import Mail
 app = Flask(__name__)
 app.config.from_object('application.config')
 
+app.jinja_env.globals.update(zip=zip)
+
 manager.init_app(app)
 db.init_app(app)
 mail = Mail()

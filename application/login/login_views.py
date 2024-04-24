@@ -21,7 +21,7 @@ def login_page():
 
             next_page = request.args.get('next')
 
-            if user.account_status == 'deleted':
+            if not user.is_account_active:
                 flash('Ваш аккаунт был удалён или заблокирован')
                 return redirect(url_for('login_blueprint.login_page'))
             else:
