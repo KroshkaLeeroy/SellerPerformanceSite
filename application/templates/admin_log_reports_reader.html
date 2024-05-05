@@ -23,9 +23,13 @@
         {% endif %}
     {% endfor %}
 {% elif ".json" in report_data %}
-    {% for key, value in data.items() %}
-        <p> {{ key }} : {{ value }}</p>
-    {% endfor %}
+    {% for key, value in data.items() recursive %}
+    {% if loop.last %}
+        <p>{{ value }}</p>
+    {% else %}
+        <p>{{ key }}: {{ loop(value.items()) }}</p>
+    {% endif %}
+{% endfor %}
 {% endif %}
 
 </body>
