@@ -31,11 +31,11 @@
     {% elif value == False %}
         False
     {% elif value.type == int %}
-        value
+        {{ value }}
     {% elif value.type == float %}
-        value
+        {{ value }}
     {% elif value.type == str %}
-        value
+        {{ value }}
     {% else %}
         <p>{{ key }}: {{ loop(value.items()) }}</p>
     {% endif %}
