@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-{% if isinstance(data.json(), list) %}
+{% if isinstance(data, list) %}
     {% for item in data %}
         {% if "." in item %}
             <p>{{ item }} <a href="">скачать</a></p>
