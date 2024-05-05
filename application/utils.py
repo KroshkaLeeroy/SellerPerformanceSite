@@ -1,5 +1,5 @@
 import requests
-
+from application.init import User, Keys, Requests, Payments
 
 def check_reports_from_API(URL, user_id):
     existing_reports = requests.get(f'{URL}/check-pull/{user_id}')
@@ -13,3 +13,6 @@ def check_reports_from_API(URL, user_id):
     else:
         reports = []
     return reports
+
+def migrate_database():
+    pass
