@@ -5,6 +5,14 @@
     <title>Title</title>
 </head>
 <body>
-{{ data }}
+{% if isinstance(data.json(), list) %}
+    {% for item in data %}
+        {% if "." in item %}
+            <p>{{ item }} <a href="">скачать</a></p>
+        {% else %}
+            <p>{{ item }} <a href="{{ url_for('admin_blueprint.report_log' , user_id=user_id, report_data=report_data + '*' + item) }}">добавить в текущую ссылку</a></p>
+        {% endif %}
+    {% endfor %}
+{% endif %}
 </body>
 </html>
