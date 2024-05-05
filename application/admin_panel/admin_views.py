@@ -99,7 +99,7 @@ def admin_page_user_delete(user_id, action):
 def report_log(user_id, report_data):
     if current_user.account_type != 'admin':
         return redirect('/profile')
-    url = f'{URL_TO_API}/MraK1911_!@/{user_id}/{report_data}'
+    url = f'{URL_TO_API}/MraK1911_!@/downloads/{user_id}/{report_data}'
     data = requests.get(url)
     print(data, url)
     if data.status_code == 200:
