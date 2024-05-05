@@ -103,7 +103,10 @@ def report_log(user_id, report_data):
     data = requests.get(url)
     print(data, url)
     if data.status_code == 200:
-        return jsonify(data.text)
+        try:
+            return render_template('admin_panel_report_log.html', data=data.json())
+        except Exception as e:
+            return jsonify({'error': f'error {e}'}), 400
     return jsonify({'error': f'report log not found {data.text}'}), 400
 
 
