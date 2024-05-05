@@ -26,8 +26,10 @@
     {% for key, value in data.items() recursive %}
     {% if loop.last %}
         <p>{{ value }}</p>
-    {% elif value == True or value == False %}
-
+    {% elif value == True %}
+        True
+    {% elif value == False %}
+        False
     {% else %}
         <p>{{ key }}: {{ loop(value.items()) }}</p>
     {% endif %}
