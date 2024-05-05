@@ -22,7 +22,7 @@
             <p>{{ item }} <a href="{{ url_for('admin_blueprint.report_log' , user_id=user_id, report_data=report_data + '*' + item) }}">добавить в текущую ссылку</a></p>
         {% endif %}
     {% endfor %}
-{% if ".json" in report_data %}
+{% elif ".json" in report_data %}
     {% for key, value in data.items() %}
         <p> {{ key }} : {{ value }}</p>
     {% endfor %}
