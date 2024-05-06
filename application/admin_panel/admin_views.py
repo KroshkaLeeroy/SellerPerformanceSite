@@ -72,8 +72,8 @@ def admin_page_user(user_id):
         reports = check_reports_from_API(URL_TO_API, keys.client_id_seller)
     except requests.exceptions.ConnectionError as e:
         reports = [{
-            'date_from': 'Нет возможности соединиться с сервером запросов',
-            'date_to': '',
+            'time_from': 'Нет возможности соединиться с сервером запросов',
+            'time_to': '',
             'status': f'{e}',
         }]
     return render_template('admin_panel_user.html', user=current_user, user_1=user, req=req, keys=keys,
