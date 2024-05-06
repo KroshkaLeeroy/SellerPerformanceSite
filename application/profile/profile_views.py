@@ -50,14 +50,19 @@ def query_page():
             'date_from': date_from,
             'date_to': date_to,
         }
+        # TODO: json check for Date values!
         if not date_to or not date_from:
             flash('Даты должны быть указаны!')
         else:
-            response = requests.post(f'{URL_TO_API}/add-request', json=data)
-
-            # TODO: json check for Date values!
-
-            flash('Запрос успешно отправлен на сервер')
+            try:
+                response = requests.post(f'{URL_TO_API}/add-request', json=data)
+                if response.status_code != 200:
+                    flash('Нет возможности соединиться с сервером запросов')
+                else:
+                    flash('Запрос успешно отправлен на сервер')
+            except Exception:
+                flash('Нет возможности соединиться с сервером запросов')
+            return redirect(url_for('profile_blueprint.query_page'))
     try:
         reports = check_reports_from_API(URL_TO_API, keys.client_id_seller)
     except requests.exceptions.ConnectionError as e:
