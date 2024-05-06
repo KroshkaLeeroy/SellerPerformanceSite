@@ -25,16 +25,16 @@
             <div class="profile-info">
                 <div class="form-group">
                     <div class="info-label">Seller Secret:</div>
-                    {% if user.api_key_seller %}
-                    <div class="info-value">{{ user.api_key_seller }}</div>
+                    {% if keys.api_key_seller %}
+                    <div class="info-value">{{ keys.api_key_seller }}</div>
                     {% else %}
                     <div class="transp-info-value">Введите Seller Secret</div>
                     {% endif %}
                 </div>
                 <div class="form-group">
                     <div class="info-label">Seller ID:</div>
-                    {% if user.client_id_seller %}
-                    <div class="info-value">{{ user.client_id_seller }}</div>
+                    {% if keys.client_id_seller %}
+                    <div class="info-value">{{ keys.client_id_seller }}</div>
                     {% else %}
                     <div class="transp-info-value">Введите Seller ID</div>
                     {% endif %}
@@ -43,23 +43,23 @@
             <div class="profile-info">
                 <div class="form-group">
                     <div class="info-label">Performance API:</div>
-                    {% if user.api_key_performance %}
-                    <div class="info-value">{{ user.api_key_performance }}</div>
+                    {% if keys.api_key_performance %}
+                    <div class="info-value">{{ keys.api_key_performance }}</div>
                     {% else %}
                     <div class="transp-info-value">Введите Performance API</div>
                     {% endif %}
                 </div>
                 <div class="form-group">
                     <div class="info-label">Performance ID:</div>
-                    {% if user.client_id_performance %}
-                    <div class="info-value">{{ user.client_id_performance }}</div>
+                    {% if keys.client_id_performance %}
+                    <div class="info-value">{{ keys.client_id_performance }}</div>
                     {% else %}
                     <div class="transp-info-value">Введите Performance ID</div>
                     {% endif %}
                 </div>
                 <div class="form-group">
                     <div class="info-label">Количество запросов:</div>
-                    <div class="info-value">{{ user.request_count }}</div>
+                    <div class="info-value">{{ req_c.request_count }}</div>
                 </div>
             </div>
             <form action="{{ url_for('profile_blueprint.edit_profile') }}">

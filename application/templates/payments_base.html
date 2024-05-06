@@ -18,7 +18,7 @@
     <meta name="theme-color" content="#ffffff">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{% block title %}GetStats{% endblock %}</title>
+    <title>{% block title %}Mirasell{% endblock %}</title>
 
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/payments.css') }}">
@@ -30,7 +30,7 @@
         <div class="top-menu">
             <div class="menu">
                 <a class="profile" href="{{ url_for('profile_blueprint.profile_page') }}"><img
-                        src="{{ url_for('static', filename='images/logo.png') }}">
+                        src="{{ url_for('static', filename='images/logo.svg') }}">
                     <div class="user-info">
                         <div class="name"><b>GetStats</b></div>
                         <div class="email">{{ user.email }}</div>

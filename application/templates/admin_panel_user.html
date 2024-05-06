@@ -13,16 +13,16 @@
             </div>
             <div class="form-group">
                 <div class="info-label">Seller Secret:</div>
-                {% if user_1.api_key_seller %}
-                <div class="info-value">{{ user_1.api_key_seller }}</div>
+                {% if keys.api_key_seller %}
+                <div class="info-value">{{ keys.api_key_seller }}</div>
                 {% else %}
                 <div class="transp-info-value">Нет Seller Secret</div>
                 {% endif %}
             </div>
             <div class="form-group">
                 <div class="info-label">Seller ID:</div>
-                {% if user_1.client_id_seller %}
-                <div class="info-value">{{ user_1.client_id_seller }}</div>
+                {% if keys.client_id_seller %}
+                <div class="info-value">{{ keys.client_id_seller }}</div>
                 {% else %}
                 <div class="transp-info-value">Нет Seller ID</div>
                 {% endif %}
@@ -31,16 +31,16 @@
         <div class="profile-info">
             <div class="form-group">
                 <div class="info-label">Performance API:</div>
-                {% if user_1.api_key_performance %}
-                <div class="info-value">{{ user_1.api_key_performance }}</div>
+                {% if keys.api_key_performance %}
+                <div class="info-value">{{ keys.api_key_performance }}</div>
                 {% else %}
                 <div class="transp-info-value">Нет Performance API</div>
                 {% endif %}
             </div>
             <div class="form-group">
                 <div class="info-label">Performance ID:</div>
-                {% if user_1.client_id_performance %}
-                <div class="info-value">{{ user_1.client_id_performance }}</div>
+                {% if keys.client_id_performance %}
+                <div class="info-value">{{ keys.client_id_performance }}</div>
                 {% else %}
                 <div class="transp-info-value">Нет Performance ID</div>
                 {% endif %}
@@ -57,17 +57,17 @@
         <div class="profile-info">
             <div class="form-group">
                 <div class="info-label">Количество запросов:</div>
-                <div class="info-value">{{ user_1.request_count }}</div>
+                <div class="info-value">{{ req.request_count }}</div>
             </div>
             <div class="form-group">
                 <div class="info-label">Статус аккаунта:</div>
-                <div class="info-value">{{ user_1.account_status }}</div>
+                <div class="info-value">{{ user_1.account_type }}</div>
             </div>
         </div>
 
         <form action="{{ url_for('admin_blueprint.admin_page_user_edit', user_id=user_1.id) }}">
             <button class="btn-submit" name="edit">Редактировать</button>
-            {% if user_1.account_status != 'deleted' %}
+            {% if user_1.is_account_active == True %}
             <a href="{{ url_for('admin_blueprint.admin_page_user_delete', user_id=user_1.id, action='delete') }}"
                 class="delete-button">Удалить</a>
             {% else %}
@@ -95,23 +95,23 @@
         </div>
         <!-- Сюда будет вставляться контент через Jinja2 -->
         <div class="table">
-            {% for report in history_records %}
+            {% for report in reports %}
             <div class="table-row">
-                <div class="field">{{ report.date_create }}</div>
-                <div class="field">{{ report.date_from }}</div>
-                <div class="field">{{ report.date_to }}</div>
+                <div class="field">{{ report.time_created }}</div>
+                <div class="field">{{ report.time_from }}</div>
+                <div class="field">{{ report.time_to }}</div>
                 <div class="field">
-                    {% if report.status == 'need_to_process' %}
+                    {% if report.status == 'in_line' %}
                     <div class="in-progress">В процессе</div>
-                    {% elif report.status == 'ready_to_download' %}
+                    {% elif report.status == 'ready' %}
                     <div class="successful">Успешно</div>
                     {% elif report.status == 'some_error' %}
                     <div class="outdated">Ошибка</div>
                     {% endif %}
                 </div>
                 <div class="download-field">
-                    {% if report.status == 'ready_to_download' %}
-                    <a class="download-button" href="{{ URL }}/download-report/{{ report.email }}/{{ report.id }}">
+                    {% if report.status == 'ready' %}
+                    <a class="download-button" href="{{ URL }}/download-report/{{ report.user_id }}/{{ report.time_from }}/{{ report.time_to }}">
                         <img src="{{ url_for('static', filename='images/download.svg') }}"> Скачать
                     </a>
                     {% endif %}

@@ -23,7 +23,7 @@
             <div class="field"><b>Статус аккаунта</b></div>
         </div>
         <div class="table" id="panel-table">
-            {% for user_1 in users %}
+            {% for user_1, req_1 in zip(users, reqs) %}
             <div class="table-row-panel">
 
                 <div class="field">{{ user_1.id }}</div>
@@ -31,8 +31,12 @@
                     user_1.email}}</a>
 
                 <div class="field">{{ user_1.account_type }}</div>
-                <div class="field">{{ user_1.request_count }}</div>
-                <div class="field">{{ user_1.account_status }}</div>
+                <div class="field">{{ req_1.request_count }}</div>
+                {% if user_1.is_account_active %}
+                <div class="field">Активен</div>
+                {% else %}
+                <div class="field">Отключен</div>
+                {% endif %}
             </div>
             {% endfor %}
             {% endblock %}
