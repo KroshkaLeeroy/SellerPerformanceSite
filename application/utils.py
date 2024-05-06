@@ -23,11 +23,12 @@ def migrate_database():
         result = connection.execute(text("SELECT * FROM user_table"))
         with app.app_context():
             for row in result:
-                if User.query.filter_by(email=row[2]) != ():
+                if row[2] != "admin@mail.ru":
                     user = User(password=row[1], email=row[2], account_type=row[7])
                     db.session.add(user)
                     db.session.commit()
-                    key = Keys(parent_id=user.id, api_key_seller=row[3], client_id_seller=row[4], api_key_performance=row[5],
+                    key = Keys(parent_id=user.id, api_key_seller=row[3], client_id_seller=row[4],
+                               api_key_performance=row[5],
                                client_id_performance=row[6])
                     request = Requests(parent_id=user.id, request_count=row[8])
                     payment = Payments(parent_id=user.id)

@@ -9,7 +9,7 @@ with app.app_context():
     user = User.query.filter_by(email='admin@mail.ru').first()
     if not user:
         hash_pwd = generate_password_hash(ADMIN_PASSWORD)
-        user = User(password=hash_pwd, account_type='admin', email='admin')
+        user = User(password=hash_pwd, account_type='admin', email='admin@mail.ru')
         db.session.add(user)
         db.session.commit()
         keys = Keys(parent_id=(user.id))
