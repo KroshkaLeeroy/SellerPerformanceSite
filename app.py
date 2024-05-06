@@ -2,6 +2,7 @@ from application.init import app, db, User, Keys, Requests, Payments
 from werkzeug.security import generate_password_hash
 from application.config import ADMIN_PASSWORD
 from datetime import datetime
+from application.utils import migrate_database
 
 with app.app_context():
     db.create_all()
@@ -20,4 +21,5 @@ with app.app_context():
         db.session.commit()
 
 if __name__ == '__main__':
+    migrate_database()
     app.run(debug=False, port='9999')
