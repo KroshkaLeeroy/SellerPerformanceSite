@@ -68,13 +68,7 @@ def register():
         else:
             hash_pwd = generate_password_hash(password)
             user = User(password=hash_pwd, account_type='user', email=email)
-            key = Keys(parent_id=user.id)
-            req = Requests(parent_id=user.id)
-            payment = Payments(parent_id=user.id)
             db.session.add(user)
-            db.session.add(key)
-            db.session.add(req)
-            db.session.add(payment)
             db.session.commit()
 
             return redirect(url_for('login_blueprint.login_page'))
