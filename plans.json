@@ -1,0 +1,28 @@
+{
+  "trial": {
+    "period": {
+      "days": 3,
+      "promo": {
+        "days": 7,
+        "discount": 10,
+        "referral": 20
+      }
+    },
+    "allowed-period": 0,
+    "price": 0
+  },
+  "start": {
+    "allowed-period": 1,
+    "price": 3990
+  },
+  "basic": {
+    "allowed-period": 60,
+    "price": 4990
+  },
+  "addons": {
+    "discounts": {
+      "half-year": 15,
+      "year": 25
+    }
+  }
+}
