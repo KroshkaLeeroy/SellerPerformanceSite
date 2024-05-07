@@ -61,7 +61,11 @@
             </div>
             <div class="form-group">
                 <div class="info-label">Статус аккаунта:</div>
-                <div class="info-value">{{ user_1.account_type }}</div>
+                {% if user_1.is_account_active == True %}
+                <div class="info-value">Активен</div>
+                {% else %}
+                <div class="info-value">Отключен</div>
+                {% endif %}
             </div>
         </div>
 

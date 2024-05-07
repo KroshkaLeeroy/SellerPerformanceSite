@@ -21,7 +21,7 @@ class User(db.Model, UserMixin):
 class Keys(db.Model):
     __tablename__ = 'keys_table'
 
-    parent_id = db.Column(db.Integer, db.ForeignKey("user_table.id"), primary_key=True)
+    parent_id = db.Column(db.Integer, db.ForeignKey("user_table.id"), primary_key=True, autoincrement=True)
     parent = db.relationship("User", back_populates="keys")
 
     api_key_seller = db.Column(db.String(255), default='')
@@ -33,7 +33,7 @@ class Keys(db.Model):
 class Requests(db.Model):
     __tablename__ = 'requests_table'
 
-    parent_id = db.Column(db.Integer, db.ForeignKey("user_table.id"), primary_key=True)
+    parent_id = db.Column(db.Integer, db.ForeignKey("user_table.id"), primary_key=True, autoincrement=True)
     parent = db.relationship("User", back_populates="requests")
 
     request_count = db.Column(db.Integer, default=0)
@@ -42,7 +42,7 @@ class Requests(db.Model):
 class Payments(db.Model):
     __tablename__ = 'payments_table'
 
-    parent_id = db.Column(db.Integer, db.ForeignKey("user_table.id"), primary_key=True)
+    parent_id = db.Column(db.Integer, db.ForeignKey("user_table.id"), primary_key=True, autoincrement=True)
     parent = db.relationship("User", back_populates="payments")
 
     plan = db.Column(db.String(128), default='trial')

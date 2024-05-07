@@ -70,9 +70,9 @@ def register():
             user = User(password=hash_pwd, account_type='user', email=email)
             db.session.add(user)
 
-            key = Keys()
-            req = Requests()
-            pay = Payments()
+            key = Keys(parent_id=user.id)
+            req = Requests(parent_id=user.id)
+            pay = Payments(parent_id=user.id)
 
             db.session.add(key)
             db.session.add(req)
