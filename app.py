@@ -13,7 +13,7 @@ with app.app_context():
         db.session.add(user)
         db.session.commit()
         keys = Keys(parent_id=(user.id))
-        payments = Payments(parent_id=(user.id), plan="basic", autopay=False, shops_connected=0, payment_date=datetime(2024, 4, 23))
+        payments = Payments(parent_id=(user.id), plan="trial", autopay=False, shops_connected=0, payment_date=datetime(2024, 4, 23))
         requests = Requests(parent_id=(user.id), request_count=0)
         db.session.add(keys)
         db.session.add(payments)

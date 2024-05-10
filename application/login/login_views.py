@@ -1,8 +1,9 @@
 from flask import Blueprint, request, render_template, redirect, flash, url_for
 from flask_login import login_user, login_required, logout_user, current_user
 from werkzeug.security import check_password_hash, generate_password_hash
+import requests
 
-from application.setup import db, User
+from application.setup import db, User, Keys, Requests, Payments
 
 login_blueprint = Blueprint('login_blueprint', __name__, template_folder='templates')
 
@@ -68,6 +69,14 @@ def register():
             hash_pwd = generate_password_hash(password)
             user = User(password=hash_pwd, account_type='user', email=email)
             db.session.add(user)
+
+            key = Keys(parent_id=user.id)
+            req = Requests(parent_id=user.id)
+            pay = Payments(parent_id=user.id)
+
+            db.session.add(key)
+            db.session.add(req)
+            db.session.add(pay)
             db.session.commit()
 
             return redirect(url_for('login_blueprint.login_page'))

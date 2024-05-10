@@ -8,6 +8,15 @@
     <section class="profile-section">
         <form action="{{ url_for('profile_blueprint.profile_page') }}" method="post" class="profile-form">
             <div class="form-label">Настройка профиля</div>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class="flashes">
+                {% for message in messages %}
+                <div class="error">{{ message }}</div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% endwith %}
             <div class="profile-info">
                 <div class="form-group">
                     <div class="info-label">E-mail:</div>
@@ -52,6 +61,7 @@
                     <div class="info-value">{{ req_c.request_count }}</div>
                 </div>
             </div>
+
             <button type="submit" class="btn-submit">Сохранить изменения</button>
         </form>
     </section>
