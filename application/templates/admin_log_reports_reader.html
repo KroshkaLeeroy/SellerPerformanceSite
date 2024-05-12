@@ -5,29 +5,69 @@
     <title>Title</title>
 </head>
 <body>
-<P>Id пользователя: {{ user_id }} <br> Дата отчета: {{ report_data }} </P>
-{% if ".json" not in report_data %}
-    {% for item in data %}
-        {% if ".json" in item %}
-            <p>{{ item }} <a href="{{ url_for('admin_blueprint.report_log' , user_id=user_id, report_data=report_data + '*' + item) }}">скачать</a></p>
-        {% elif ".csv" in item %}
-            <p>{{ item}}</p>
-        {% elif ".txt" in item %}
-            <p>{{ item}}</p>
-        {% elif ".zip" in item %}
-            <p>{{ item}}</p>
-        {% elif ".log" in item %}
-            <p>{{ item}}</p>
-        {% else %}
-            <p>{{ item }} <a href="{{ url_for('admin_blueprint.report_log' , user_id=user_id, report_data=report_data + '*' + item) }}">добавить в текущую ссылку</a></p>
-        {% endif %}
-    {% endfor %}
-{% elif ".json" in report_data %}
-    {% for key, value in data.items() %}
-        <p>{{ key }}: {{ value }}</p>
+    <p>Id пользователя: {{ user_id }} <br> Дата отчета: {{ report_data }} </p>
 
-{% endfor %}
-{% endif %}
-
+    {% if ".json" not in report_data %}
+        <table border="1">
+            <tr>
+                <th>JSON файлы</th>
+                <th>CSV, TXT, LOG файлы</th>
+                <th>ZIP файлы</th>
+                <th>XLSX файлы</th>
+                <th>Папки</th>
+            </tr>
+            <tr>
+                <td>
+                    <ul>
+                        {% for item in data %}
+                            {% if ".json" in item %}
+                                <li>{{ item }} <a href="{{ url_for('admin_blueprint.report_log' , user_id=user_id, report_data=report_data + '*' + item) }}">Открыть файл</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        {% for item in data %}
+                            {% if ".csv" in item or ".txt" in item or ".log" in item %}
+                                <li>{{ item }} <a href="{{ url_to_API }}/download-any-file/{{ admin_key }}/{{ user_id + '*' + report_data + '*' + item }}">Скачать</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        {% for item in data %}
+                            {% if ".zip" in item %}
+                                <li>{{ item }} <a href="{{ url_to_API }}/download-any-file/{{ admin_key }}/{{ user_id + '*' + report_data + '*' + item }}">Скачать</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        {% for item in data %}
+                            {% if ".xlsx" in item %}
+                                <li>{{ item }} <a href="{{ url_to_API }}/download-any-file/{{ admin_key }}/{{ user_id + '*' + report_data + '*' + item }}">Скачать</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        {% for item in data %}
+                            {% if ".json" not in item and ".csv" not in item and ".txt" not in item and ".log" not in item and ".zip" not in item and ".xlsx" not in item %}
+                                <li>{{ item }} <a href="{{ url_for('admin_blueprint.report_log' , user_id=user_id, report_data=report_data + '*' + item) }}">Открыть</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    {% elif ".json" in report_data %}
+    {{data}}
+    {% endif %}
 </body>
+
+
 </html>

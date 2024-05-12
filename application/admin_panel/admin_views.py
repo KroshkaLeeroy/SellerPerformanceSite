@@ -2,7 +2,7 @@ import requests
 from flask import Blueprint, render_template, redirect, request, url_for, jsonify
 from flask_login import current_user, login_required
 
-from application.config import URL_TO_API
+from application.config import URL_TO_API, ADMIN_KEY
 from application.setup import User, db, Requests, Keys
 from application.utils import check_reports_from_API
 
@@ -103,13 +103,18 @@ def admin_page_user_delete(user_id, action):
 def report_log(user_id, report_data):
     if current_user.account_type != 'admin':
         return redirect('/profile')
-    url = f'{URL_TO_API}/MraK1911_!@/downloads*{user_id}*{report_data}'
+    url = f'{URL_TO_API}/{ADMIN_KEY}/downloads*{user_id}*{report_data}'
     data = requests.get(url)
     print(data, url)
     if data.status_code == 200:
         try:
-            return render_template('admin_log_reports_reader.html', data=data.json(), user_id=user_id,
-                                   report_data=report_data)
+            data = data.json()
+            return render_template('admin_log_reports_reader.html',
+                                   data=data,
+                                   user_id=user_id,
+                                   report_data=report_data,
+                                   admin_key=ADMIN_KEY,
+                                   url_to_API=URL_TO_API,)
         except Exception as e:
             return jsonify({'error': f'error {e}'}), 400
     return jsonify({'error': f'report log not found {data.text}'}), 400
