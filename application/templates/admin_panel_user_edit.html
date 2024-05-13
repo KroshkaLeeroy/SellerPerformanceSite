@@ -20,35 +20,12 @@
         <div class="form-label"><b>Профиль</b></div>
         <form action="{{ url_for('admin_blueprint.admin_page_user', user_id=user_1.id) }}" method="post"
             class="profile-form">
+            <div class="info-label">Информация профиля</div>
             <div class="profile-info">
                 <div class="form-group">
                     <div class="info-label">Ваш email:</div>
                     <input type="email" name="email" value="{{ user_1.email }}" class="info-input">
                 </div>
-                <div class="form-group">
-                    <div class="info-label">Seller Secret:</div>
-                    <input type="text" name="api_seller" placeholder="Введите Seller Secret"
-                        value="{{ keys.api_key_seller }}" class="info-input">
-                </div>
-                <div class="form-group">
-                    <div class="info-label">Seller ID:</div>
-                    <input type="text" name="client_id_seller" placeholder="Введите Seller ID"
-                        value="{{ keys.client_id_seller }}" class="info-input">
-                </div>
-            </div>
-            <div class="profile-info">
-                <div class="form-group">
-                    <div class="info-label">Performance API:</div>
-                    <input type="text" name="api_performance" placeholder="Введите Performance API"
-                        value="{{ keys.api_key_performance }}" class="info-input">
-                </div>
-                <div class="form-group">
-                    <div class="info-label">Performance ID:</div>
-                    <input type="text" name="client_id_performance" placeholder="Введите Performance ID"
-                        value="{{ keys.client_id_performance }}" class="info-input">
-                </div>
-            </div>
-            <div class="profile-info">
                 <div class="form-group">
                     <div class="info-label">Тип аккаунта:</div>
                     <select name="account_type" class="info-input">
@@ -59,11 +36,40 @@
                         <!-- Добавьте дополнительные опции по мере необходимости -->
                     </select>
                 </div>
+<!--                <div class="form-group">-->
+<!--                    <div class="info-label">Количество запросов:</div>-->
+<!--                    <input type="number" name="request_count" value="{{ req.request_count }}" class="info-input">-->
+<!--                </div>-->
+            </div>
+            <br>
+            <div class="info-label">Seller info</div>
+            <div class="profile-info">
                 <div class="form-group">
-                    <div class="info-label">Количество запросов:</div>
-                    <input type="number" name="request_count" value="{{ req.request_count }}" class="info-input">
+                    <div class="info-label">API key:</div>
+                    <input type="text" name="api_seller" placeholder="Введите Seller API key"
+                        value="{{ keys.api_key_seller }}" class="info-input">
+                </div>
+                <div class="form-group">
+                    <div class="info-label">Client ID:</div>
+                    <input type="text" name="client_id_seller" placeholder="Введите Seller Client ID"
+                        value="{{ keys.client_id_seller }}" class="info-input">
                 </div>
             </div>
+            <br>
+            <div class="info-label">Performance info</div>
+            <div class="profile-info">
+                <div class="form-group">
+                    <div class="info-label">Client Secret:</div>
+                    <input type="text" name="api_performance" placeholder="Введите Введите Performance Client Secret"
+                        value="{{ keys.api_key_performance }}" class="info-input">
+                </div>
+                <div class="form-group">
+                    <div class="info-label">Client ID:</div>
+                    <input type="text" name="client_id_performance" placeholder="Введите Performance Client ID"
+                        value="{{ keys.client_id_performance }}" class="info-input">
+                </div>
+            </div>
+
             <button type="submit" class="btn-submit">Сохранить изменения</button>
         </form>
     </section>
