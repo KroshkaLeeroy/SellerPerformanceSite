@@ -11,9 +11,17 @@ def check_reports_from_API(URL, user_id):
         if reports:
             reports = reports[::-1]
         else:
-            reports = []
+            reports = [{
+                'date_from': 'Не удалось перевернуть отчеты',
+                'date_to': '',
+                'status': f'',
+            }]
     else:
-        reports = []
+        reports = [{
+                'date_from': 'Ненормальный ответ сервера',
+                'date_to': f'{existing_reports.text}',
+                'status': f'{existing_reports.status_code}',
+            }]
     return reports
 
 

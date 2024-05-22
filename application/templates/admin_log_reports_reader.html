@@ -65,7 +65,32 @@
             </tr>
         </table>
     {% elif ".json" in report_data %}
-    {{data}}
+        {% if "download" in report_data %}
+            {% if "initial" in report_data %}
+                <ul>
+                    <li><strong>Client ID:</strong> {{ data.client_id }}</li>
+                    <li><strong>Client Secret:</strong> {{ data.client_secret }}</li>
+                    <li><strong>Files Path (Client):</strong> {{ data.files_path_client }}</li>
+                    <li><strong>Files Path (Report):</strong> {{ data.files_path_report }}</li>
+                    <li><strong>Files Path (Report Stat):</strong> {{ data.files_path_report_stat }}</li>
+                    <li><strong>Created New Folder (Client):</strong> {{ data.created_new_folder_client }}</li>
+                    <li><strong>Create New Folder (Report):</strong> {{ data.create_new_folder_report }}</li>
+                    <li><strong>Create New Folder (Report Stat):</strong> {{ data.create_new_folder_report_stat }}</li>
+                    <li><strong>Date:</strong> {{ data.date }}</li>
+                    <li><strong>Date From:</strong> {{ data.date_from }}</li>
+                    <li><strong>Date To:</strong> {{ data.date_to }}</li>
+                    <li><strong>UUID GET START TIME:</strong> {{ data.UUID_GET_START_TIME }}</li>
+                    <li><strong>DOWNLOADER LOOP TIME:</strong> {{ data.DOWNLOADER_LOOP_TIME }}</li>
+                    <li><strong>UUID STATUS TIMER:</strong> {{ data.UUID_STATUS_TIMER }}</li>
+                    <li><strong>ATTEMPT TO GET UUID:</strong> {{ data.ATTEMPT_TO_GET_UUID }}</li>
+                </ul>
+            {% elif "token" in report_data %}
+                <p><strong>Succeeded:</strong> {{ data.succeeded }}</p>
+                <p><strong>Error Text:</strong> {{ data.error_text }}</p>
+                <p><strong>Token:</strong> {{ data.token }}</p>
+                <p><strong>Time:</strong> {{ data.time }}</p>
+            {% endif %}
+        {% endif %}
     {% endif %}
 </body>
 

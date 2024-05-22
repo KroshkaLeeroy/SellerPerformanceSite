@@ -21,5 +21,4 @@ with app.app_context():
         db.session.commit()
 
 if __name__ == '__main__':
-    migrate_database()
-    app.run(debug=False, port='9999')
+    app.run(debug=False)
