@@ -5,6 +5,7 @@ from application.init import app, db, User, Keys, Requests, Payments
 
 def check_reports_from_API(URL, user_id):
     existing_reports = requests.get(f'{URL}/check-pull/{user_id}')
+    print(existing_reports.text)
     if existing_reports.status_code == 200:
         reports = existing_reports.json()
         reports = reports.get('history')
