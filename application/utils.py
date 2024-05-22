@@ -4,8 +4,9 @@ from application.init import app, db, User, Keys, Requests, Payments
 
 
 def check_reports_from_API(URL, user_id):
-    existing_reports = requests.get(f'{URL}/check-pull/{user_id}')
-    print(existing_reports.text)
+    URL = f'{URL}/check-pull/{user_id}'
+    print(URL)
+    existing_reports = requests.get(URL, verify=False)
     if existing_reports.status_code == 200:
         reports = existing_reports.json()
         reports = reports.get('history')
@@ -13,14 +14,14 @@ def check_reports_from_API(URL, user_id):
             reports = reports[::-1]
         else:
             reports = [{
-                'date_from': 'Не удалось перевернуть отчеты',
-                'date_to': '',
+                'time_from': 'Не удалось перевернуть отчеты',
+                'time_to': '',
                 'status': f'',
             }]
     else:
         reports = [{
-                'date_from': 'Ненормальный ответ сервера',
-                'date_to': f'{existing_reports.text}',
+                'time_from': 'Ненормальный ответ сервера',
+                'time_to': f'',
                 'status': f'{existing_reports.status_code}',
             }]
     return reports

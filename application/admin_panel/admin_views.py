@@ -104,7 +104,7 @@ def report_log(user_id, report_data):
     if current_user.account_type != 'admin':
         return redirect('/profile')
     url = f'{URL_TO_API}/{ADMIN_KEY}/downloads*{user_id}*{report_data}'
-    data = requests.get(url)
+    data = requests.get(url, verify=False)
     print(data, url)
     if data.status_code == 200:
         try:
