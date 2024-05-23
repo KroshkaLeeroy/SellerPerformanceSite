@@ -104,7 +104,7 @@ def query_page():
                 return redirect(url_for('profile_blueprint.query_page'))
 
             # Отправка данных на сервер
-            response = requests.post(f'{URL_TO_API}/add-request', json=data)
+            response = requests.post(f'{URL_TO_API}/add-request', json=data, verify=False)
             if response.status_code == 200:
                 flash('Запрос успешно отправлен на сервер')
             else:
