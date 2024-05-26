@@ -89,7 +89,15 @@
                 <p><strong>Error Text:</strong> {{ data.error_text }}</p>
                 <p><strong>Token:</strong> {{ data.token }}</p>
                 <p><strong>Time:</strong> {{ data.time }}</p>
+            {% else %}
+                    {% for item in data %}
+                        <p style="font-family: Arial; font-size: 20px;">{{ item }} > </p> {{ data[item] }}<br><br>
+                    {% endfor %}
             {% endif %}
+        {% else %}
+                {% for item in data %}
+                    <p style="font-family: Arial; font-size: 20px;">{{ item }} > </p> {{ data[item] }} <br><br>
+                {% endfor %}
         {% endif %}
     {% endif %}
 </body>
