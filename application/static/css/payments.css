@@ -58,11 +58,23 @@ body {
 }
 
 .plans {
+    flex: 1 1 auto;
     gap: 5%;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
     width: 60%;
+}
+
+.plans-wrap {
+    flex: 1 1 auto;
+    gap: 5%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    border-radius: 20px;
+    cursor: pointer;
+    box-sizing: border-box;
 }
 
 .container {
@@ -132,11 +144,12 @@ body {
     gap: 10px;
 }
 
-.range-item{
+.range-item {
     display: flex;
     gap: 20px;
     width: 80%;
 }
+
 .first {
     display: flex;
     flex-direction: column;
@@ -181,13 +194,23 @@ body {
     font-size: 1.5rem;
 }
 
-.plan-block {
-    justify-content: space-between;
-    background-color: #F1F1F1;
-    display: flex;
-    flex: 1 1 auto;
-    border-radius: 20px;
+
+input[type=radio] {
+    position: fixed;
+    opacity: 0;
+    pointer-events: none;
 }
+
+.plans-wrap:hover {
+    outline: solid #80899C;
+    outline-width: 4px;
+}
+
+input[type=radio]:checked+label {
+    outline: solid #000;
+    outline-width: 4px;
+}
+
 
 .medium-reduced {
     margin-bottom: 10px;
@@ -326,10 +349,10 @@ body {
 .picker-wrapper {
     display: flex;
     flex: 1 1 auto;
-    
-    ::-webkit-slider-thumb{
+
+    ::-webkit-slider-thumb {
         appearance: none;
-        background:#000000;
+        background: #000000;
         opacity: 100%;
         width: 8px;
         height: 8px;
@@ -340,7 +363,7 @@ body {
         appearance: none;
         outline: none;
         padding: 0;
-        margin:auto;
+        margin: auto;
         height: 2px;
         color: #000000;
         background-color: #bec0c6;

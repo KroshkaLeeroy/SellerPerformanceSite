@@ -1,4 +1,5 @@
 import os
+from yookassa import Configuration
 from dotenv import load_dotenv, find_dotenv
 
 if not find_dotenv():
@@ -20,3 +21,8 @@ MAIL_PASSWORD = os.getenv('MAIL_PASSWORD')
 MAIL_DEFAULT_SENDER = os.getenv('MAIL_DEFAULT_SENDER')
 ADMIN_PASSWORD = os.getenv('ADMIN_PASSWORD')
 URL_TO_API = os.getenv('URL_TO_API')
+YOO_SECRET_KEY = os.getenv('YOO_SECRET_KEY')
+YOO_SHOP_ID = os.getenv('YOO_SHOP_ID')
+
+Configuration.secret_key = YOO_SECRET_KEY
+Configuration.account_id = YOO_SHOP_ID

@@ -94,16 +94,21 @@ input::placeholder {
     border-radius: 12px;
 }
 
-.list-icon {
+.list-icon{
     margin: auto 0;
-}
+    width: 20;
+    height: 20;
+    color: black;
+}   
 
 .list-item:hover {
     background-color: #FFFFFF;
-}
-
-.list-item a:hover {
-    color: #0937C3;
+    .list-icon{
+        filter: brightness(0) saturate(100) invert(16%) sepia(100%) saturate(3987%) hue-rotate(229deg) brightness(76%) contrast(100%);
+    }
+    a{
+        color: #0937C3;
+    }
 }
 
 
@@ -202,9 +207,9 @@ input::placeholder {
 .field {
     margin: auto 0;
     display: flex;
-    justify-content: space-between;
     width: 20%;
     padding: 0 12px;
+    
 }
 
 .shop {
@@ -231,7 +236,7 @@ input::placeholder {
 
 .shop-logo img {
     max-width: 50%;
-    margin: auto 0;
+    margin: 50px auto;
 }
 
 .shops-title {
@@ -244,8 +249,8 @@ input::placeholder {
     display: flex;
     flex: 1 1 auto;
     font-size: 20px;
-    line-height: 25px;
     margin: auto 0;
+    padding-bottom: 3px;
 }
 
 .to-reports {
@@ -261,11 +266,9 @@ input::placeholder {
 
 .to-shops {
     border: none;
-    /* cursor: pointer; */
-    float: right;
+    cursor: pointer;
     width: 120px;
     height: 30px;
-    line-height: 30px;
     border-radius: 12px;
     background-color: #F5F7FF;
     text-align: center;
@@ -274,13 +277,12 @@ input::placeholder {
 
 .shop-link {
     margin: auto 0;
-    min-height: 18%;
     display: flex;
     justify-content: space-between;
     background-color: #FFFFFF;
     flex-grow: 1;
     border-radius: 14px;
-    padding: 4%;
+    padding: 5%;
     box-sizing: border-box;
 }
 
@@ -300,13 +302,13 @@ input::placeholder {
 }
 
 .api-info {
-    min-height: 18%;
+
     display: flex;
     justify-content: space-between;
     background-color: #FFFFFF;
     flex-grow: 1;
     border-radius: 14px;
-    padding: 4%;
+    padding: 5%;
     box-sizing: border-box;
 }
 
@@ -314,8 +316,20 @@ input::placeholder {
     margin: auto 0;
 }
 
+.toleft-api{
+    margin: auto 0;
+    color: #596173;
+}
+
 .toright {
     margin: auto 0;
+}
+
+.toright-img{
+    margin: auto 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .toright-wrapper {
@@ -552,6 +566,7 @@ input::placeholder {
     height: 100%;
     max-width: 23%;
     box-sizing: border-box;
+    overflow-y: auto;
 }
 
 #search {

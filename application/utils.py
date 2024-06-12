@@ -1,6 +1,4 @@
 import requests
-from sqlalchemy import create_engine, text
-from application.init import app, db, User, Keys, Requests, Payments
 
 
 def check_reports_from_API(URL, user_id):
@@ -15,24 +13,3 @@ def check_reports_from_API(URL, user_id):
     else:
         reports = []
     return reports
-
-
-def migrate_database():
-    old_database_engine = create_engine("sqlite:///instance/old_main_db.db")
-    with old_database_engine.connect() as connection:
-        result = connection.execute(text("SELECT * FROM user_table"))
-        with app.app_context():
-            for row in result:
-                if row[2] != "admin@mail.ru":
-                    user = User(password=row[1], email=row[2], account_type=row[7])
-                    db.session.add(user)
-                    db.session.commit()
-                    key = Keys(parent_id=user.id, api_key_seller=row[3], client_id_seller=row[4],
-                               api_key_performance=row[5],
-                               client_id_performance=row[6])
-                    request = Requests(parent_id=user.id, request_count=row[8])
-                    payment = Payments(parent_id=user.id)
-                    db.session.add(key)
-                    db.session.add(request)
-                    db.session.add(payment)
-                    db.session.commit()

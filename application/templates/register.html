@@ -38,8 +38,8 @@
         </div>
         <div class="remember-me">
             <input type="checkbox" id="accept-policy" name="accept-policy">
-            <label for="accept-policy">Я согласен с <a class="policy-link" href="УСЛОВИЯ">Условиями</a> и <a
-                    class="policy-link" href="ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ">Политикой конфиденциальности</a></label>
+            <label for="accept-policy">Я согласен с <a class="policy-link" href="УСЛОВИЯ">условиями</a> и <a
+                    class="policy-link" href="ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ">политикой конфиденциальности</a></label>
         </div>
         {% if exists %}
         <p>Пользователь с такой почтой уже существует,
@@ -61,6 +61,10 @@
 <div class="to-register-footer">
     У вас уже есть аккаунт?
     <a class="to-register" href="{{ url_for('login_blueprint.login_page') }}">Войти</a>
+</div>
+<div class="foot">
+    <div class="foot-line"> ИП Фамилия Имя Отчество, ИНН 000000000000 / <a href="mailto:partner@mirasell.ru">partner@mirasell.ru</a></div>
+    <div class="foot-line" id="gray-out"><a href="ПОЛИТИКА ОБРАБОТКИ ПЕРСОНАЛЬНЫХ ДАННЫХ">Политика обработки персональных данных</a> / <a href="ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ">Политика конфиденциальности</a></div>
 </div>
 <script src="{{ url_for('static', filename='scripts/register_hide.js') }}"></script>
 {% endblock %}
