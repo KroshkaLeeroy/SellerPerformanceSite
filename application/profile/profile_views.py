@@ -146,10 +146,14 @@ def history_page():
         reports = check_reports_from_API(URL_TO_API, keys.client_id_seller)
     except requests.exceptions.ConnectionError as e:
         reports = [{
-            'date_from': 'Нет возможности соединиться с сервером запросов',
-            'date_to': '',
+            'time_created': '',
+            'time_from': 'Нет возможности соединиться с сервером запросов',
+            'time_to': '',
             'status': f'{e}',
         }]
+        print(reports)
+    if reports[0]['status'] == "":
+        reports.clear()
 
     return render_template('history.html', reports=reports, user=current_user, URL=URL_TO_API)
 

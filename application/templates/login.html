@@ -47,5 +47,10 @@
     У вас ещё нет аккаунта?
     <a class="to-register" href="{{ url_for('login_blueprint.register') }}">Зарегистрироваться</a>
 </div>
+<div class="foot">
+    <div class="foot-line"> ИП Фамилия Имя Отчество, ИНН 000000000000 / <a href="mailto:partner@mirasell.ru">partner@mirasell.ru</a></div>
+    <div class="foot-line" id="gray-out"><a href="ПОЛИТИКА ОБРАБОТКИ ПЕРСОНАЛЬНЫХ ДАННЫХ">Политика обработки персональных данных</a> / <a href="ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ">Политика конфиденциальности</a></div>
+</div>
+
 <script src="{{ url_for('static', filename='scripts/login_hide.js') }}"></script>
 {% endblock %}

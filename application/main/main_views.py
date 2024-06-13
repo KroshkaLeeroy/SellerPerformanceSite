@@ -1,5 +1,5 @@
 import requests
-from flask import Blueprint, render_template, redirect, url_for
+from flask import Blueprint, render_template, redirect, url_for, flash
 from flask_login import current_user, login_required
 
 from application.config import URL_TO_API
@@ -19,11 +19,13 @@ def main_page():
 
         except requests.exceptions.ConnectionError as e:
             reports = [{
+                'time_created': '',
                 'time_from': 'Нет возможности соединиться с сервером запросов',
                 'time_to': '',
                 'status': f'{e}',
             }]
-            # print(e)
+        if reports[0]['status'] == "":
+            reports.clear()
         return render_template('main.html', reports=reports, user=current_user, URL=URL_TO_API)
     else:
         return redirect(url_for('login_blueprint.login_page'))

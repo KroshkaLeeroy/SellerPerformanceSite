@@ -14,6 +14,8 @@ body {
     gap: 8px;
     overflow: hidden;
     scrollbar-width: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 input:-webkit-autofill {
@@ -83,6 +85,7 @@ input::placeholder {
 
 .form-block {
     margin: auto;
+    margin-top: 3%;
     background-color: #FFFFFF;
     border-radius: 32px;
     display: flex;
@@ -158,6 +161,9 @@ input[type="checkbox"]:checked+label::before {
     gap: 4px;
     margin: auto 0;
     flex-grow: 1;
+    label{
+        padding-left: 10px;
+    }
 }
 
 .forgot-pwd {
@@ -186,19 +192,20 @@ input[type="checkbox"]:checked+label::before {
     height: 150px;
     width: 300px;
     color: #072A92;
-    margin: 4px auto;
+    margin: auto;
 }
 
 #logo img {
-    width: 100%;
-    height: 100%;
+    margin: auto;
+    width: 50%;
+    height: 80%;
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    gap: 24px;
+    gap: 12px;
 }
 
 .counter {
@@ -207,11 +214,11 @@ input[type="checkbox"]:checked+label::before {
 }
 
 .password-box {
-    width: 95%;
     background-color: #F6F7F9;
     display: flex;
+    flex: 1 1 auto;
     align-items: center;
-    padding: 0 10px 0 15px;
+    padding-left: 15px;
     margin: auto 0;
     border-radius: 16px;
 }
@@ -227,10 +234,24 @@ input[type="checkbox"]:checked+label::before {
 .password-box img {
     size: 20px 20px;
     cursor: pointer;
+    padding-right: 10px;
 }
 
 .input-wrapper {
     display: flex;
     flex-direction: column;
     gap: 8px;
+}
+
+.foot{
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: flex-end;
+    flex-direction: column;
+    margin: auto 0;
+    align-items: center;
+    color: lightgray;
+    a{
+        color: lightgray;
+    }
 }
