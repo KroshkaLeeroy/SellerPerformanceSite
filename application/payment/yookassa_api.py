@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import uuid
 from logging import error, warning, info
 
@@ -12,7 +14,31 @@ class PData:
     Objects of that class is expected to be passed as an argument when Payment class instance is being initialized
     """
 
-    def __init__(self):
+    def __init__(self, data: dict = None, value: float = 0.00, currency: str = "RUB", payment_method: str = "bank_card",
+                 confirm_type: str = "redirect", return_url: str = "https://mirasell.ru/", description: str = "Пустой платёж"):
+        if data:
+            try:
+                self._data = {
+                    "amount": {
+                        "value": format(float(data["amount"]["value"]), ".2f"),
+                        "currency": data["amount"]["currency"]
+                    },
+                    "payment_method_data": {
+                        "type": data["payment_method_data"]["type"]
+                    },
+                    "confirmation": {
+                        "type": "redirect",
+                        "return_url": data["confirmation"]["return_url"]
+                    },
+                    "description": data["description"]
+                }
+            except KeyError:
+                error("Data dict passed to PData object was invalid. Information was set to default.")
+                self._set_default_data()
+        else:
+            self._set_custom_data(value, currency, payment_method, confirm_type, return_url, description)
+
+    def _set_default_data(self):
         self._data = {
             "amount": {
                 "value": "0.00",
@@ -28,31 +54,7 @@ class PData:
             "description": "Пустой платёж"
         }
 
-    def __init__(self, data: dict):
-        try:
-            self._data = {
-                "amount": {
-                    "value": data["amount"]["value"].format(".2f"),
-                    "currency": data["amount"]["currency"]
-                },
-                "payment_method_data": {
-                    "type": data["payment_method_data"]["type"]
-                },
-                "confirmation": {
-                    "type": "redirect",
-                    "return_url": data["payment_method_data"]["return_url"]
-                },
-                "description": data["description"]
-            }
-        except KeyError:
-            error("Data dict passed to Payment object was invalid. Information was set to default.")
-            self.__init__()
-
-    def __init__(self, value: float, currency: str = "RUB", payment_method: str = "bank_card",
-                 confirm_type: str = "redirect", return_url: str = "https://mirasell.ru/", description: str = ""):
-        if value <= 0:
-            super().__init__()
-            return
+    def _set_custom_data(self, value: float, currency: str, payment_method: str, confirm_type: str, return_url: str, description: str):
         self._data = {
             "amount": {
                 "value": format(value, ".2f"),
@@ -85,21 +87,18 @@ class Payment:
     Accepts payment data and allows to manipulate payment process
     """
 
-    def __init__(self):
-        self.__active_payment = yookassa.Payment
-        self.endpoint = "https://api.yookassa.ru/v3/"
-        self.__data = None
-        self.__idempotence_key = str(uuid.uuid4())
-        warning(
-            "You didn't put PData object into Payment class instance! Initialize it or most of its functional won't "
-            "work properly.")
-
-    def __init__(self, data: PData):
+    def __init__(self, data: PData = None):
         self.__active_payment = yookassa.Payment
         self.endpoint = "https://api.yookassa.ru/v3/"
         self.__idempotence_key = str(uuid.uuid4())
-        self.__data = data
-        self.validate_data()
+        if data:
+            self.__data = data
+            self.validate_data()
+        else:
+            self.__data = None
+            warning(
+                "You didn't put PData object into Payment class instance! Initialize it or most of its functional won't"
+                " work properly.")
 
     def validate_data(self):
         # TODO: написать валидацию в соответствии с API.
@@ -139,7 +138,7 @@ def check_payments():
     result = list()
     res = yookassa.Payment().list()["items"]
     for payment in res:
-        if payment['status'] == "waiting_for_capture" and payment['paid'] == True:
+        if payment['status'] == "waiting_for_capture" and payment['paid']:
             result.append(payment['id'])
             id0 = payment['id']
             idempotence_key = str(uuid.uuid4())
@@ -156,9 +155,9 @@ def check_payments():
 def after_payment():
     pays = check_payments()
     for id0 in pays:
-        payment = Payment(PData(0)).find_one(id0)
-        if payment["status"] == "succeeded" and payment["paid"] == True:
+        payment = Payment(PData(value=0)).find_one(id0)
+        if payment["status"] == "succeeded" and payment["paid"]:
             data = payment.description.replace('[Пользователь ', '').replace(']: Покупка плана \'', ' ').replace(
                 '\' на', '') \
-                .replace(' магазинов и', '').replace('месяцев. Автопродление ', '').replace('.', '').split(' ')
+                .replace(' магазинов и', '').replace('месяцев. Авто продление ', '').replace('.', '').split(' ')
             update_user_subscription(int(data[0]), True, data[1], int(data[2]), int(data[3]), data[4])

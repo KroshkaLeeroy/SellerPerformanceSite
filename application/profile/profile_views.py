@@ -5,7 +5,7 @@ from flask_login import login_required, current_user
 
 from application.config import URL_TO_API
 from application.setup import db, Requests, Keys
-from application.utils import check_reports_from_API
+from application.utils import check_reports_from_API, post_data_to_API
 
 profile_blueprint = Blueprint('profile_blueprint', __name__)
 
@@ -104,7 +104,7 @@ def query_page():
                 return redirect(url_for('profile_blueprint.query_page'))
 
             # Отправка данных на сервер
-            response = requests.post(f'{URL_TO_API}/add-request', json=data, verify=False)
+            response = post_data_to_API(URL_TO_API, data)
             if response.status_code == 200:
                 flash('Запрос успешно отправлен на сервер')
             else:

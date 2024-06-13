@@ -4,7 +4,7 @@ from flask_login import current_user, login_required
 
 from application.config import URL_TO_API, ADMIN_KEY
 from application.setup import User, db, Requests, Keys
-from application.utils import check_reports_from_API
+from application.utils import check_reports_from_API, check_reports_from_API_dev_log
 
 admin_blueprint = Blueprint('admin_blueprint', __name__)
 
@@ -103,9 +103,8 @@ def admin_page_user_delete(user_id, action):
 def report_log(user_id, report_data):
     if current_user.account_type != 'admin':
         return redirect('/profile')
-    url = f'{URL_TO_API}/{ADMIN_KEY}/downloads*{user_id}*{report_data}'
-    data = requests.get(url, verify=False)
-    print(data, url)
+    data = check_reports_from_API_dev_log(URL_TO_API, ADMIN_KEY, user_id, report_data)
+
     if data.status_code == 200:
         try:
             data = data.json()

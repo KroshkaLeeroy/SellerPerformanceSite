@@ -48,6 +48,8 @@ def register():
     if current_user.is_authenticated:
         return redirect(url_for('profile_blueprint.profile_page'))
 
+    return redirect(url_for('login_blueprint.not_ready'))
+
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
@@ -83,6 +85,10 @@ def register():
 
     return render_template('register.html', user=current_user)
 
+
+@login_blueprint.route('/not-ready')
+def not_ready():
+    return render_template('not_ready.html')
 
 @login_blueprint.after_request
 def redirect_to_sing_in(response):

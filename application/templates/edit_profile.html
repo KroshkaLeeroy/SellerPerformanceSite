@@ -7,7 +7,7 @@
 <div class="content">
     <section class="profile-section">
         <form action="{{ url_for('profile_blueprint.profile_page') }}" method="post" class="profile-form">
-            <div class="form-label">Настройка профиля</div>
+            <div class="form-label">Редактирование профиля</div>
             {% with messages = get_flashed_messages() %}
             {% if messages %}
             <div class="flashes">

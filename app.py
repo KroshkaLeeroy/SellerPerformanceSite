@@ -8,6 +8,9 @@ from application.config import ADMIN_PASSWORD
 from application.init import app, db, User, Keys, Requests, Payments
 from application.payment.subscriptions import payment_polling
 from application.payment.yookassa_api import after_payment
+import urllib3
+
+urllib3.disable_warnings()
 
 with app.app_context():
     db.create_all()
@@ -34,6 +37,6 @@ def schedule_jobs():
         scheduler.add_job(id='check_billing', func=after_payment, trigger='interval', seconds=60)
         scheduler.start()
 
-schedule_jobs()
+# schedule_jobs()
 if __name__ == '__main__':
     app.run(debug=False)
