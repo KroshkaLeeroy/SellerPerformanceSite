@@ -1,10 +1,12 @@
 import requests
 from flask import Blueprint, render_template, redirect, request, url_for, jsonify
 from flask_login import current_user, login_required
+from werkzeug.security import generate_password_hash
 
 from application.config import URL_TO_API, ADMIN_KEY
+from application.models import Payments
 from application.setup import User, db, Requests, Keys
-from application.utils import check_reports_from_API, check_reports_from_API_dev_log
+from application.utils import check_reports_from_API, check_reports_from_API_dev_log, generate_password
 
 admin_blueprint = Blueprint('admin_blueprint', __name__)
 
@@ -92,7 +94,20 @@ def admin_page_user_delete(user_id, action):
         user.is_account_active = True
         db.session.commit()
         return redirect(url_for('admin_blueprint.admin_page'))
-    else:
+    elif action == 'delete-unreturned':
+        reqs = Requests.query.filter_by(parent_id=user_id).all()
+        for req in reqs:
+            db.session.delete(req)
+        keys = Keys.query.filter_by(parent_id=user_id).all()
+        for key in keys:
+            db.session.delete(key)
+        payments = Payments.query.filter_by(parent_id=user_id).all()
+        for payment in payments:
+            db.session.delete(payment)
+        db.session.delete(user)
+        db.session.commit()
+        return redirect(url_for('admin_blueprint.admin_page'))
+    elif action == 'delete':
         user.is_account_active = False
         db.session.commit()
     return redirect(url_for('admin_blueprint.admin_page'))
@@ -113,10 +128,48 @@ def report_log(user_id, report_data):
                                    user_id=user_id,
                                    report_data=report_data,
                                    admin_key=ADMIN_KEY,
-                                   url_to_API=URL_TO_API,)
+                                   url_to_API=URL_TO_API, )
         except Exception as e:
             return jsonify({'error': f'error {e}'}), 400
     return jsonify({'error': f'report log not found {data.text}'}), 400
+
+
+@admin_blueprint.route('/admin_panel/add-new-users', methods=['GET', 'POST'])
+@login_required
+def add_new_users():
+    if current_user.account_type != 'admin':
+        return redirect('/profile')
+    if request.method == 'POST':
+        users_list = request.form.get('data_list')
+        already_exist = []
+        registered = []
+        for user in users_list.split('\n'):
+            if not user or user.isspace() or '' == user or '@' not in user:
+                continue
+            email = user
+            password = generate_password(10)
+            if User.query.filter_by(email=email).first():
+                already_exist.append(email)
+                continue
+            hash_pwd = generate_password_hash(password)
+            user = User(password=hash_pwd, account_type='user', email=email)
+            key = Keys(parent_id=user.id)
+            req = Requests(parent_id=user.id)
+            pay = Payments(parent_id=user.id)
+
+            db.session.add(key)
+            db.session.add(req)
+            db.session.add(pay)
+
+            db.session.add(user)
+            db.session.commit()
+
+            registered.append({'email': email, 'password': password})
+
+        return render_template('admin_panel_add_new_users.html', already_exist=already_exist,
+                               registered=registered)
+
+    return render_template('admin_panel_add_new_users.html', user=current_user)
 
 
 @admin_blueprint.route('/admin_panel/<int:user_id>/edit', methods=['GET', 'POST'])

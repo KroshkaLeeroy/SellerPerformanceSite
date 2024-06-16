@@ -6,6 +6,12 @@ from base64 import urlsafe_b64encode
 from application.config import ENCRYPTING_PASSWORD
 import os
 import json
+import random
+from string import printable
+
+
+def generate_password(length):
+    return ''.join(random.choice(printable) for _ in range(length))
 
 
 def check_reports_from_API(url, user_id):

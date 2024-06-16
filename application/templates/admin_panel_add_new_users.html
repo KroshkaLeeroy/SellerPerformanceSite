@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Ручная регистрация новых пользователей</title>
+    <style>
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  th {
+    background-color: #4CAF50;
+    color: white;
+  }
+</style>
+</head>
+<body>
+
+<h3><a href="{{ url_for('admin_blueprint.admin_page') }}">Назад</a></h3>
+
+<form action="{{ url_for('admin_blueprint.add_new_users') }}" method="post">
+    <h2>Введите список новых пользователей</h2>
+    <textarea id="message" name="data_list" rows="15" cols="50"></textarea><br>
+    <input type="submit" value="Отправить">
+</form><br>
+<hr>
+<h2>Таблица зарегистрированных пользователей</h2>
+<h4 style="text-align: center;">Пароль пользователя генерируется случайным образом.<br>
+Увидеть его можно только ОДИН РАЗ.<br></h4>
+
+
+<table>
+
+  <thead>
+    <tr>
+      <th>Email пользователя</th>
+      <th>Сгенерированный пароль</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in registered %}
+    <tr>
+      <td>{{ user.email }}</td>
+      <td>{{ user.password }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<hr>
+<h2>Список пользователей которые уже имею аккаунт</h2>
+<ol>
+    {% for user in already_exist %}
+    <li>{{ user }}</li>
+    {% endfor %}
+</ol>
+</body>
+</html>

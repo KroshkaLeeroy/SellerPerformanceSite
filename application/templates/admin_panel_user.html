@@ -87,6 +87,8 @@
             {% else %}
             <a href="{{ url_for('admin_blueprint.admin_page_user_delete', user_id=user_1.id, action='restore') }}"
                 class="btn-submit" style="text-decoration: none;">Восстановить</a>
+            <a href="{{ url_for('admin_blueprint.admin_page_user_delete', user_id=user_1.id, action='delete-unreturned') }}"
+                class="delete-button">Удалить безвозвратно</a>
             {% endif %}
         </form>
 

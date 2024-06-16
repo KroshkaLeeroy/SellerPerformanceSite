@@ -70,7 +70,7 @@ def after_payment():
     pays = check_payments()
     for id0 in pays:
         payment = Payment(PData(0)).find_one(id0)
-        if payment["status"] == "succeeded" and payment["paid"] == True:
+        if payment["status"] == "succeeded" and payment["paid"]:
             data = payment.description.replace('[Пользователь ', '').replace(']: Покупка плана \'', ' ').replace('\' на', '')\
                 .replace(' магазинов и', '').replace('месяцев. Автопродление ', '').replace('.', '').split(' ')
             print(data)
