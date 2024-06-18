@@ -93,7 +93,7 @@ def admin_page_user_delete(user_id, action):
     if action == 'restore':
         user.is_account_active = True
         db.session.commit()
-        return redirect(url_for('admin_blueprint.admin_page'))
+        return redirect(url_for('admin_blueprint.admin_page_user', user_id=user_id))
     elif action == 'delete-unreturned':
         reqs = Requests.query.filter_by(parent_id=user_id).all()
         for req in reqs:
@@ -110,6 +110,7 @@ def admin_page_user_delete(user_id, action):
     elif action == 'delete':
         user.is_account_active = False
         db.session.commit()
+        return redirect(url_for('admin_blueprint.admin_page_user', user_id=user_id))
     return redirect(url_for('admin_blueprint.admin_page'))
 
 
