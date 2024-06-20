@@ -7,7 +7,7 @@ from application.setup import User, Keys
 from application.utils import check_reports_from_API
 
 main_blueprint = Blueprint('main_blueprint', __name__)
-
+#TODO: Добавить прокрутку на всю страницу, с прокруткой меню
 
 @main_blueprint.route('/')
 def main_page():

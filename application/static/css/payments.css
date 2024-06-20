@@ -223,7 +223,6 @@ input[type=radio]:checked+label {
     border: none;
     outline: none;
     display: flex;
-    flex: 1 1 auto;
     background-color: #D9D9D9;
     border-radius: 10px;
     padding: 10px;

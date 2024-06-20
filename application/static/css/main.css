@@ -28,7 +28,7 @@ body {
     overflow-x: hidden;
     font-family: Rubik;
     font-size: 14px;
-    line-height: 20px;
+    /* line-height: 17px; */
     text-align: left;
     gap: 8px;
 }
@@ -92,21 +92,28 @@ input::placeholder {
     overflow: hidden;
     padding: 8px 12px;
     border-radius: 12px;
+    align-items: center;
+
+    a {
+        padding-bottom: 3px;
+    }
 }
 
-.list-icon{
+.list-icon {
     margin: auto 0;
     width: 20;
     height: 20;
     color: black;
-}   
+}
 
 .list-item:hover {
     background-color: #FFFFFF;
-    .list-icon{
+
+    .list-icon {
         filter: brightness(0) saturate(100) invert(16%) sepia(100%) saturate(3987%) hue-rotate(229deg) brightness(76%) contrast(100%);
     }
-    a{
+
+    a {
         color: #0937C3;
     }
 }
@@ -200,7 +207,7 @@ input::placeholder {
 .table-row-panel {
     display: flex;
     background-color: #FFFFFF;
-    min-height: 7%;
+    height: 15%;
     border-radius: 12px;
 }
 
@@ -209,7 +216,7 @@ input::placeholder {
     display: flex;
     width: 20%;
     padding: 0 12px;
-    
+
 }
 
 .shop {
@@ -250,7 +257,7 @@ input::placeholder {
     flex: 1 1 auto;
     font-size: 20px;
     margin: auto 0;
-    padding-bottom: 3px;
+    padding-top: 5px;
 }
 
 .to-reports {
@@ -316,7 +323,7 @@ input::placeholder {
     margin: auto 0;
 }
 
-.toleft-api{
+.toleft-api {
     margin: auto 0;
     color: #596173;
 }
@@ -325,7 +332,7 @@ input::placeholder {
     margin: auto 0;
 }
 
-.toright-img{
+.toright-img {
     margin: auto 0;
     display: flex;
     flex-direction: column;
@@ -432,6 +439,10 @@ input::placeholder {
     flex-direction: column;
     gap: 8px;
     flex-grow: 1;
+
+    label {
+        padding: 4px 8px;
+    }
 }
 
 .info-label {
@@ -461,6 +472,7 @@ input::placeholder {
 }
 
 .btn-submit {
+    display: inline-block;
     border: none;
     background-color: #3B6AF6;
     color: #FFFFFF;
@@ -539,7 +551,7 @@ input::placeholder {
     padding: 8px 12px;
     box-sizing: border-box;
     flex: 1 1 auto;
-    gap:12px;
+    gap: 12px;
 }
 
 #shops {
@@ -564,9 +576,14 @@ input::placeholder {
     background: #F6F7F9;
     gap: 12px;
     height: 100%;
-    max-width: 23%;
+    max-width: 15%;
     box-sizing: border-box;
     overflow-y: auto;
+
+}
+
+::-webkit-scrollbar {
+    display: none;
 }
 
 #search {
@@ -579,14 +596,16 @@ input::placeholder {
     display: flex;
     flex-direction: column;
     background-color: #FFFFFF;
-    padding: 8px;
-    flex: 1 1 auto;
+    padding: 10px;
+    height: 92%;
 }
 
 #panel-table {
-    flex: 1 1 auto;
+    display: flex;
+    height: 100%;
+    gap: 7px;
     overflow-y: auto;
-    }
+}
 
 #user_reports {
     height: 65%;
@@ -608,12 +627,18 @@ input::placeholder {
     flex-direction: column;
     gap: 12px;
     padding: 8px;
+    height: 100%;
 }
 
 .dates {
     display: flex;
     justify-content: space-between;
-    gap: 20px
+    gap: 20px;
+    box-sizing: border-box;
+
+    .form-group {
+        width: 45%;
+    }
 }
 
 .card {
@@ -627,4 +652,9 @@ input::placeholder {
     object-fit: cover;
     width: 100%;
     height: auto;
+}
+
+#pickers {
+    min-height: 11%;
+    max-height: 13%;
 }

@@ -1,17 +1,27 @@
+import json
+import os
+import random
+from base64 import urlsafe_b64encode
+from string import printable
+
 import requests
-from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import padding
-from base64 import urlsafe_b64encode
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+
 from application.config import ENCRYPTING_PASSWORD
-import os
-import json
-import random
-from string import printable
 
 
 def generate_password(length):
     return ''.join(random.choice(printable) for _ in range(length))
+
+
+def normalize_date(date: str) -> str:
+    if len(date) == 16:
+        date = f"{date[8:10]}.{date[5:7]}.{date[:4]} {date[-5:-3]}:{date[-2:]}"
+    elif len(date) == 10:
+        date = f"{date[9:11]}.{date[5:7]}.{date[:4]}"
+    return date
 
 
 def check_reports_from_API(url, user_id):
@@ -35,6 +45,12 @@ def check_reports_from_API(url, user_id):
             'time_to': f'',
             'status': f'',
         }]
+
+    for report in reports:
+        if 'time_created' in report.keys():
+            report['time_created'] = normalize_date(report['time_created'])
+        report['time_from'] = normalize_date(report['time_from'])
+        report['time_to'] = normalize_date(report['time_to'])
     return reports
 
 
