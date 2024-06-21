@@ -60,7 +60,7 @@ def check_reports_from_API(url, user_id):
 
 
 def check_reports_from_API_dev_log(url_to_api, admin_key, user_id, report_data):
-    time_from, time_to = report_data.split('-')
+    time_from, time_to = report_data.split('_')
     time_from, time_to = time_from.split('.')[::-1], time_to.split('.')[::-1]
     time_from, time_to = '-'.join(time_from), '-'.join(time_to)
     report_data = f'{time_from}_{time_to}'
