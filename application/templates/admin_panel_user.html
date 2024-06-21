@@ -99,7 +99,7 @@
     <section class="profile-section" id="user_reports">
         <div class="form-label"><b>История запросов</b></div>
         <form class="history-search" action="{{ url_for('admin_blueprint.admin_page_user', user_id=user_1.id) }}">
-            <input type="date" id="date-query" class="info-input">
+            <input type="text" id="date-query" onfocus="(this.type='date'); this.showPicker()" onblur="(this.type='text'); if(this.value.length===10){ this.value=this.value.slice(8,11) + '.' + this.value.slice(5,7) + '.' + this.value.slice(0, 4); }" placeholder="дд мм гггг" class="info-input">
             <button type="submit" class="btn-submit">Поиск</button>
         </form>
         <div class="table-title">

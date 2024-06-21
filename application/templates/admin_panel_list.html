@@ -5,7 +5,7 @@
 
 {% block content %}
 
-<form class="inline-block" , action="{{ url_for('admin_blueprint.admin_page') }}" method="post">
+<form class="inline-block" , action="{{ url_for('admin_blueprint.admin_page') }}" method="post" id="table-block">
     <div class="search">
         <input type="text" id="search" class="info-input" placeholder="Поиск" name="search">
         <button type="submit" class="btn-submit">Поиск</button>
@@ -25,7 +25,7 @@
         </div>
         <div class="table" id="panel-table">
             {% for user_1, req_1 in zip(users, reqs) %}
-            <div class="table-row-panel">
+            <div class="table-row">
 
                 <div class="field">{{ user_1.id }}</div>
                 <a class="field" href="{{ url_for('admin_blueprint.admin_page_user', user_id=user_1.id) }}">{{
@@ -40,7 +40,7 @@
                 {% endif %}
             </div>
             {% endfor %}
-            {% endblock %}
         </div>
     </div>
 </form>
+{% endblock %}
