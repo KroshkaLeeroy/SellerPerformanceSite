@@ -20,7 +20,7 @@ def normalize_date(date: str) -> str:
     if len(date) == 16:
         date = f"{date[8:10]}.{date[5:7]}.{date[:4]} {date[-5:-3]}:{date[-2:]}"
     elif len(date) == 10:
-        date = f"{date[9:11]}.{date[5:7]}.{date[:4]}"
+        date = f"{date[8:11]}.{date[5:7]}.{date[:4]}"
     return date
 
 
