@@ -78,8 +78,8 @@ def query_page():
         else:
             print(date_from, date_to)
             # Конвертация дат из строк в объекты datetime
-            date_from_obj = datetime.strptime(date_from, "%Y-%m-%d")
-            date_to_obj = datetime.strptime(date_to, "%Y-%m-%d")
+            date_from_obj = datetime.strptime(date_from, "%d.%m.%Y")
+            date_to_obj = datetime.strptime(date_to, "%d.%m.%Y")
             current_date = datetime.now()
 
             # Проверки на порядок дат и на диапазон дат
