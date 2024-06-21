@@ -16,14 +16,6 @@ def generate_password(length):
     return ''.join(random.choice(printable) for _ in range(length))
 
 
-def normalize_date(date: str) -> str:
-    if len(date) == 16:
-        date = f"{date[8:10]}.{date[5:7]}.{date[:4]} {date[-5:-3]}:{date[-2:]}"
-    elif len(date) == 10:
-        date = f"{date[9:11]}.{date[5:7]}.{date[:4]}"
-    return date
-
-
 def check_reports_from_API(url, user_id):
     enc_user_id = encrypt_data(ENCRYPTING_PASSWORD, user_id)
     url = f'{url}/check-pull/{enc_user_id}'
@@ -45,12 +37,6 @@ def check_reports_from_API(url, user_id):
             'time_to': f'',
             'status': f'',
         }]
-
-    for report in reports:
-        if 'time_created' in report.keys():
-            report['time_created'] = normalize_date(report['time_created'])
-        report['time_from'] = normalize_date(report['time_from'])
-        report['time_to'] = normalize_date(report['time_to'])
     return reports
 
 

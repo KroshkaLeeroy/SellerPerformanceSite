@@ -63,14 +63,21 @@ def query_page():
     if request.method == 'POST':
         date_from = request.form.get('date-from')
         date_to = request.form.get('date-to')
+
+        date_to_send = date_to.split('.')[::-1]
+        date_to_send = '-'.join(date_to_send)
+
+        date_from_send = date_from.split('.')[::-1]
+        date_from_send = '-'.join(date_from_send)
+
         data = {
             'user_id': keys.client_id_seller,
             'seller_secret': keys.api_key_seller,
             'seller_id': keys.client_id_seller,
             'perf_api': keys.api_key_performance,
             'perf_id': keys.client_id_performance,
-            'date_from': date_from,
-            'date_to': date_to,
+            'date_from': date_from_send,
+            'date_to': date_to_send,
         }
         # TODO: json check for Date values!
         if not date_to or not date_from:
@@ -78,8 +85,8 @@ def query_page():
         else:
             print(date_from, date_to)
             # Конвертация дат из строк в объекты datetime
-            date_from_obj = datetime.strptime(date_from, "%Y-%m-%d")
-            date_to_obj = datetime.strptime(date_to, "%Y-%m-%d")
+            date_from_obj = datetime.strptime(date_from, "%d.%m.%Y")
+            date_to_obj = datetime.strptime(date_to, "%d.%m.%Y")
             current_date = datetime.now()
 
             # Проверки на порядок дат и на диапазон дат
@@ -103,6 +110,7 @@ def query_page():
                 flash('"Дата с" не должна быть больше 32 дней назад')
                 return redirect(url_for('profile_blueprint.query_page'))
 
+            print(data)
             # Отправка данных на сервер
             response = post_data_to_API(URL_TO_API, data)
             if response.status_code == 200:
