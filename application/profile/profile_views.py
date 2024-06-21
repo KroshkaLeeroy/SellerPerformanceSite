@@ -83,7 +83,7 @@ def query_page():
         if not date_to or not date_from:
             flash('Даты должны быть указаны')
         else:
-            print(date_from, date_to)
+
             # Конвертация дат из строк в объекты datetime
             date_from_obj = datetime.strptime(date_from, "%d.%m.%Y")
             date_to_obj = datetime.strptime(date_to, "%d.%m.%Y")
@@ -110,7 +110,7 @@ def query_page():
                 flash('"Дата с" не должна быть больше 32 дней назад')
                 return redirect(url_for('profile_blueprint.query_page'))
 
-            print(data)
+
             # Отправка данных на сервер
             response = post_data_to_API(URL_TO_API, data)
             if response.status_code == 200:
