@@ -15,6 +15,24 @@ from application.config import ENCRYPTING_PASSWORD
 def generate_password(length):
     return ''.join(random.choice(printable) for _ in range(length))
 
+def convert_dates_from_API_response(reports):
+    for report in reports:
+        time_from = report['time_from'].split('-')
+        time_from = '.'.join(time_from[::-1])
+        report['time_from'] = time_from
+
+        time_to = report['time_to'].split('-')
+        time_to = '.'.join(time_to[::-1])
+        report['time_to'] = time_to
+
+        time_created = report['time_created'].split('-')
+        date_created, time_created = time_created[:3][::-1], time_created[3:]
+        time_created = ':'.join(time_created)
+        date_created = '.'.join(date_created)
+        report['time_created'] = f'{time_created} {date_created}'
+
+    return reports
+
 
 def check_reports_from_API(url, user_id):
     enc_user_id = encrypt_data(ENCRYPTING_PASSWORD, user_id)
@@ -25,6 +43,7 @@ def check_reports_from_API(url, user_id):
         reports = reports.get('history')
         if reports:
             reports = reports[::-1]
+            reports = convert_dates_from_API_response(reports)
         else:
             reports = [{
                 'time_from': 'Не удалось перевернуть отчеты',
