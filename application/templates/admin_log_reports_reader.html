@@ -5,9 +5,9 @@
     <title>Title</title>
 </head>
 <body>
-    <p>Id пользователя: {{ user_id }} <br> Дата отчета: {{ report_data }} </p>
+    <p>Id пользователя: {{ user_id }} <br> Дата отчета: {{ report_data }} <br> Путь: {{ deep_path }}</p>
 
-    {% if ".json" not in report_data %}
+    {% if ".json" not in deep_path %}
         <table border="1">
             <tr>
                 <th>JSON файлы</th>
@@ -21,7 +21,7 @@
                     <ul>
                         {% for item in data %}
                             {% if ".json" in item %}
-                                <li>{{ item }} <a href="{{ url_for('admin_blueprint.report_log' , user_id=user_id, path=report_data + '/' + item) }}">Открыть файл</a></li>
+                                <li>{{ item }} <a href="{{ url_for('admin_blueprint.report_log' , user_id=user_id, path=report_data, deep_path=deep_path + '/' + item) }}">Открыть файл</a></li>
                             {% endif %}
                         {% endfor %}
                     </ul>
@@ -30,7 +30,7 @@
                     <ul>
                         {% for item in data %}
                             {% if ".csv" in item or ".txt" in item or ".log" in item %}
-                                <li>{{ item }} <a href="{{ url_to_API }}/download-any-file/{{ admin_key }}/{{ user_id + '/' + report_data + '/' + item }}">Скачать</a></li>
+                                <li>{{ item }} <a href="{{ url_to_API }}/download-any-file/{{ admin_key }}/{{ user_id }}/{{ report_data }}/{{ deep_path + '/' + item }}">Скачать</a></li>
                             {% endif %}
                         {% endfor %}
                     </ul>
@@ -39,7 +39,7 @@
                     <ul>
                         {% for item in data %}
                             {% if ".zip" in item %}
-                                <li>{{ item }} <a href="{{ url_to_API }}/download-any-file/{{ admin_key }}/{{ user_id + '/' + report_data + '/' + item }}">Скачать</a></li>
+                                <li>{{ item }} <a href="{{ url_to_API }}/download-any-file/{{ admin_key }}/{{ user_id }}/{{ report_data }}/{{ deep_path + '/' + item }}">Скачать</a></li>
                             {% endif %}
                         {% endfor %}
                     </ul>
@@ -48,7 +48,7 @@
                     <ul>
                         {% for item in data %}
                             {% if ".xlsx" in item %}
-                                <li>{{ item }} <a href="{{ url_to_API }}/download-any-file/{{ admin_key }}/{{ user_id + '/' + report_data + '/' + item }}">Скачать</a></li>
+                                <li>{{ item }} <a href="{{ url_to_API }}/download-any-file/{{ admin_key }}/{{ user_id }}/{{ report_data }}/{{ deep_path + '/' + item }}">Скачать</a></li>
                             {% endif %}
                         {% endfor %}
                     </ul>
@@ -57,16 +57,16 @@
                     <ul>
                         {% for item in data %}
                             {% if ".json" not in item and ".csv" not in item and ".txt" not in item and ".log" not in item and ".zip" not in item and ".xlsx" not in item %}
-                                <li>{{ item }} <a href="{{ url_for('admin_blueprint.report_log' , user_id=user_id, path=report_data + '/' + item) }}">Открыть</a></li>
+                                <li>{{ item }} <a href="{{ url_for('admin_blueprint.report_log' , user_id=user_id, path=report_data, deep_path=deep_path + '/' + item) }}">Открыть</a></li>
                             {% endif %}
                         {% endfor %}
                     </ul>
                 </td>
             </tr>
         </table>
-    {% elif ".json" in report_data %}
-        {% if "download" in report_data %}
-            {% if "initial" in report_data %}
+    {% elif ".json" in deep_path %}
+        {% if "download" in deep_path %}
+            {% if "initial" in deep_path %}
                 <ul>
                     <li><strong>Client ID:</strong> {{ data.client_id }}</li>
                     <li><strong>Client Secret:</strong> {{ data.client_secret }}</li>
@@ -84,7 +84,7 @@
                     <li><strong>UUID STATUS TIMER:</strong> {{ data.UUID_STATUS_TIMER }}</li>
                     <li><strong>ATTEMPT TO GET UUID:</strong> {{ data.ATTEMPT_TO_GET_UUID }}</li>
                 </ul>
-            {% elif "token" in report_data %}
+            {% elif "token" in deep_path %}
                 <p><strong>Succeeded:</strong> {{ data.succeeded }}</p>
                 <p><strong>Error Text:</strong> {{ data.error_text }}</p>
                 <p><strong>Token:</strong> {{ data.token }}</p>

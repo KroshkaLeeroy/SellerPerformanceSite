@@ -129,6 +129,7 @@ def report_log(user_id, path, deep_path=None):
                                    data=data,
                                    user_id=user_id,
                                    report_data=path,
+                                   deep_path=deep_path if deep_path else '',
                                    admin_key=ADMIN_KEY,
                                    url_to_API=URL_TO_API, )
         except Exception as e:
