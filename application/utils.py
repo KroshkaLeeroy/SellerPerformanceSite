@@ -66,7 +66,7 @@ def check_reports_from_API_dev_log(url_to_api, admin_key, user_id, path):
     time_from, time_to = time_from.split('.')[::-1], time_to.split('.')[::-1]
     time_from, time_to = '-'.join(time_from), '-'.join(time_to)
     data = f'{time_from}_{time_to}'
-    url = f'{url_to_api}/{admin_key}/downloads/{user_id}/{data}/{path[21:]}'
+    url = f'{url_to_api}/dev/{admin_key}/downloads/{user_id}/{data}/{path[21:]}'
     data = requests.get(url, verify=False)
     return data
 
