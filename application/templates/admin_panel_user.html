@@ -132,7 +132,7 @@
                         <img src="{{ url_for('static', filename='images/download.svg') }}"> Скачать
                     </a>
                     {% endif %}
-                    <a href="{{ url_for('admin_blueprint.report_log' , user_id=report.user_id, report_data=report.time_from + '_' + report.time_to ) }}"> Подробнее</a>
+                    <a href="{{ url_for('admin_blueprint.report_log' , user_id=report.user_id, path=report.time_from + '_' + report.time_to ) }}"> Подробнее</a>
                 </div>
             </div>
             {% endfor %}
