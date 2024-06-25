@@ -115,11 +115,12 @@ def admin_page_user_delete(user_id, action):
 
 
 @admin_blueprint.route('/report_log/<user_id>/<path>', methods=['GET', 'POST'])
+@admin_blueprint.route('/report_log/<user_id>/<path>/<path:deep_path>', methods=['GET', 'POST'])
 @login_required
-def report_log(user_id, path):
+def report_log(user_id, path, deep_path=None):
     if current_user.account_type != 'admin':
         return redirect('/profile')
-    data = check_reports_from_API_dev_log(URL_TO_API, ADMIN_KEY, user_id, path)
+    data = check_reports_from_API_dev_log(URL_TO_API, ADMIN_KEY, user_id, path, deep_path)
 
     if data.status_code == 200:
         try:

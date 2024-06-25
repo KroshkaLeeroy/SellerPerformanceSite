@@ -59,14 +59,14 @@ def check_reports_from_API(url, user_id):
     return reports
 
 
-def check_reports_from_API_dev_log(url_to_api, admin_key, user_id, path):
+def check_reports_from_API_dev_log(url_to_api, admin_key, user_id, path, deep_path):
     print(path)
     date_info = path[:21].split('_')
     time_from, time_to = date_info[0], date_info[1]
     time_from, time_to = time_from.split('.')[::-1], time_to.split('.')[::-1]
     time_from, time_to = '-'.join(time_from), '-'.join(time_to)
     data = f'{time_from}_{time_to}'
-    url = f'{url_to_api}/dev/{admin_key}/downloads/{user_id}/{data}/{path[21:]}'
+    url = f'{url_to_api}/dev/{admin_key}/downloads/{user_id}/{data}/{deep_path}'
     data = requests.get(url, verify=False)
     return data
 
