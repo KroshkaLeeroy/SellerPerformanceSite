@@ -21,7 +21,7 @@
                     <ul>
                         {% for item in data %}
                             {% if ".json" in item %}
-                                <li>{{ item }} <a href="{{ url_for('admin_blueprint.report_log' , user_id=user_id, report_data=report_data + '*' + item) }}">Открыть файл</a></li>
+                                <li>{{ item }} <a href="{{ url_for('admin_blueprint.report_log' , user_id=user_id, report_data=report_data + '/' + item) }}">Открыть файл</a></li>
                             {% endif %}
                         {% endfor %}
                     </ul>
@@ -30,7 +30,7 @@
                     <ul>
                         {% for item in data %}
                             {% if ".csv" in item or ".txt" in item or ".log" in item %}
-                                <li>{{ item }} <a href="{{ url_to_API }}/download-any-file/{{ admin_key }}/{{ user_id + '*' + report_data + '*' + item }}">Скачать</a></li>
+                                <li>{{ item }} <a href="{{ url_to_API }}/download-any-file/{{ admin_key }}/{{ user_id + '/' + report_data + '/' + item }}">Скачать</a></li>
                             {% endif %}
                         {% endfor %}
                     </ul>
@@ -39,7 +39,7 @@
                     <ul>
                         {% for item in data %}
                             {% if ".zip" in item %}
-                                <li>{{ item }} <a href="{{ url_to_API }}/download-any-file/{{ admin_key }}/{{ user_id + '*' + report_data + '*' + item }}">Скачать</a></li>
+                                <li>{{ item }} <a href="{{ url_to_API }}/download-any-file/{{ admin_key }}/{{ user_id + '/' + report_data + '/' + item }}">Скачать</a></li>
                             {% endif %}
                         {% endfor %}
                     </ul>
@@ -48,7 +48,7 @@
                     <ul>
                         {% for item in data %}
                             {% if ".xlsx" in item %}
-                                <li>{{ item }} <a href="{{ url_to_API }}/download-any-file/{{ admin_key }}/{{ user_id + '*' + report_data + '*' + item }}">Скачать</a></li>
+                                <li>{{ item }} <a href="{{ url_to_API }}/download-any-file/{{ admin_key }}/{{ user_id + '/' + report_data + '/' + item }}">Скачать</a></li>
                             {% endif %}
                         {% endfor %}
                     </ul>
@@ -57,7 +57,7 @@
                     <ul>
                         {% for item in data %}
                             {% if ".json" not in item and ".csv" not in item and ".txt" not in item and ".log" not in item and ".zip" not in item and ".xlsx" not in item %}
-                                <li>{{ item }} <a href="{{ url_for('admin_blueprint.report_log' , user_id=user_id, report_data=report_data + '*' + item) }}">Открыть</a></li>
+                                <li>{{ item }} <a href="{{ url_for('admin_blueprint.report_log' , user_id=user_id, report_data=report_data + '/' + item) }}">Открыть</a></li>
                             {% endif %}
                         {% endfor %}
                     </ul>

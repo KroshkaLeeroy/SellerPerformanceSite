@@ -114,12 +114,12 @@ def admin_page_user_delete(user_id, action):
     return redirect(url_for('admin_blueprint.admin_page'))
 
 
-@admin_blueprint.route('/report_log/<user_id>/<report_data>', methods=['GET', 'POST'])
+@admin_blueprint.route('/report_log/<user_id>/<path>', methods=['GET', 'POST'])
 @login_required
-def report_log(user_id, report_data):
+def report_log(user_id, path):
     if current_user.account_type != 'admin':
         return redirect('/profile')
-    data = check_reports_from_API_dev_log(URL_TO_API, ADMIN_KEY, user_id, report_data)
+    data = check_reports_from_API_dev_log(URL_TO_API, ADMIN_KEY, user_id, path)
 
     if data.status_code == 200:
         try:
@@ -127,7 +127,7 @@ def report_log(user_id, report_data):
             return render_template('admin_log_reports_reader.html',
                                    data=data,
                                    user_id=user_id,
-                                   report_data=report_data,
+                                   report_data=path,
                                    admin_key=ADMIN_KEY,
                                    url_to_API=URL_TO_API, )
         except Exception as e:
