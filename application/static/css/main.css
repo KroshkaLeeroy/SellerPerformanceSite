@@ -61,6 +61,7 @@ input::placeholder {
     height: 98%;
     box-sizing: border-box;
     gap: 8px;
+    overflow-y: auto;
 }
 
 .menu {
@@ -412,6 +413,7 @@ input::placeholder {
     border-radius: 24px;
     gap: 4px;
     box-sizing: border-box;
+    overflow-y: auto;
 }
 
 .profile-form {
@@ -424,6 +426,7 @@ input::placeholder {
 
 .profile-info {
     display: flex;
+    flex-wrap: wrap;
     width: 100%;
     gap: 12px;
 }
@@ -438,7 +441,7 @@ input::placeholder {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    flex: 1;
+    flex: 4;
     label {
         padding: 4px 8px;
     }
@@ -471,13 +474,15 @@ input::placeholder {
 }
 
 .btn-submit {
-    display: inline-block;
+    display: flex;
+    flex: 1;
     border: none;
     background-color: #3B6AF6;
     color: #FFFFFF;
     border-radius: 16px;
     padding: 12px 16px 12px 16px;
-    width: 15%;
+    justify-content: center;
+    align-items: center;
 }
 
 .btn-submit:hover {
@@ -641,25 +646,13 @@ input::placeholder {
     }
 }
 
-.card {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.card img {
-    display: block;
-    object-fit: cover;
-    width: 100%;
-    height: auto;
-}
-
 
 .query-content-wrapper{
     display: flex;
     flex-direction: column;
     flex: 1;
     gap: 10px;
+    overflow: visible;
 }
 
 .query-input-wrapper{
@@ -674,6 +667,7 @@ input::placeholder {
 .query-input{
     gap:12px;
     display: flex;
+    flex-wrap:wrap;
 }
 
 .reports-block{
@@ -685,6 +679,7 @@ input::placeholder {
     border-radius: 24px;
     background-color: white;
     min-height: 0;
+    overflow: auto;
 }
 
 .query-label{
@@ -692,6 +687,7 @@ input::placeholder {
     flex: 1;
     font-size: 20pt;
     font-weight: 500;
+    overflow: visible;
 }
 
 .query-table{
@@ -706,6 +702,7 @@ input::placeholder {
     border-radius: 16px;
     color: #596173;
     font-weight: 400;
+    overflow: auto;
 }
 
 .query-title-row{
@@ -738,4 +735,15 @@ input::placeholder {
     gap:4px;
     min-height: 0;
     overflow-y: auto;
+}
+
+
+.banners-block{
+    display:flex;
+    flex-direction: column;
+    width: 13%;
+    overflow-y: auto;
+    img{
+        width: 100%;
+    }
 }

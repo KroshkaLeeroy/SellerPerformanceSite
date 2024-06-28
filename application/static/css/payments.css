@@ -619,6 +619,9 @@ body {
     display: flex;
     gap: 16px;
     justify-content: center;
+    a{
+        gap:6px;
+    }
 }
 
 .smm-option{
@@ -666,6 +669,9 @@ body {
 .notice{
     display: flex;
     justify-content: center;
+    color: #A9AFBC;
+    font-size: 10px;
+    line-height: 12px;
 }
 
 .total-wrapper{
