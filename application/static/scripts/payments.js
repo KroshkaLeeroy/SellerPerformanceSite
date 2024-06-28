@@ -9,6 +9,10 @@ let monthsLabelTotal = document.getElementById("months-total");
 let currentPrice = document.getElementById("checkout");
 let radioTrigger = document.querySelectorAll('input[type=radio][name="plan-type"]');
 let planLabel = document.getElementById("chosen-plan");
+let startChose = document.getElementById("start-chose");
+let businessChose = document.getElementById("business-chose");
+
+
 
 Array.prototype.forEach.call(radioTrigger, function (radio) {
     radio.addEventListener('change', count);
@@ -21,27 +25,37 @@ function count() {
     let shops = parseInt(shopsLabel.innerHTML);
     let months = parseInt(monthsLabel.innerHTML);
 
-    total = total*months;
+    total = total * months;
 
-    if (shops>1){
-        total = total + (shops-1)*preTotal;
+    if (shops > 1) {
+        total = total + (shops - 1) * preTotal;
     }
-    if (months === 12){
+    if (months === 12) {
         total = total * 0.75;
     }
-    else if (months >= 6){
+    else if (months >= 6) {
         total *= 0.85;
     }
     currentPrice.innerHTML = total;
-    if (preTotal==3990) {
+    if (preTotal == 3990) {
+        startChose.innerHTML = "<img src='/static/images/check.svg'>Выбрано"
+        businessChose.innerHTML = "Выбрать"
         planLabel.innerHTML = "Тариф Старт"
     }
-    else planLabel.innerHTML = "Тариф Бизнес" 
+    else {
+        startChose.innerHTML = "Выбрать"
+        businessChose.innerHTML = "<img src='/static/images/check.svg'>Выбрано"
+        planLabel.innerHTML = "Тариф Бизнес"
+    }
+    document.querySelector('input[name="plan-type"]').parentElement.style.backgroundColor = "#F6F7F9";
+    document.querySelector('input[name="plan-type"]').parentElement.style.border = "none";
+    document.querySelector('input[name="plan-type"]:checked').parentElement.style.backgroundColor = "white";
+    document.querySelector('input[name="plan-type"]:checked').parentElement.style.border = "2px solid #F6F7F9";
 }
 
 shops.addEventListener("input", function (event) {
     shopsLabelTotal.innerHTML = event.currentTarget.value;
-    
+
     if (event.currentTarget.value === '1') {
         shopsLabelTotal.innerHTML += " доп. магазин";
         shopsSub.innerHTML = " магазин";

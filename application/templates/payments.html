@@ -54,7 +54,7 @@
                         <div class="start-option-text">5000 запросов в сутки</div>
                     </div>
                 </div>
-                <label for="plan-start" class="radio-button"><input type="radio" value="3990" name="plan-type" form="payment-form" class="start-option-bar" id="plan-start">Выбрать</label>
+                <label for="plan-start" class="radio-button"><input type="radio" value="3990" name="plan-type" form="payment-form" class="start-option-bar" id="plan-start"><div id="start-chose" class="button-label">Выбрать</div></label>
             </div>
 
             <div class="plan-business">
@@ -73,13 +73,12 @@
                     </div>
                 </div>
                 <div class="business-option-bar">
-
                     <div class="option-wrapper">
                         <img src="{{ url_for('static', filename='images/w-check.svg') }}">
                         <div class="business-option-text">5000 запросов в сутки</div>
                     </div>
                 </div>
-                <label for="plan-busines" class="radio-button"><input checked type="radio" value="4990" name="plan-type" form="payment-form" class="business-option-bar" id="plan-busines">Выбрать</label>
+                <label for="plan-busines" class="radio-button"><input checked type="radio" value="4990" name="plan-type" form="payment-form" class="business-option-bar" id="plan-busines"><div id="business-chose" class="button-label"><img src="{{ url_for('static', filename='images/check.svg') }}"> Выбрано</div></label>
             </div>
         </div>
     </div>

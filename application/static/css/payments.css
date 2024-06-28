@@ -692,3 +692,12 @@ body {
     }
 
 }
+
+.button-label{
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    color: #0B0C0E;
+    font-size: 14px;
+    line-height: 20px;
+}
