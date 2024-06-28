@@ -30,55 +30,57 @@
         </div>
     </div>
 
-    <div class="plan-pick-label">Выбрать тариф</div>
-    <div class="plans-wrapper">
-        <div class="plan-start">
-            <div class="plan-start-title">
-                <div>Старт</div>
-                <div class="price-wrapper">
-                    <div>3 990</div>
-                    <div class="rouble">₽</div>
-                    <div class="start-gray-m">/мес</div>
+    <div class="payment-block">
+        <div class="plan-pick-label">Выбрать тариф</div>
+        <div class="plans-wrapper">
+            <div class="plan-start">
+                <div class="plan-start-title">
+                    <div>Старт</div>
+                    <div class="price-wrapper">
+                        <div>3 990</div>
+                        <div class="rouble">₽</div>
+                        <div class="start-gray-m">/мес</div>
+                    </div>
                 </div>
-            </div>
-            <div class="start-option-bar">
-                <div class="option-wrapper">
-                    <img src="{{ url_for('static', filename='images/check.svg') }}">
-                    <div class="start-option-text">Возможность создания отчётов за 1 прошлый день</div>
+                <div class="start-option-bar">
+                    <div class="option-wrapper">
+                        <img src="{{ url_for('static', filename='images/check.svg') }}">
+                        <div class="start-option-text">Возможность создания отчётов за 1 прошлый день</div>
+                    </div>
                 </div>
-            </div>
-            <div class="start-option-bar">
-                <div class="option-wrapper">
-                    <img src="{{ url_for('static', filename='images/check.svg') }}">
-                    <div class="start-option-text">5000 запросов в сутки</div>
+                <div class="start-option-bar">
+                    <div class="option-wrapper">
+                        <img src="{{ url_for('static', filename='images/check.svg') }}">
+                        <div class="start-option-text">5000 запросов в сутки</div>
+                    </div>
                 </div>
+                <button form="payment-form" class="start-option-bar">Выбрать</button>
             </div>
-            <button form="payment-form" class="start-option-bar">Выбрать</button>
-        </div>
 
-        <div class="plan-business">
-            <div class="plan-business-title">
-                <div class="plan-business-label">Старт</div>
-                <div class="price-wrapper">
-                    <div class="plan-business-price">4 990</div>
-                    <div class="rouble">₽</div>
-                    <div class="business-gray-m">/мес</div>
+            <div class="plan-business">
+                <div class="plan-business-title">
+                    <div class="plan-business-label">Старт</div>
+                    <div class="price-wrapper">
+                        <div class="plan-business-price">4 990</div>
+                        <div class="rouble">₽</div>
+                        <div class="business-gray-m">/мес</div>
+                    </div>
                 </div>
-            </div>
-            <div class="business-option-bar">
-                <div class="option-wrapper">
-                    <img src="{{ url_for('static', filename='images/w-check.svg') }}">
-                    <div class="business-option-text">Возможность создания отчётов за последние 60 дней</div>
+                <div class="business-option-bar">
+                    <div class="option-wrapper">
+                        <img src="{{ url_for('static', filename='images/w-check.svg') }}">
+                        <div class="business-option-text">Возможность создания отчётов за последние 60 дней</div>
+                    </div>
                 </div>
-            </div>
-            <div class="business-option-bar">
+                <div class="business-option-bar">
 
-                <div class="option-wrapper">
-                    <img src="{{ url_for('static', filename='images/w-check.svg') }}">
-                    <div class="business-option-text">5000 запросов в сутки</div>
+                    <div class="option-wrapper">
+                        <img src="{{ url_for('static', filename='images/w-check.svg') }}">
+                        <div class="business-option-text">5000 запросов в сутки</div>
+                    </div>
                 </div>
+                <button form="payment-form" class="business-option-bar">Выбрать</button>
             </div>
-            <button form="payment-form" class="business-option-bar">Выбрать</button>
         </div>
     </div>
     <div class="additions-block">
@@ -135,52 +137,56 @@
         </div>
     </div>
 
-    <div class="summary-plan-label">Тариф к оплате</div>
+    <div class="payment-block">
+        <div class="summary-plan-label">Тариф к оплате</div>
 
-    <div class="summary">
-        <div class="summary-to-payment">
-            <div class="summary-options">
-                <div class="summary-option"><img src="{{ url_for('static', filename='images/check.svg') }}">Тариф Бизнес
-                </div>
-                <div class="summary-option"><img src="{{ url_for('static', filename='images/check.svg') }}">1 доп.
-                    магазин
-                </div>
-                <div class="summary-option"><img src="{{ url_for('static', filename='images/check.svg') }}">1 месяц
-                </div>
-            </div>
-            <form class="promo-field" name="promo" method="post" action=""> <!-- ???? -->
-                <div class="promo-label">Промокод</div>
-                <div class="promo-wrapper">
-                    <input type="text" placeholder="Введите промокод"><button type="submit"
-                        form="promo">Активировать</button>
-                </div>
-            </form>
-            <div class="to-payment-wrapper">
-                <div class="total-wrapper">
-                    <div class="total-label">К оплате</div>
-                    <div class="price-wrapper">
-                        <div>4 990</div>
-                        <div class="rouble">₽</div>
-                        <div class="start-gray-m">/мес</div>
+        <div class="summary">
+            <div class="summary-to-payment">
+                <div class="summary-options">
+                    <div class="summary-option"><img src="{{ url_for('static', filename='images/check.svg') }}">Тариф
+                        Бизнес
+                    </div>
+                    <div class="summary-option"><img src="{{ url_for('static', filename='images/check.svg') }}">1 доп.
+                        магазин
+                    </div>
+                    <div class="summary-option"><img src="{{ url_for('static', filename='images/check.svg') }}">1 месяц
                     </div>
                 </div>
-                <button type="submit" form="payment-form">Оплатить</button>
-            </div>
-        </div>
-        <div class="summary-to-smm-wrapper">
-            <div class="summary-to-smm">
-                <div class="smm-label-bold">Проблемы с оплатой или возник вопрос?</div>
-                <div class="smm-label">Напишите нам в мессенджер или оставьте заявку</div>
-                <div class="smm">
-                    <a class="smm-option" href="https://web.telegram.org/"><img
-                            src="{{ url_for('static', filename='images/telegram.svg')}}">Telegram</a>
-                    <a class="smm-option" href="https://www.instagram.com/"><img
-                            src="{{ url_for('static', filename='images/instagram.svg')}}">Instagram*</a>
-                    <a class="smm-option" href="{{ url_for('feedback_blueprint.feedback_page') }}">Оставить заявку</a>
+                <form class="promo-field" name="promo" method="post" action=""> <!-- ???? -->
+                    <div class="promo-label">Промокод</div>
+                    <div class="promo-wrapper">
+                        <input type="text" placeholder="Введите промокод"><button type="submit"
+                            form="promo">Активировать</button>
+                    </div>
+                </form>
+                <div class="to-payment-wrapper">
+                    <div class="total-wrapper">
+                        <div class="total-label">К оплате</div>
+                        <div class="price-wrapper">
+                            <div>4 990</div>
+                            <div class="rouble">₽</div>
+                            <div class="start-gray-m">/мес</div>
+                        </div>
+                    </div>
+                    <button type="submit" form="payment-form">Оплатить</button>
                 </div>
-                <a href="ПУБЛИЧНАЯ ОФЕРТА" class="docs">Публичная оферта</a>
             </div>
-            <div class="notice">* – Запрещенная организация на территории РФ</div>
+            <div class="summary-to-smm-wrapper">
+                <div class="summary-to-smm">
+                    <div class="smm-label-bold">Проблемы с оплатой или возник вопрос?</div>
+                    <div class="smm-label">Напишите нам в мессенджер или оставьте заявку</div>
+                    <div class="smm">
+                        <a class="smm-option" href="https://web.telegram.org/"><img
+                                src="{{ url_for('static', filename='images/telegram.svg')}}">Telegram</a>
+                        <a class="smm-option" href="https://www.instagram.com/"><img
+                                src="{{ url_for('static', filename='images/instagram.svg')}}">Instagram*</a>
+                        <a class="smm-option" href="{{ url_for('feedback_blueprint.feedback_page') }}">Оставить
+                            заявку</a>
+                    </div>
+                    <a href="ПУБЛИЧНАЯ ОФЕРТА" class="docs">Публичная оферта</a>
+                </div>
+                <div class="notice">* – Запрещенная организация на территории РФ</div>
+            </div>
         </div>
     </div>
 </form>

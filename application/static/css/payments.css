@@ -57,7 +57,7 @@ body {
     padding: 12px;
     gap: 12px;
     background: linear-gradient(#0937C3, #3960D4);
-    overflow:visible;
+    overflow: visible;
     align-items: center;
 
     img {
@@ -120,6 +120,14 @@ body {
     display: flex;
     flex-direction: column;
     flex: 1;
+    gap: 24px;
+    overflow: auto;
+}
+
+.payment-block {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
     gap: 12px;
 }
 
@@ -143,15 +151,6 @@ body {
     padding: 12px;
     gap: 12px;
     background-color: white;
-
-    button {
-        outline: none;
-        border: none;
-        justify-content: center;
-        font-size: 14px;
-        line-height: 20px;
-        font-weight: 400;
-    }
 }
 
 .plan-start-title {
@@ -197,7 +196,6 @@ body {
 .business-option-bar {
     display: flex;
     padding: 12px;
-    gap: 8px;
     border-radius: 16px;
     background-color: rgba(255, 255, 255, 12%);
 }
@@ -224,15 +222,6 @@ body {
     background: linear-gradient(#0937C3, #3960D4);
     box-shadow: 0px 2px 4px -1px #0A090B,
         0px 5px 13px -5px #0A090B;
-
-    button {
-        outline: none;
-        border: none;
-        justify-content: center;
-        font-size: 14px;
-        line-height: 20px;
-        font-weight: 400;
-    }
 }
 
 .business-option-text {
@@ -294,11 +283,13 @@ body {
 
 .months-quantity {
     display: flex;
+    flex-direction: column;
     flex: 1;
     background-color: #F6F7F9;
     border-radius: 12px;
     justify-content: space-between;
     padding: 12px;
+    gap: 16px;
 }
 
 .autopay {
@@ -443,7 +434,7 @@ body {
             -410px 0 0 400px #0937C3;
         transition: .2s ease-in-out;
     }
-    
+
     input[type="range"]::-moz-range-thumb {
         height: 16px;
         width: 16px;
@@ -479,27 +470,22 @@ body {
     input[type="range"]::-moz-range-thumb:hover {
         box-shadow: 0 0 0 1px rgba(10, 9, 11, 0.05),
             0 2px 2px -1px rgba(10, 9, 11, 0.05);
-            overflow: visible;
+        overflow: visible;
     }
 
     input[type="range"]:active::-moz-range-thumb {
         box-shadow: 0 0 0 1px rgba(10, 9, 11, 0.05),
             0 2px 2px -1px rgba(10, 9, 11, 0.05);
-            overflow: visible;
+        overflow: visible;
     }
 
     input[type="range"]:focus::-moz-range-thumb {
         box-shadow: 0 0 0 1px rgba(10, 9, 11, 0.05),
             0 2px 2px -1px rgba(10, 9, 11, 0.05);
-            overflow: visible;
+        overflow: visible;
     }
 }
 
-.months-quantity {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
 
 .current-shops {
     display: flex;
@@ -527,7 +513,7 @@ body {
     display: flex;
     flex-direction: column;
     flex: 1;
-    gap: 10px;
+    gap: 16px;
 }
 
 .summary-options {
@@ -557,6 +543,12 @@ body {
     justify-content: center;
 }
 
+.promo-block {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
 .promo-wrapper {
     display: flex;
     gap: 8px;
@@ -566,6 +558,10 @@ body {
         flex-grow: 1;
         padding: 12px 16px;
         border-radius: 16px;
+        font-size: 16px;
+        line-height: 20px;
+        color: #80899C;
+        font-weight: 400;
     }
 
     button {
@@ -615,24 +611,24 @@ body {
     }
 }
 
-.smm{
+.smm {
     display: flex;
     gap: 16px;
     justify-content: center;
-    a{
-        gap:6px;
-    }
 }
 
-.smm-option{
+.smm-option {
     display: flex;
+    gap: 6px;
     padding: 12px 16px;
+    justify-content: center;
     align-items: center;
     background-color: white;
     border-radius: 8px;
+    min-width: 140px;
 }
 
-.smm-label-bold{
+.smm-label-bold {
     display: flex;
     color: #0B0C0E;
     font-weight: 500;
@@ -641,16 +637,16 @@ body {
     justify-content: center;
 }
 
-.smm-label{
+.smm-label {
     display: flex;
     color: #434956;
     font-weight: 400;
-    font-size:14px;
+    font-size: 14px;
     line-height: 20px;
     justify-content: center;
 }
 
-.docs{
+.docs {
     display: flex;
     justify-content: center;
     color: #0937C3;
@@ -659,14 +655,14 @@ body {
     line-height: 18px;
 }
 
-.summary-to-smm-wrapper{
+.summary-to-smm-wrapper {
     display: flex;
     flex: 1;
     flex-direction: column;
     gap: 12px;
 }
 
-.notice{
+.notice {
     display: flex;
     justify-content: center;
     color: #A9AFBC;
@@ -674,7 +670,25 @@ body {
     line-height: 12px;
 }
 
-.total-wrapper{
+.total-wrapper {
+    gap: 4px;
     display: flex;
     flex-direction: column;
+}
+
+.radio-button {
+    display: flex;
+    cursor: pointer;
+
+    background-color: #F6F7F9;
+    border-radius: 8px;
+    padding: 12px 16px;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+
+    input[type="radio"][name="plan-type"] {
+        display: none;
+    }
+
 }
