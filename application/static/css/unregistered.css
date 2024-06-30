@@ -93,6 +93,7 @@ input::placeholder {
     gap: 24px;
     padding: 32px 24px 24px 24px;
     width: 35%;
+    overflow: auto;
 }
 
 .passwords {

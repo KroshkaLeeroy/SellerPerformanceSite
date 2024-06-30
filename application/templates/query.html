@@ -4,61 +4,63 @@
 
 
 {% block content %}
-
-<div class="inline-block">
-    <div class="block" id="pickers">
-        <form class="contact-form" action="{{ url_for('profile_blueprint.query_page') }}" method="post">
-            <div class="dates">
-                <div class="form-group">
-                    <label for="date-from">Дата с</label>
-                    <input type="text" id="date-from" class="info-input" name="date-from" onfocus="(this.type='date'); this.showPicker()" onblur="(this.type='text'); if(this.value.length===10){ this.value=this.value.slice(8,11) + '.' + this.value.slice(5,7) + '.' + this.value.slice(0, 4); }" placeholder="дд мм гггг">
-                </div>
-                <div class="form-group">
-                    <label for="date-to">Дата по</label>
-                    <input type="text" id="date-to" class="info-input" onfocus="(this.type='date'); this.showPicker()" onblur="(this.type='text'); if(this.value.length===10){ this.value=this.value.slice(8,11) + '.' + this.value.slice(5,7) + '.' + this.value.slice(0, 4); }" placeholder="дд мм гггг" name="date-to" >
-                </div>
-                {% with messages = get_flashed_messages() %}
-                {% if "Заполните API ключи в Настройках профиля" not in messages and "должен" not in messages %}
-                <button type="submit" class="btn-submit">Запросить отчет</button>
-                {% endif %}
+<div class="query-content-wrapper">
+    <form class="query-input-wrapper" action="{{ url_for('profile_blueprint.query_page') }}" method="post">
+        <div class="query-input">
+            <div class="form-group">
+                <label for="date-from">Дата с</label>
+                <input type="text" id="date-from" class="info-input" name="date-from"
+                    onfocus="(this.type='date'); this.showPicker()"
+                    onblur="(this.type='text'); if(this.value.length===10){ this.value=this.value.slice(8,11) + '.' + this.value.slice(5,7) + '.' + this.value.slice(0, 4); }"
+                    placeholder="дд мм гггг">
             </div>
-                {% if messages %}
-                <div class="flashes">
-                    {% for message in messages %}
-                    <div class="error">{{ message }}</div>
-                    {% endfor %}
-                </div>
-                {% endif %}
-                {% endwith %}
-        </form>
-    </div>
-
-    <div class=block id="reports" style="margin-top: 20px;">
-        <div class="shops-title">
-            <div class="shops-label">История</div>
+            <div class="form-group">
+                <label for="date-to">Дата по</label>
+                <input type="text" id="date-to" class="info-input" onfocus="(this.type='date'); this.showPicker()"
+                    onblur="(this.type='text'); if(this.value.length===10){ this.value=this.value.slice(8,11) + '.' + this.value.slice(5,7) + '.' + this.value.slice(0, 4); }"
+                    placeholder="дд мм гггг" name="date-to">
+            </div>
+            {% with messages = get_flashed_messages() %}
+            {% if "Заполните API ключи в Настройках профиля" not in messages and "должен" not in messages %}
+            <button type="submit" class="btn-submit">Запросить отчет</button>
+            {% endif %}
         </div>
-        <div class="table">
-            <div class="table-title">
-                <div class="field"><b>Дата с</b></div>
-                <div class="field"><b>Дата по</b></div>
-                <div class="field"><b>Статус</b></div>
-            </div>
-            {% for report in reports %}
-            <div class="table-row">
-                <div class="field">{{ report.time_from }}</div>
-                <div class="field">{{ report.time_to }}</div>
-                <div class="field">
-                    {% if report.status == 'in_line' %}
-                    <div class="in-progress">В процессе</div>
-                    {% elif report.status == 'ready' %}
-                    <div class="successful">Успешно</div>
-                    {% elif report.status == 'some_error' %}
-                    <div class="outdated">Ошибка</div>
-                    {% endif %}
-                </div>
-            </div>
+        {% if messages %}
+        <div class="flashes">
+            {% for message in messages %}
+            <div class="error">{{ message }}</div>
             {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+    </form>
+    <div class="reports-block">
+        <div class="query-label">История</div>
+        <div class="query-table">
+            <div class="query-title-row">
+                <div class="query-table-cell"><b>Дата с</b></div>
+                <div class="query-table-cell"><b>Дата по</b></div>
+                <div class="query-table-cell"><b>Статус</b></div>
+            </div>
+            <div class="query-scroll">
+            {% for report in reports %}
+                <div class="query-data-row">
+                    <div class="query-table-cell">{{ report.time_from }}</div>
+                    <div class="query-table-cell">{{ report.time_to }}</div>
+                    <div class="query-table-cell">
+                        {% if report.status == 'in_line' %}
+                        <div class="in-progress">В процессе</div>
+                        {% elif report.status == 'ready' %}
+                        <div class="successful">Успешно</div>
+                        {% elif report.status == 'some_error' %}
+                        <div class="outdated">Ошибка</div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
 </div>
+
 {% endblock %}

@@ -1,5 +1,6 @@
-import requests
 from datetime import datetime, timedelta
+
+import requests
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import login_required, current_user
 
@@ -76,14 +77,13 @@ def query_page():
             'seller_id': keys.client_id_seller,
             'perf_api': keys.api_key_performance,
             'perf_id': keys.client_id_performance,
-            'date_from': date_from_send,
-            'date_to': date_to_send,
+            'date_from': date_from_send,  # format: "yyyy-mm-dd"
+            'date_to': date_to_send,  # format: "yyyy-mm-dd"
         }
         # TODO: json check for Date values!
         if not date_to or not date_from:
             flash('Даты должны быть указаны')
         else:
-
             # Конвертация дат из строк в объекты datetime
             date_from_obj = datetime.strptime(date_from, "%d.%m.%Y")
             date_to_obj = datetime.strptime(date_to, "%d.%m.%Y")
@@ -110,15 +110,12 @@ def query_page():
                 flash('"Дата с" не должна быть больше 32 дней назад')
                 return redirect(url_for('profile_blueprint.query_page'))
 
-
             # Отправка данных на сервер
             response = post_data_to_API(URL_TO_API, data)
             if response.status_code == 200:
                 flash('Запрос успешно отправлен на сервер')
             else:
                 flash('Нет возможности соединиться с сервером запросов')
-
-
 
         return redirect(url_for('profile_blueprint.query_page'))
     try:
