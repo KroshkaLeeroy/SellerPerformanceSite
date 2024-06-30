@@ -7,7 +7,7 @@ from werkzeug.security import generate_password_hash
 from application.config import ADMIN_PASSWORD
 from application.init import app, db, User, Keys, Requests, Payments
 from application.payment.subscriptions import payment_polling
-from application.payment.yookassa_api import after_payment
+# from application.payment.yookassa_api import after_payment
 
 urllib3.disable_warnings()
 

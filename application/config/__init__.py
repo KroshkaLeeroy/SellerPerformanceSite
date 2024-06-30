@@ -18,7 +18,7 @@ def generate_key(password: str, salt) -> bytes:
 
 
 if not find_dotenv():
-    exit("Переменные окружение не загружены, так как отсутствует файл .env")
+    exit("Переменные окружения не загружены, так как отсутствует файл .env")
 else:
     load_dotenv()
 

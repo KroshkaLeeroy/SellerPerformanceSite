@@ -1,11 +1,9 @@
-import time
 from logging import info
 
-from flask import Blueprint, render_template, redirect, url_for, request, flash
+from flask import Blueprint, redirect, request, flash, render_template
 from flask_login import current_user, login_required
 
-from .subscriptions import update_user_subscription
-from .yookassa_api import PData, Payment, check_payments
+from .yookassa_api import pay
 from ..models import Payments, Requests
 
 payment_blueprint = Blueprint('payment_blueprint', __name__)
@@ -17,69 +15,35 @@ def payment_page():
     requests = Requests.query.get(current_user.id).request_count
     payments = Payments.query.get(current_user.id)
     shops_count_max = 10
-
     if request.method == 'POST':
         try:
             plan = float(request.form.get("plan-type"))
-            months = int(request.form.get("months"))
-            shops = int(request.form.get("shops"))
+            months = int(request.form.get("months-pick"))
+            shops = int(request.form.get("shops-pick"))
             autopay = bool(request.form.get("autopays"))
+
+            print(f"[DEBUG INFO]: plan:{plan} | months:{months} | shops:{shops} | autopay:{autopay}")
 
             plan_name = "Базовый" if plan == 4990 else "Старт"
             autopay_label = "подключено" if autopay else "не подключено"
 
             total = plan * months
             if shops > 1:
-                total += (shops - 1) * 2990
+                total += (shops - 1) * plan
             if months == 12:
                 total *= 0.75
             elif months >= 6:
                 total *= 0.85
 
-            payment_data = PData(
-                value=total,
-                return_url=url_for("payment_blueprint.after_payment", _external=True),
-                description=f"[Пользователь {current_user.id}]: Покупка плана '{plan_name}' на {shops} "
-                            f"магазинов и {months} месяцев. Авто продление {autopay_label}."
-            )
-            payment = Payment(payment_data.get_data())
-            info(payment_data.get_data())
-            if payment.validate_data():
-                redir = payment.pay()
-                return redirect(redir)
-            else:
-                flash("Что-то пошло не так.", "warning")
+            payment = pay(total, user_id=current_user.id,
+                          desc_details=f"тариф {plan_name} на {months} месяцев "
+                                       f"c {f'{shops - 1} дополнительными магазинами' if shops - 1 > 0 else ''}.")
+            info(
+                f"Пользователь {current_user.id} приобрёл тариф {plan_name}"
+                f" на {months} месяцев c {f'{shops - 1} дополнительными магазинами' if shops - 1 > 0 else ''} "
+                f"на сумму {total}₽")
+            return redirect(payment)
         except Exception as e:
             flash(f"Ошибка при обработке платежа: {str(e)}", "danger")
-
-    payments.plan = {
-        'start': "Старт",
-        'basic': "Базовый",
-        'trial': "Пробный"
-    }.get(payments.plan, payments.plan)
-
-    payments.autopay = "Включено" if payments.autopay else "Не подключено"
-    payments.payment_date = payments.payment_date.date().strftime('%d.%m.%Y')
-
-    return render_template('payments.html', user=current_user, payments=payments, requests=requests, scm=shops_count_max)
-
-
-@payment_blueprint.route('/after_payment')
-@login_required
-def after_payment():
-    pays = check_payments()
-    for id0 in pays:
-        payment = Payment(PData(0)).find_one(id0)
-        if payment["status"] == "succeeded" and payment["paid"]:
-            data = payment.description.replace('[Пользователь ', '').replace(']: Покупка плана \'', ' ').replace('\' на', '')\
-                .replace(' магазинов и', '').replace('месяцев. Автопродление ', '').replace('.', '').split(' ')
-            print(data)
-            update_user_subscription(int(data[0]), True, data[1], int(data[2]), int(data[3]), data[4])
-    return redirect(url_for("payment_blueprint.payment_page"))
-
-
-@payment_blueprint.after_request
-def redirect_to_sign_in(response):
-    if response.status_code == 401:
-        return redirect(url_for('login_blueprint.login_page') + '?next=' + request.url)
-    return response
+    return render_template('payments.html', user=current_user, payments=payments, requests=requests,
+                           scm=shops_count_max)

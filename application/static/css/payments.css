@@ -56,7 +56,9 @@ body {
     border-radius: 24px;
     padding: 12px;
     gap: 12px;
-    background: linear-gradient(#0937C3, #3960D4);
+    background-image:url('../images/rounds1.svg'), linear-gradient(#0937C3, #3960D4);
+    background-position: center;
+    background-size: 110%;
     overflow: visible;
     align-items: center;
 
@@ -596,7 +598,7 @@ body {
     display: flex;
     justify-content: space-between;
 
-    button {
+    input[type="submit"] {
         display: block;
         border: none;
         outline: none;
