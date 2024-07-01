@@ -8,25 +8,25 @@
         <div class="current-plan-wrapper">
             <div class="your-plan-label">Ваш тарифный план</div>
 
-            <div class="your-plan-name" id="backend-info-plan"><b>Бизнес</b></div>
+            <div class="your-plan-name" id="backend-info-plan"><b>{{ payments.plan }}</b></div>
 
         </div>
         <div class="info-wrapper">
             <div class="info-label">Запросов в сутки <div class="info-count">
-                    <div id="backend-info-requests">918</div>
+                    <div id="backend-info-requests">{{ requests }}</div>
                     <div id="backend-info-requests-max">/1200</div>
                 </div>
             </div>
             <div class="info-label">Магазинов подключено<div class="info-count">
-                    <div id="backend-info-shops">1</div>
-                    <div id="backend-info-shops-max">/2</div>
+                    <div id="backend-info-shops">{{ payments.shops_connected }}</div>
+                    <div id="backend-info-shops-max">/{{ scm }}</div>
                 </div>
             </div>
         </div>
         <div class="info-wrapper">
-            <div class="info-label">Оплачено до<div class="info-count" id="info-paid-to-date">12.08.2024 16:21</div>
+            <div class="info-label">Оплачено до<div class="info-count" id="info-paid-to-date">{{ payments.payment_date.strftime("%Y-%m-%d %H:%M:%S") }}</div>
             </div>
-            <div class="info-label">Автопродление<div class="info-count" id="is_autopay_on">Включено</div>
+            <div class="info-label">Автопродление<div class="info-count" id="is_autopay_on">{{ "Включено" if payments.autopay else "Выключено" }}</div>
             </div>
         </div>
     </div>
@@ -98,7 +98,7 @@
         <div class="additions-label">Дополнительно
             <div class="autopay">Автопродление
                 <label class="switch">
-                    <input type="checkbox" name="autopays" checked>
+                    <input type="checkbox" name="autopays" {{ "checked" if payments.autopay else "" }}>
                     <span class="slider"></span>
                 </label>
             </div>
@@ -185,8 +185,8 @@
                             <div class="start-gray-m">/мес</div>
                         </div>
                     </div>
+                    <input type="submit" class="button" name="pay-button" value="Оплатить" {{ "disabled" if payments.is_plan_active else "" }}>
                 </div>
-                <input type="submit" class="button" name="pay-button" value="Оплатить">
             </div>
             <div class="summary-to-smm-wrapper">
                 <div class="summary-to-smm">

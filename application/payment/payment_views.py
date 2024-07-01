@@ -24,7 +24,7 @@ def payment_page():
 
             print(f"[DEBUG INFO]: plan:{plan} | months:{months} | shops:{shops} | autopay:{autopay}")
 
-            plan_name = "Базовый" if plan == 4990 else "Старт"
+            plan_name = "Бизнес" if plan == 4990 else "Старт"
             autopay_label = "подключено" if autopay else "не подключено"
 
             total = plan * months
@@ -45,5 +45,11 @@ def payment_page():
             return redirect(payment)
         except Exception as e:
             flash(f"Ошибка при обработке платежа: {str(e)}", "danger")
+    if payments.plan == 'basic':
+        payments.plan = 'Бизнес'
+    elif payments.plan == 'start':
+        payments.plan = 'Старт'
+    else:
+        payments.plan = 'Пробный'
     return render_template('payments.html', user=current_user, payments=payments, requests=requests,
                            scm=shops_count_max)

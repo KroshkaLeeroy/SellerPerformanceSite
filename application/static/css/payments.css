@@ -516,6 +516,8 @@ body {
     flex-direction: column;
     flex: 1;
     gap: 16px;
+
+    
 }
 
 .summary-options {
@@ -555,7 +557,7 @@ body {
     display: flex;
     gap: 8px;
 
-    input {
+    input[type="text"] {
         display: flex;
         flex-grow: 1;
         padding: 12px 16px;
