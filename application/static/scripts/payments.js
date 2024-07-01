@@ -36,6 +36,7 @@ function count() {
     else if (months >= 6) {
         total *= 0.85;
     }
+    total = total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     currentPrice.innerHTML = total;
     if (preTotal == 3990) {
         startChose.innerHTML = "<img src='/static/images/check.svg'>Выбрано"
@@ -94,5 +95,3 @@ months.addEventListener("input", function (event) {
     monthsLabel.innerHTML = document.getElementById("months-pick").value;
     count();
 });
-
-

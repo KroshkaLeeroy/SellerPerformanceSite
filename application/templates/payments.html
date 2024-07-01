@@ -3,29 +3,30 @@
 
 {% block content %}
 
-<form class="payment-form" action="{{url_for('payment_blueprint.payment_page')}}" method="post" name="payment-form">
+<form class="payment-form" method="post" action="{{url_for('payment_blueprint.payment_page')}}">
     <div class="info-bar">
         <div class="current-plan-wrapper">
             <div class="your-plan-label">Ваш тарифный план</div>
-            <b>
-                <div class="your-plan-name" id="backend-info-plan">Бизнес</div>
-            </b>
+
+            <div class="your-plan-name" id="backend-info-plan"><b>{{ payments.plan }}</b></div>
+
         </div>
-        <!-- <img src="{{ url_for('static', filename='images/rounds1.svg') }}"> -->
         <div class="info-wrapper">
             <div class="info-label">Запросов в сутки <div class="info-count">
-                    <div id="backend-info-requests">918</div><div id="backend-info-requests-max">/1200</div>
+                    <div id="backend-info-requests">{{ requests }}</div>
+                    <div id="backend-info-requests-max">/1200</div>
                 </div>
             </div>
             <div class="info-label">Магазинов подключено<div class="info-count">
-                    <div id="backend-info-shops">1</div><div id="backend-info-shops-max">/2</div>
+                    <div id="backend-info-shops">{{ payments.shops_connected }}</div>
+                    <div id="backend-info-shops-max">/{{ scm }}</div>
                 </div>
             </div>
         </div>
         <div class="info-wrapper">
-            <div class="info-label">Оплачено до<div class="info-count" id="info-paid-to-date">12.08.2024 16:21</div>
+            <div class="info-label">Оплачено до<div class="info-count" id="info-paid-to-date">{{ payments.payment_date.strftime("%Y-%m-%d %H:%M:%S") }}</div>
             </div>
-            <div class="info-label">Автопродление<div class="info-count" id="is_autopay_on">Включено</div>
+            <div class="info-label">Автопродление<div class="info-count" id="is_autopay_on">{{ "Включено" if payments.autopay else "Выключено" }}</div>
             </div>
         </div>
     </div>
@@ -54,7 +55,12 @@
                         <div class="start-option-text">5000 запросов в сутки</div>
                     </div>
                 </div>
-                <label for="plan-start" class="radio-button"><input type="radio" value="3990" name="plan-type" form="payment-form" class="start-option-bar" id="plan-start"><div id="start-chose" class="button-label">Выбрать</div></label>
+
+                <label for="plan-start" class="radio-button"><input type="radio" value=3990 class="start-option-bar"
+                        name="plan-type" id="plan-start" onchange="count()">
+
+                    <div id="start-chose" class="button-label">Выбрать</div>
+                </label>
             </div>
 
             <div class="plan-business">
@@ -78,7 +84,13 @@
                         <div class="business-option-text">5000 запросов в сутки</div>
                     </div>
                 </div>
-                <label for="plan-busines" class="radio-button"><input checked type="radio" value="4990" name="plan-type" form="payment-form" class="business-option-bar" id="plan-busines"><div id="business-chose" class="button-label"><img src="{{ url_for('static', filename='images/check.svg') }}"> Выбрано</div></label>
+
+                <label for="plan-business" class="radio-button"><input checked type="radio" value=4990
+                        class="business-option-bar" name="plan-type" id="plan-business" onchange="count()">
+
+                    <div id="business-chose" class="button-label"><img
+                            src="{{ url_for('static', filename='images/check.svg') }}"> Выбрано</div>
+                </label>
             </div>
         </div>
     </div>
@@ -86,7 +98,7 @@
         <div class="additions-label">Дополнительно
             <div class="autopay">Автопродление
                 <label class="switch">
-                    <input type="checkbox" checked>
+                    <input type="checkbox" name="autopays" {{ "checked" if payments.autopay else "" }}>
                     <span class="slider"></span>
                 </label>
             </div>
@@ -100,15 +112,16 @@
                     <div class="current-wrapper">
                         <div class="current-shops">
                             <div>В настоящий момент вы используете:</div>
-                            <div class="current-in-use" id="backend-info-shops">2</div>
+                            <div class="current-in-use" id="current-info-shops">2</div>
                         </div>
                     </div>
                 </div>
                 <div class="picker-wrapper">
-                    <input placeholder=3 type="range" id="shops-pick" min="1" max="4" value=3 step=1>
+                    <input type="range" name="shops-pick" id="shops-pick" min="1" max="4" value=3 step=1 onchange="count()">
                     <b>
                         <div class="current-in-use-wrapper">
-                            <div class="current-in-use" id="shops-node">3</div><div id="shops-node-label">магазина</div>
+                            <div class="current-in-use" id="shops-node">3</div>
+                            <div id="shops-node-label">магазина</div>
                         </div>
                     </b>
                 </div>
@@ -125,10 +138,11 @@
                     </div>
                 </div>
                 <div class="picker-wrapper">
-                    <input placeholder=3 type="range" id="months-pick" min="1" max="12" value=8 step=1>
+                    <input type="range" name="months-pick" id="months-pick" min="1" max="12" value=8 step=1 onchange="count()">
                     <b>
                         <div class="current-in-use-wrapper">
-                            <div class="current-in-use" id="months-node">8</div><div id="months-node-label">месяцев</div>
+                            <div class="current-in-use" id="months-node">8</div>
+                            <div id="months-node-label">месяцев</div>
                         </div>
                     </b>
                 </div>
@@ -142,33 +156,36 @@
         <div class="summary">
             <div class="summary-to-payment">
                 <div class="summary-options">
-                    <div class="summary-option"><img src="{{ url_for('static', filename='images/check.svg') }}"><div id="chosen-plan">Тариф
-                        Бизнес</div>
+                    <div class="summary-option"><img src="{{ url_for('static', filename='images/check.svg') }}">
+                        <div id="chosen-plan">Тариф
+                            Бизнес</div>
                     </div>
-                    <div class="summary-option"><img src="{{ url_for('static', filename='images/check.svg') }}"><div id="shops-total">3 доп. магазина</div>
+                    <div class="summary-option"><img src="{{ url_for('static', filename='images/check.svg') }}">
+                        <div id="shops-total">3 доп. магазина</div>
                     </div>
-                    <div class="summary-option"><img src="{{ url_for('static', filename='images/check.svg') }}"><div id="months-total">8 месяцев</div>
+                    <div class="summary-option"><img src="{{ url_for('static', filename='images/check.svg') }}">
+                        <div id="months-total">8 месяцев</div>
                     </div>
                 </div>
-                <form class="promo-field" name="promo" method="post" action=""> <!-- ???? -->
+                <section class="promo-field" action="" id="promo-form"> <!-- ???? -->
                     <div class="promo-block">
                         <div class="promo-label">Промокод</div>
                         <div class="promo-wrapper">
-                            <input type="text" placeholder="Введите промокод">
-                            <button type="submit" form="promo">Активировать</button>
+                            <input type="text" placeholder="Введите промокод" name="promocode">
+                            <button type="submit" formaction="validate_promo" formmethod="post">Активировать</button>
                         </div>
                     </div>
-                </form>
+                </section>
                 <div class="to-payment-wrapper">
                     <div class="total-wrapper">
                         <div class="total-label">К оплате</div>
                         <div class="price-wrapper">
-                            <div id="checkout">4 990</div>
+                            <div id="checkout">42 415</div>
                             <div class="rouble">₽</div>
                             <div class="start-gray-m">/мес</div>
                         </div>
                     </div>
-                    <button type="submit" form="payment-form">Оплатить</button>
+                    <input type="submit" class="button" name="pay-button" value="Оплатить" {{ "disabled" if payments.is_plan_active else "" }}>
                 </div>
             </div>
             <div class="summary-to-smm-wrapper">
@@ -189,6 +206,6 @@
             </div>
         </div>
     </div>
+    <script src="{{ url_for('static', filename='scripts/payments.js') }}"></script>
 </form>
-<script src="{{ url_for('static', filename='scripts/payments.js') }}"></script>
 {% endblock %}

@@ -1,6 +1,6 @@
 from datetime import datetime as dt, timedelta as td
 from logging import debug, info
-
+from .yookassa_api import pay_by_autopay
 from application.init import app
 from application.models import db, User, Payments
 
@@ -30,21 +30,18 @@ def check_and_update_payment_status(user, payday, cur_date):
             if pay_by_autopay():
                 info(f'[{dt.now()}]: user\'s plan with id={user.id} ({user.email}) was paid!')
             else:
-                info(f'[{dt.now()}]: user\'s plan with id={user.id} ({user.email}) was deactivated due to failed payment')
+                info(
+                    f'[{dt.now()}]: user\'s plan with id={user.id} ({user.email}) was deactivated due to failed payment')
                 payday.is_plan_active = False
         else:
             payday.is_plan_active = False
         db.session.commit()
 
 
-def pay_by_autopay() -> bool:
-    return False
-
-
 def update_user_subscription(user_id: int, is_active: bool = False, pay_plan: str = "", shops: int = 1, months: int = 1,
                              autopay: bool = False):
-    print(user_id, is_active, pay_plan, shops, months, autopay)
-    print(type(months))
+    info(user_id, is_active, pay_plan, shops, months, autopay)
+    info(type(months))
     plan_dict = {
         'Старт': 'start',
         'Базовый': 'basic',
@@ -55,7 +52,7 @@ def update_user_subscription(user_id: int, is_active: bool = False, pay_plan: st
     else:
         bd_plan = 'trial'
 
-    autopay = autopay == 'подключено'
+    autopay = (autopay == 'подключено')
 
     with app.app_context():
         pay = Payments.query.get(user_id)

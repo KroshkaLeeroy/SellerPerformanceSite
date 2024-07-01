@@ -21,6 +21,12 @@
     <title>{% block title %}Mirasell{% endblock %}</title>
 
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+    <script src='https://salebot.pro/js/salebot.js?v=1' charset='utf-8'></script>
+    <script>
+        SaleBotPro.init({
+            onlineChatId: '3188'
+        });
+    </script>
 </head>
 
 <body>
@@ -29,7 +35,7 @@
     {% if user.is_authenticated %}
     <div class="block" id="left-navbar">
         <div class="top-menu">
-                <div class="menu">
+            <div class="menu">
                 <a class="profile" href="{{ url_for('profile_blueprint.profile_page') }}"><img
                         src="{{ url_for('static', filename='images/logo.svg') }}">
                     <div class="user-info">
@@ -75,7 +81,8 @@
                     <div class="list-item">
                         <div class="list-icon"><img src="{{ url_for('static', filename='images/library.svg') }}">
                         </div>
-                        <a href="https://opposite-buzzard-2d1.notion.site/mirasell-e8c48a3fdbb84895b9e6b24a44b779f9?pvs=4">
+                        <a
+                            href="https://opposite-buzzard-2d1.notion.site/mirasell-e8c48a3fdbb84895b9e6b24a44b779f9?pvs=4">
                             База знаний
                         </a>
                     </div>

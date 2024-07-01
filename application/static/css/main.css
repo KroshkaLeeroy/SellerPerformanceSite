@@ -581,7 +581,6 @@ input::placeholder {
     background: #F6F7F9;
     gap: 12px;
     height: 100%;
-    max-width: 15%;
     box-sizing: border-box;
     overflow-y: auto;
 
